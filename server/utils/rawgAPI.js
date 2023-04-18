@@ -1,11 +1,16 @@
 const axios = require("axios");
 
-const rawgAPI = axios.create({
-  baseURL: "https://api.rawg.io/api/",
-  timeout: 5000,
+const options = {
+  method: 'GET',
+  url: 'http://localhost:5173/?key=5cb5074085274b3aab2431311200438c',
   headers: {
-    "Content-Type": "application/json",
-  },
-});
+    'X-RapidAPI-Key': 'f13389262emshd03f88bf6e53023p13de1bjsnba11bbfd6d61',
+    'X-RapidAPI-Host': 'http://localhost:5173'
+  }
+};
 
-module.exports = rawgAPI;
+axios.request(options).then(function (response) {
+	console.log(response.data);
+}).catch(function (error) {
+	console.error(error);
+});
