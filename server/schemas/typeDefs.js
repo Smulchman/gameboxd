@@ -12,7 +12,7 @@ const typeDefs = gql`
     _id: ID
     game: String
     datePlayed: String
-    platform: String
+    platform: Platform
     review: String
     createdAt: String
     updatedAt: String
