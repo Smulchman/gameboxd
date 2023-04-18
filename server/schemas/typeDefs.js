@@ -18,6 +18,16 @@ const typeDefs = gql`
     createdAt: String
     updatedAt: String
   }
+  type Game {
+    name: String
+    slug: String
+    image: String
+    platforms: [Platform]
+  }
+  type Platform {
+    slug: String
+    name: String
+  }
   type Auth {
     token: ID!
     user: User
@@ -31,6 +41,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     addEntry(game: String!, user: String!, datePlayed: String, platform: String, review: String): Entry
+    login(email: String!, password: String!): Auth
     updateUser(userId: ID!, username: String, email: String, password: String): User
     updateEntry(entryId: ID!, datePlayed: String, platform: String, review: String): Entry
     removeUser(userId: ID!): User
