@@ -11,7 +11,6 @@ const typeDefs = gql`
   type Entry {
     _id: ID
     game: String
-    user: User
     datePlayed: String
     platform: String
     review: String
