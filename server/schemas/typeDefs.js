@@ -20,14 +20,20 @@ const typeDefs = gql`
   }
   type Game {
     name: String
-    image: String
+    background_image: String
+    metacritic: Int
+    esrb: ESRB
     genres: [Genre]
     platforms: [Platform]
+  }
+  type ESRB {
+    name: String
   }
   type Genre {
     name: String
   }
   type Platform {
+    // this platform is the specific console, not the 'parent platform'
     name: String
   }
   type Auth {
