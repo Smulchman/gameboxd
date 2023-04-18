@@ -1,16 +1,18 @@
 const axios = require("axios");
 
-const options = {
-  method: 'GET',
-  url: 'http://localhost:5173/?key=5cb5074085274b3aab2431311200438c',
-  headers: {
-    'X-RapidAPI-Key': 'f13389262emshd03f88bf6e53023p13de1bjsnba11bbfd6d61',
-    'X-RapidAPI-Host': 'http://localhost:5173'
-  }
+const apiKey = process.env.RAWG_API_KEY;
+const endpointUrl = "https://api.rawg.io/api/games";
+const headers = {
+  "Content-Type": "application/json",
+  "X-RapidAPI-Key": process.env.RAPID_API_KEY,
+  "X-RapidAPI-Host": "rawg-video-games-database.p.rapidapi.com",
 };
 
-axios.request(options).then(function (response) {
-	console.log(response.data);
-}).catch(function (error) {
-	console.error(error);
-});
+axios
+  .get(`${endpointUrl}?key=${apiKey}`, { headers })
+  .then((response) => {
+    console.log(response.data);
+    // process the data here
+  })
+  .catch((error) => console.error(error));
+
