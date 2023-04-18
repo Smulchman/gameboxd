@@ -20,12 +20,14 @@ const typeDefs = gql`
   }
   type Game {
     name: String
-    slug: String
     image: String
+    genres: [Genre]
     platforms: [Platform]
   }
+  type Genre {
+    name: String
+  }
   type Platform {
-    slug: String
     name: String
   }
   type Auth {
