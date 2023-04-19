@@ -1,9 +1,14 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const User = require('./User');
 
 const entrySchema = new Schema({
   game: {
     type: String,
+    required: true,
+  },
+  user: {
+    type: User.schema,
     required: true,
   },
   datePlayed: {
