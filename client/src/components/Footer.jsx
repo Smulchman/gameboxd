@@ -25,6 +25,7 @@ export default function StickyFooter() {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
+        // bgcolor: '#292827',
       }}
     >
       <CssBaseline />
@@ -44,15 +45,17 @@ export default function StickyFooter() {
           py: 3,
           px: 2,
           mt: 'auto',
-          backgroundColor: (theme) =>
-            theme.palette.mode === 'light'
-              ? theme.palette.grey[200]
-              : theme.palette.grey[800],
+          // backgroundColor: (theme) =>
+          //   theme.palette.mode === 'light'
+          //     ? theme.palette.grey[200]
+          //     : theme.palette.grey[800],
+          bgcolor: '#292827',
         }}
       >
         <Container maxWidth="sm">
-          <Typography variant="body1">GameBoxed</Typography>
-          <Copyright />
+          <Typography variant="body1" sx={{ color: 'white' }}>
+            GameBoxed
+          </Typography>
         </Container>
       </Box>
     </Box>
