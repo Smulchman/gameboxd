@@ -12,7 +12,16 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import '../assets/css/Signup.css';
+import React, { Component } from 'react';
+import SignUp from './SignUp';
+export default SignUp;
+
+class SignUp extends Component {
+  // Component logic goes here
+}
+
+export default SignUp;
+
 
 function Copyright(props) {
   return (
