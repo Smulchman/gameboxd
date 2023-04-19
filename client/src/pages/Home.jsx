@@ -10,6 +10,7 @@ import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
+import SignUp from './Signup';
 // import Typography from '@mui/material/Typography';
 
 // modal stuff
@@ -29,6 +30,7 @@ const style = {
 
 export default function SimpleContainer() {
   // modal stuff
+  const [signUp, setSignUp] = React.useState(false);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -40,53 +42,25 @@ export default function SimpleContainer() {
 
       {/* modal stuff starts */}
 
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          backgroundColor: '#292827',
-          width: '100%',
-          color: 'white',
-          marginTop: 5,
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+        <Modal
+          aria-labelledby="transition-modal-title"
+          aria-describedby="transition-modal-description"
+          open={open}
+          onClose={handleClose}
+          closeAfterTransition
+          slots={{ backdrop: Backdrop }}
+          slotProps={{
+            backdrop: {
+              timeout: 500,
+            },
           }}
         >
-          <h3 style={{ width: '100%' }}>Track Games You've Played</h3>
-          <h3 style={{ width: '100%' }}>Save Those You Want To Play</h3>
-          <Button
-            variant="contained"
-            size="large"
-            sx={{ width: '200px', height: '60px' }}
-            onClick={handleOpen}
-          >
-            Get Started!
-          </Button>
-          <Modal
-            aria-labelledby="transition-modal-title"
-            aria-describedby="transition-modal-description"
-            open={open}
-            onClose={handleClose}
-            closeAfterTransition
-            slots={{ backdrop: Backdrop }}
-            slotProps={{
-              backdrop: {
-                timeout: 500,
-              },
-            }}
-          >
-            <Fade in={open}>
-              <Box sx={style}>
-                <Signin />
-              </Box>
-            </Fade>
-          </Modal>
-        </div>
+          <Fade in={open}>
+            <Box sx={style}>
+              <Signin />
+            </Box>
+          </Fade>
+        </Modal>
       </div>
     </Container>
   );
