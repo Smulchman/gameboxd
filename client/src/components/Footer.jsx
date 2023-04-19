@@ -14,7 +14,7 @@ function Copyright() {
     <Typography variant="body2" color="text.secondary">
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Group 3
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -29,7 +29,7 @@ export default function StickyFooter() {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
-        // bgcolor: '#292827',
+        bgcolor: '#292827',
       }}
     >
       <CssBaseline />
@@ -54,6 +54,8 @@ export default function StickyFooter() {
           //     ? theme.palette.grey[200]
           //     : theme.palette.grey[800],
           bgcolor: '#292827',
+          borderTop: 3,
+          borderColor: 'white',
         }}
       >
         <Container maxWidth="sm">
