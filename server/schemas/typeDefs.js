@@ -29,7 +29,7 @@ const typeDefs = gql`
     name: String
     background_image: String
     released: String
-    esrb-rating: ESRB
+    esrbRating: ESRB
     genres: [Genre]
     metacritic: Int
     platforms: [PlatformObj]
