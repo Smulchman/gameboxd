@@ -28,20 +28,22 @@ const style = {
 };
 
 export default function SimpleContainer() {
-   // modal stuff
-   const [open, setOpen] = React.useState(false);
-   const handleOpen = () => setOpen(true);
-   const handleClose = () => setOpen(false);
-  return (   
+  // modal stuff
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  return (
     <Container maxWidth="xl">
       <Box sx={{ bgcolor: '#292827', height: '50vh' }}>
-        <img src={reactLogo} width="80%" height="90%" />
+        <img src={reactLogo} width="100%" height="100%" />
       </Box>
+
        {/* modal stuff starts */}
        <div style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#292827', width: '100%' }}>
         <h3 style={{width: '100%'}}>Track Games You've Played</h3> <br /> 
         <h3 style={{width: '100%'}}>Save Those You Want To Play</h3>
        <Button variant='contained' size='large' sx={{ width: '200px', height: '60px' }} onClick={handleOpen}>Get Started!</Button>
+
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
