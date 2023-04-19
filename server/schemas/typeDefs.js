@@ -52,7 +52,7 @@ const typeDefs = gql`
     name: String
   }
 
-  type Screenshot{
+  type Screenshot {
     image: String
   }
 
@@ -71,10 +71,26 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    addEntry(game: String!, user: String!, datePlayed: String, platform: String, review: String): Entry
+    addEntry(
+      game: String!
+      user: String!
+      datePlayed: String
+      platform: String
+      review: String
+    ): Entry
     login(email: String!, password: String!): Auth
-    updateUser(userId: ID!, username: String, email: String, password: String): User
-    updateEntry(entryId: ID!, datePlayed: String, platform: String, review: String): Entry
+    updateUser(
+      userId: ID!
+      username: String
+      email: String
+      password: String
+    ): User
+    updateEntry(
+      entryId: ID!
+      datePlayed: String
+      platform: String
+      review: String
+    ): Entry
     removeUser(userId: ID!): User
     removeEntry(entryId: ID!): Entry
   }
