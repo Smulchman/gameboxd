@@ -1,14 +1,14 @@
 // const {getGames} = require('../utils/api')
 const axios = require('axios');
 const { User, Entry } = require('../models');
-require("dotenv").config()
+require('dotenv').config();
 
 const resolvers = {
   Query: {
     users: async () => {
       return await User.find({});
     },
-    entries: async (parent, { username }) => {
+    entries: async (_, { username }) => {
       return await Entry.find({ username });
     },
     games: async () => {
@@ -16,8 +16,7 @@ const resolvers = {
         `https://rawg-video-games-database.p.rapidapi.com/games?key=${process.env.RAWG_API_KEY}`,
         {
           headers: {
-            'x-rapidapi-key':
-              `${process.env.RAPID_API_KEY}`,
+            'x-rapidapi-key': `${process.env.RAPID_API_KEY}`,
             'x-rapidapi-host': 'rawg-video-games-database.p.rapidapi.com',
           },
         }
@@ -25,7 +24,6 @@ const resolvers = {
       const game = data.data.results;
       return game;
     },
-   
   },
 };
 
