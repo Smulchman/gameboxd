@@ -5,26 +5,31 @@ const entrySchema = new Schema({
   game: {
     type: String,
     required: true,
-    unique: true,
   },
   datePlayed: {
     type: String,
-    required: true,
+    required: false,
   },
   platform: {
     type: String,
-    required: true,
+    required: false,
   },
   review: {
     type: String,
     required: false,
   },
+  score: {
+    type: Number,
+    minimum: 0,
+    maximum: 100,
+    required: false,
+  },
   createdAt: {
     type: Date,
-    required: false,
-  }
+    default: Date.now,
+    get: (timestamp) => dateFormat(timestamp),
+  },
 });
-
 
 const Entry = mongoose.model('Entry', entrySchema);
 
