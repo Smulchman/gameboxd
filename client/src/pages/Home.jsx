@@ -12,6 +12,8 @@ export default function SimpleContainer() {
       <Box sx={{ bgcolor: '#292827', height: '50vh' }}>
         <img src={reactLogo} width="80%" height="90%" />
       </Box>
+      <Signin />
+      
     </Container>
   );
 }

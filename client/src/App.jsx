@@ -5,6 +5,7 @@ import viteLogo from './assets/vite.svg';
 import './App.css';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -14,8 +15,9 @@ const client = new ApolloClient({
 function App() {
   return (
     <>
-      <Navbar className="nav" />
+      <Navbar />
       <Home />
+      <Footer />
     </>
   );
 }
