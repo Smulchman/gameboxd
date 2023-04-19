@@ -16,7 +16,8 @@ const typeDefs = gql`
 
   type Entry {
     _id: ID
-    game: String
+    game: Game
+    User: User
     datePlayed: String
     platform: Platform
     review: String
@@ -27,10 +28,12 @@ const typeDefs = gql`
   type Game {
     name: String
     background_image: String
-    metacritic: Int
-    esrb: ESRB
+    released: String
+    esrb_rating: ESRB
     genres: [Genre]
-    platforms: [Platform]
+    metacritic: Int
+    platforms: [PlatformObj]
+    short_screenshots: [Screenshot]
   }
 
   type ESRB {
@@ -41,8 +44,16 @@ const typeDefs = gql`
     name: String
   }
 
+  type PlatformObj {
+    platform: Platform
+  }
+
   type Platform {
     name: String
+  }
+
+  type Screenshot{
+    image: String
   }
 
   type Auth {
