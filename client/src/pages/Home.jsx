@@ -6,14 +6,11 @@ import Container from '@mui/material/Container';
 import reactLogo from '../assets/react.svg';
 export default function SimpleContainer() {
   return (
-    <React.Fragment>
-      <CssBaseline />
-      <Container maxWidth="xl">
-        <Box sx={{ bgcolor: 'black', height: '50vh' }}>
-          <img src={reactLogo} width="80%" height="90%" />
-        </Box>
-      </Container>
-    </React.Fragment>
+    <Container maxWidth="xl">
+      <Box sx={{ bgcolor: '#292827', height: '50vh' }}>
+        <img src={reactLogo} width="80%" height="90%" />
+      </Box>
+    </Container>
   );
 }
 // row of video games in cards
