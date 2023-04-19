@@ -1,3 +1,8 @@
+// .env
+require('dotenv').config({ path: "../.env" });
+console.log('RAWG_API_KEY', process.env.RAWG_API_KEY)
+// import dotenv from "dotenv";
+
 // express
 const express = require('express');
 const path = require('path');
@@ -10,6 +15,8 @@ const db = require('./config/connection');
 const api = require('./utils/rawgAPI.js');
 // Axios 
 const axios = require('axios');
+// import function 
+const {getGames} = require('./utils/rawgAPI.js'); 
 
 
 // graphql schemas
@@ -31,31 +38,14 @@ app.use(
   })
 );
 
+getGames();
+
 // point to dist folder
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
 app.get('/', (req, res) =>
   res.sendFile(__dirname, '../client/dist/index.html')
 );
-
-// Endpoint to retrieve data from RAWG API
-app.get('/rawg-games', async (req, res) => {
-  const apiKey = process.env.RAWG_API_KEY;
-  const endpointUrl = 'https://rawg-video-games-database.p.rapidapi.com/games';
-  const headers = {
-    'Content-Type': 'application/json',
-    'X-RapidAPI-Key': process.env.RAPID_API_KEY,
-    'X-RapidAPI-Host': 'rawg-video-games-database.p.rapidapi.com',
-    'Authorization': `Bearer ${apiKey}`
-  };
-  try {
-    const response = await axios.get(`${endpointUrl}?key=${apiKey}`, { headers });
-    res.json(response.data);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Failed to retrieve RAWG games data' });
-  }
-});
 
 // startserver
 const startServer = async () => {
