@@ -18,7 +18,6 @@ async function getGames() {
       }
     });
     const data = response.data;
-    console.log(response.data);
     return data;
   } catch (error) {
     console.error(error);

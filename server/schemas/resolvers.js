@@ -11,7 +11,6 @@ const resolvers = {
       return await User.find({});
     },
     entries: async (_, { username }) => {
-      // Entry will have a gameData virtual property that will be populated with the game data from the API
       return await Entry.find({ username });
     },
     games: async () => {
