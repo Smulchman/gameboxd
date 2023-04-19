@@ -6,6 +6,10 @@ const entrySchema = new Schema({
     type: String,
     required: true,
   },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+  },
   datePlayed: {
     type: String,
     required: false,
