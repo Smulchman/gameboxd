@@ -11,11 +11,12 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import '../assets/css/Signin.css';
+
 
 // const theme = createTheme();
 
-export default function SignIn() {
+export default function SignIn(props) {
+  const {setSignUp} = props;
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -82,7 +83,7 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="#" onClick={()=>setSignUp(true)} variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
