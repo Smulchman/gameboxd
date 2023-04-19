@@ -15,6 +15,8 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { borders } from '@mui/system';
+// import '../assets/css'
 
 const pages = [<VideogameAssetOffIcon />, <GamepadIcon />, <SearchIcon />];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -39,7 +41,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{ bgcolor: '#292827', borderBottom: 3 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <VideogameAssetIcon
