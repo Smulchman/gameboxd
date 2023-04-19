@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const axios = require('axios');
 
 const entrySchema = new Schema({
   game: {
@@ -9,6 +10,7 @@ const entrySchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: 'User',
+    required: true,
   },
   datePlayed: {
     type: String,
@@ -33,11 +35,28 @@ const entrySchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
-});
+},
+{
+  toJSON: {
+    virtuals: true,
+  },
+  id: false,
+}
+);
 
-entrySchema.virtual('gameData').get(function () {
-  // api fetch request with games id to return object with desired params.
-  this.game;
+entrySchema.virtual('gameData').get(async function () {
+  const gameID = this.game;
+  const { data } = await axios.get(
+    `https://rawg-video-games-database.p.rapidapi.com/games/${gameID}?key=5cb5074085274b3aab2431311200438c`,
+    {
+      headers: {
+        'x-rapidapi-key':
+          '87cdee1fecmsha53138e19c8fc31p120979jsnc537093c677e',
+        'x-rapidapi-host': 'rawg-video-games-database.p.rapidapi.com',
+      },
+    }
+  );
+  return data;
 })
 
 const Entry = mongoose.model('Entry', entrySchema);
