@@ -23,7 +23,7 @@ const resolvers = {
           },
         }
       );
-      const game = data.data;
+      const game = data.data.results;
       return game;
     },
   },
