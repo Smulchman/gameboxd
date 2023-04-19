@@ -14,7 +14,7 @@ const client = new ApolloClient({
 function App() {
   return (
     <>
-      <Navbar />
+      <Navbar className="nav" />
       <Home />
     </>
   );
