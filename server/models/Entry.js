@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const entrySchema = new Schema({
   game: {
-    type: String,
+    type: Number,
     required: true,
   },
   user: {
