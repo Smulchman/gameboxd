@@ -5,6 +5,8 @@ const path = require('path');
 const { ApolloServer } = require('apollo-server-express');
 // database connection
 const db = require('./config/connection');
+// const api = require('./utils/api');
+const axios = require('axios');
 
 // graphql schemas
 const { typeDefs, resolvers } = require('./schemas');
@@ -24,6 +26,24 @@ app.use(
     extended: true,
   })
 );
+
+app.get('/', (req, res) => {
+  const apiKey = '5cb5074085274b3aab2431311200438c';
+  const endpointUrl = 'https://api.rawg.io/api/games';
+  const headers = {
+    'Content-Type': 'application/json',
+    'X-RapidAPI-Key': '87cdee1fecmsha53138e19c8fc31p120979jsnc537093c677e',
+    'X-RapidAPI-Host': 'rawg-video-games-database.p.rapidapi.com',
+  };
+
+  axios
+    .get(`${endpointUrl}?key=${apiKey}`, { headers })
+    .then((response) => {
+      console.log(response.data);
+      // process the data here
+    })
+    .catch((error) => console.error(error));
+});
 
 // point to dist folder
 app.use(express.static(path.join(__dirname, '../client/dist')));
