@@ -28,17 +28,17 @@ const style = {
 };
 
 export default function SimpleContainer() {
-   // modal stuff
-   const [open, setOpen] = React.useState(false);
-   const handleOpen = () => setOpen(true);
-   const handleClose = () => setOpen(false);
-  return (   
+  // modal stuff
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  return (
     <Container maxWidth="xl">
       <Box sx={{ bgcolor: '#292827', height: '50vh' }}>
-        <img src={reactLogo} width="80%" height="90%" />
+        <img src={reactLogo} width="100%" height="100%" />
       </Box>
-       {/* modal stuff starts */}
-       <div>
+      {/* modal stuff starts */}
+      <div>
         <Button onClick={handleOpen}>Get Started!</Button>
         <Modal
           aria-labelledby="transition-modal-title"
