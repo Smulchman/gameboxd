@@ -7,12 +7,15 @@ const userSchema = new Schema({
   username: {
     type: String,
     required: true,
-    trim: true,
+    unique: true,
+    // instead of using trim, I'm using this regex to prevent spaces altogether
+    match: [/^\S+$/, 'Usernames may not contain spaces'],
   },
   email: {
     type: String,
     required: true,
     unique: true,
+    match: [/.+@.+\..+/, 'Must match an email address'],
   },
   password: {
     type: String,

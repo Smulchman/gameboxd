@@ -20,13 +20,9 @@ const entrySchema = new Schema({
     required: false,
   },
   createdAt: {
-    type: String,
+    type: Date,
     required: false,
-  },
-  updatedAt: {
-    type: String,
-    required: false,
-  },
+  }
 });
 
 
