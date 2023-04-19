@@ -27,6 +27,7 @@ app.use(
   })
 );
 
+<<<<<<< HEAD
 app.get('/', (req, res) => {
   const apiKey = '5cb5074085274b3aab2431311200438c';
   const endpointUrl = 'https://api.rawg.io/api/games';
@@ -44,6 +45,8 @@ app.get('/', (req, res) => {
     })
     .catch((error) => console.error(error));
 });
+=======
+>>>>>>> 249033d749b91dd803b427c4a47c72af750a8d29
 
 // point to dist folder
 app.use(express.static(path.join(__dirname, '../client/dist')));

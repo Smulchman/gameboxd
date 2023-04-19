@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import GameList from './components/getgame';
+import BasicImageList from './components/home';
 import reactLogo from './assets/react.svg';
 import viteLogo from './assets/vite.svg';
 import './App.css';
@@ -14,11 +16,12 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <>
+    <ApolloProvider client={client}>
       <Navbar />
       <Home />
+      <BasicImageList />
       <Footer />
-    </>
+    </ApolloProvider>
   );
 }
 
