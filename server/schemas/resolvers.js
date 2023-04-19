@@ -6,9 +6,7 @@ const resolvers = {
       return await User.find({});
     },
     entries: async (parent, { username }) => {
-      // query your mongoose model for entries
-      // map through entries and make api calls for game data associated with each entry
-      // return all the data to the client
+      // Entry will have a gameData virtual property that will be populated with the game data from the API
       return await Entry.find({ username });
     },
   },

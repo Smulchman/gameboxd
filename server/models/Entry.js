@@ -35,6 +35,11 @@ const entrySchema = new Schema({
   },
 });
 
+entrySchema.virtual('gameData').get(function () {
+  // api fetch request with games id to return object with desired params.
+  this.game;
+})
+
 const Entry = mongoose.model('Entry', entrySchema);
 
 module.exports = Entry;
