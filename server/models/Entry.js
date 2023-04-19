@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const axios = require('axios');
+require('dotenv').config();
 
 const RAWG_API_KEY = process.env.RAWG_API_KEY;
 const RAPID_API_KEY = process.env.RAPID_API_KEY;
@@ -54,7 +55,7 @@ entrySchema.virtual('gameData').get(async function () {
     `https://rawg-video-games-database.p.rapidapi.com/games/${gameID}?key=${process.env.RAWG_API_KEY}`,
     {
       headers: {
-        'x-rapidapi-key': RAPID_API_KEY,
+        'x-rapidapi-key': `${process.env.RAPID_API_KEY}`,
         'x-rapidapi-host': 'rawg-video-games-database.p.rapidapi.com',
       },
     }
