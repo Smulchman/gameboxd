@@ -38,12 +38,27 @@ export default function SimpleContainer() {
         <img src={reactLogo} width="100%" height="100%" />
       </Box>
 
-       {/* modal stuff starts */}
-       <div style={{ display: 'flex', justifyContent: 'center', backgroundColor: '#292827', width: '100%' }}>
-        <h3 style={{width: '100%'}}>Track Games You've Played</h3> <br /> 
-        <h3 style={{width: '100%'}}>Save Those You Want To Play</h3>
-       <Button variant='contained' size='large' sx={{ width: '200px', height: '60px' }} onClick={handleOpen}>Get Started!</Button>
-
+      {/* modal stuff starts */}
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          backgroundColor: '#292827',
+          width: '100%',
+          color: 'white',
+          marginTop: 5,
+        }}
+      >
+        <h3 style={{ width: '100%' }}>Track Games You've Played</h3> <br />
+        <h3 style={{ width: '100%' }}>Save Those You Want To Play</h3>
+        <Button
+          variant="contained"
+          size="large"
+          sx={{ width: '200px', height: '60px' }}
+          onClick={handleOpen}
+        >
+          Get Started!
+        </Button>
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"
@@ -69,4 +84,3 @@ export default function SimpleContainer() {
 }
 // if the user is not signed in, the signin button is displayed
 // signin button triggers modal popup which contains signin form.
-
