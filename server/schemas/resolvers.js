@@ -2,6 +2,9 @@
 const axios = require('axios');
 const { User, Entry } = require('../models');
 
+const RAWG_API_KEY = process.env.RAWG_API_KEY;
+const RAPID_API_KEY = process.env.RAPID_API_KEY;
+
 const resolvers = {
   Query: {
     users: async () => {
@@ -16,9 +19,8 @@ const resolvers = {
         'https://rawg-video-games-database.p.rapidapi.com/games?key=5cb5074085274b3aab2431311200438c',
         {
           headers: {
-            'x-rapidapi-key':
-              '87cdee1fecmsha53138e19c8fc31p120979jsnc537093c677e',
-            'x-rapidapi-host': 'rawg-video-games-database.p.rapidapi.com',
+            'x-rapidapi-key': RAPID_API_KEY,
+            'x-rapidapi-host': RAWG_API_KEY,
           },
         }
       );
