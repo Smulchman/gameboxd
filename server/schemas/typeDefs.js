@@ -1,5 +1,10 @@
 const { gql } = require('apollo-server-express');
 
+// adding comments up here, gql can't handle issues in the typedefs string
+
+// I might want to change the type from 'Platform' in the Entry typedef and have it just be a string
+// Further down, the 'Platform' Type is for the specific console, not the 'parent platform'
+
 const typeDefs = gql`
   type User {
     _id: ID
@@ -8,16 +13,17 @@ const typeDefs = gql`
     password: String
     entries: [Entry]
   }
+
   type Entry {
     _id: ID
     game: String
-    user: User
     datePlayed: String
-    platform: String
+    platform: Platform
     review: String
+    score: Int
     createdAt: String
-    updatedAt: String
   }
+
   type Game {
     name: String
     background_image: String
@@ -26,26 +32,32 @@ const typeDefs = gql`
     genres: [Genre]
     platforms: [Platform]
   }
+
   type ESRB {
     name: String
   }
+
   type Genre {
     name: String
   }
+
   type Platform {
-    // this platform is the specific console, not the 'parent platform'
     name: String
   }
+
   type Auth {
     token: ID!
     user: User
   }
+
   type Query {
     users: [User]
     user(username: String!): User
+    games(game: String): [Game]
     entries(username: String): [Entry]
     entry(entryId: ID!): Entry
   }
+
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     addEntry(game: String!, user: String!, datePlayed: String, platform: String, review: String): Entry
