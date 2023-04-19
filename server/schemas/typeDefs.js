@@ -1,5 +1,10 @@
 const { gql } = require('apollo-server-express');
 
+// adding comments up here, gql can't handle issues in the typedefs string
+
+// I might want to change the type from 'Platform' in the Entry typedef and have it just be a string
+// Further down, the 'Platform' Type is for the specific console, not the 'parent platform'
+
 const typeDefs = gql`
   type User {
     _id: ID
@@ -13,8 +18,6 @@ const typeDefs = gql`
     _id: ID
     game: String
     datePlayed: String
-    // I might want to remove this and have
-    // it just be a string
     platform: Platform
     review: String
     score: Int
@@ -39,7 +42,6 @@ const typeDefs = gql`
   }
 
   type Platform {
-    // this platform is the specific console, not the 'parent platform'
     name: String
   }
 
