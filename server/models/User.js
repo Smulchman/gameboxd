@@ -25,7 +25,12 @@ const userSchema = new Schema({
     minlength: 5,
     maxLength: 25,
   },
-  entries: [Entry.schema],
+  entries: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Entry',
+    },
+  ],
 });
 
 // pre-save middleware to create encrypted password

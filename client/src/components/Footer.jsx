@@ -4,13 +4,17 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary">
       {'Copyright © '}
       <Link color="inherit" href="https://mui.com/">
-        Your Website
+        Group 3
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -25,6 +29,7 @@ export default function StickyFooter() {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
+        bgcolor: '#292827',
       }}
     >
       <CssBaseline />
@@ -44,15 +49,20 @@ export default function StickyFooter() {
           py: 3,
           px: 2,
           mt: 'auto',
-          backgroundColor: (theme) =>
-            theme.palette.mode === 'light'
-              ? theme.palette.grey[200]
-              : theme.palette.grey[800],
+          // backgroundColor: (theme) =>
+          //   theme.palette.mode === 'light'
+          //     ? theme.palette.grey[200]
+          //     : theme.palette.grey[800],
+          bgcolor: '#292827',
+          borderTop: 3,
+          borderColor: 'white',
         }}
       >
         <Container maxWidth="sm">
-          <Typography variant="body1">GameBoxed</Typography>
-          <Copyright />
+          <Typography variant="body1" sx={{ color: 'white' }}>
+            GameBoxed <InstagramIcon /> <TwitterIcon /> <FacebookIcon />{' '}
+            <YouTubeIcon />
+          </Typography>
         </Container>
       </Box>
     </Box>
