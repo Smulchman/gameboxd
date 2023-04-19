@@ -1,6 +1,6 @@
+import * as React from 'react';
 import { getGames } from '../API/rawgapi';
 import { useEffect, useState } from 'react';
-
 
 function GameList() {
   const [games, setGames] = useState([]);
@@ -11,7 +11,6 @@ function GameList() {
       setGames(data.results);
     }
     fetchData();
-    
   }, []);
 
   return (
@@ -25,4 +24,4 @@ function GameList() {
     </div>
   );
 }
-export default GameList ;
+export default GameList;

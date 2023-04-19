@@ -1,10 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
 import { getGames } from '../API/rawgapi';
 import { useEffect, useState } from 'react';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
     height: 450,
   },
 }));
-
 
 export default function BasicImageList() {
   const classes = useStyles();
@@ -37,7 +35,7 @@ export default function BasicImageList() {
     <div className={classes.root}>
       <ImageList rowHeight={160} className={classes.imageList} cols={3}>
         {games.map((game) => (
-          <ImageListItem key={game.id} cols={Math.floor(Math.random()*3)}>
+          <ImageListItem key={game.id} cols={Math.floor(Math.random() * 3)}>
             <img src={game.background_image} alt={game.title} />
           </ImageListItem>
         ))}

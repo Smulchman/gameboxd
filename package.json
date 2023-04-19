@@ -6,7 +6,7 @@
   "scripts": {
     "test": "eslint",
     "install": "cd client && npm install && cd ../server && npm install",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "develop": "concurrently \"npm run server\" \"npm run client\"",
     "client": "cd client && npm run dev",
     "server": "cd server && npm run watch",
     "start": "cd server && npm run start",
@@ -28,6 +28,6 @@
     "prettier": "^2.0.5"
   },
   "dependencies": {
-    "@material-ui/core": "^4.12.4"
+    "bcrypt": "^5.1.0"
   }
 }
