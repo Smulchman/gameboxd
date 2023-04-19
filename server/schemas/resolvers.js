@@ -1,3 +1,5 @@
+// const {getGames} = require('../utils/api')
+const axios = require('axios');
 const resolvers = {
   Query: {
     users: async () => {
