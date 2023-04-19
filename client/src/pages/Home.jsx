@@ -39,6 +39,7 @@ export default function SimpleContainer() {
       </Box>
 
       {/* modal stuff starts */}
+
       <div
         style={{
           display: 'flex',
@@ -49,35 +50,43 @@ export default function SimpleContainer() {
           marginTop: 5,
         }}
       >
-        <h3 style={{ width: '100%' }}>Track Games You've Played</h3> <br />
-        <h3 style={{ width: '100%' }}>Save Those You Want To Play</h3>
-        <Button
-          variant="contained"
-          size="large"
-          sx={{ width: '200px', height: '60px' }}
-          onClick={handleOpen}
-        >
-          Get Started!
-        </Button>
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          slots={{ backdrop: Backdrop }}
-          slotProps={{
-            backdrop: {
-              timeout: 500,
-            },
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
-          <Fade in={open}>
-            <Box sx={style}>
-              <Signin />
-            </Box>
-          </Fade>
-        </Modal>
+          <h3 style={{ width: '100%' }}>Track Games You've Played</h3>
+          <h3 style={{ width: '100%' }}>Save Those You Want To Play</h3>
+          <Button
+            variant="contained"
+            size="large"
+            sx={{ width: '200px', height: '60px' }}
+            onClick={handleOpen}
+          >
+            Get Started!
+          </Button>
+          <Modal
+            aria-labelledby="transition-modal-title"
+            aria-describedby="transition-modal-description"
+            open={open}
+            onClose={handleClose}
+            closeAfterTransition
+            slots={{ backdrop: Backdrop }}
+            slotProps={{
+              backdrop: {
+                timeout: 500,
+              },
+            }}
+          >
+            <Fade in={open}>
+              <Box sx={style}>
+                <Signin />
+              </Box>
+            </Fade>
+          </Modal>
+        </div>
       </div>
     </Container>
   );
