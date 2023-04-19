@@ -4,6 +4,10 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import YouTubeIcon from '@mui/icons-material/YouTube';
 
 function Copyright() {
   return (
@@ -54,7 +58,8 @@ export default function StickyFooter() {
       >
         <Container maxWidth="sm">
           <Typography variant="body1" sx={{ color: 'white' }}>
-            GameBoxed
+            GameBoxed <InstagramIcon /> <TwitterIcon /> <FacebookIcon />{' '}
+            <YouTubeIcon />
           </Typography>
         </Container>
       </Box>
