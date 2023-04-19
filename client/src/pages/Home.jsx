@@ -4,6 +4,8 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import reactLogo from '../assets/react.svg';
+import Signin from '../components/Signin.jsx';
+
 export default function SimpleContainer() {
   return (
     <Container maxWidth="xl">
@@ -16,3 +18,6 @@ export default function SimpleContainer() {
 // row of video games in cards
 
 // if the user is not signed in, the signin button is displayed
+// signin button triggers modal popup which contains signin form.
+
+// if signed in, will display dropdown menu for -->
