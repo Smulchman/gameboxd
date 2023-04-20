@@ -17,8 +17,8 @@ const resolvers = {
     },
     entries: async (_, { user }) => {
       let temp = await Entry.find().populate('user');
-      if(user){
-      temp = temp.filter(entry => entry.user.username === user);
+      if (user) {
+        temp = temp.filter((entry) => entry.user.username === user);
       }
       return temp;
     },
@@ -79,7 +79,10 @@ const resolvers = {
         review,
         score,
       });
-      User.findOneAndUpdate({ _id: user }, { $push: { entries: gameboy._id }});
+      await User.findOneAndUpdate(
+        { _id: user },
+        { $push: { entries: new ObjectId(gameboy._id) } }
+      );
       return gameboy;
     },
   },
