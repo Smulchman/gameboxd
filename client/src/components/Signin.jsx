@@ -64,7 +64,7 @@ export default function SignIn(props) {
   return (
     // <ThemeProvider theme={theme}>
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <Box
         sx={{
           marginTop: 8,
@@ -81,7 +81,8 @@ export default function SignIn(props) {
           Please sign in
         </Typography>
         <Box component="form" 
-        onSubmit={handleFormSubmit} noValidate sx={{ mt: 1 }}>
+        onSubmit={handleFormSubmit} noValidate sx={{ mt: 1 }}
+        className='input'>
           <TextField
             className="input"
             margin="normal"
@@ -94,7 +95,7 @@ export default function SignIn(props) {
             autoFocus
             onChange={handleChange}
             value={formState.email}
-            style={{color: 'white !important'}}
+            sx={{bgcolor: 'white'}}
           />
           <TextField
             className="input"
@@ -107,6 +108,7 @@ export default function SignIn(props) {
             id="password"
             value={formState.password}
             onChange={handleChange}
+            sx={{bgcolor: 'white'}}
           />
           <Button
             type="submit"
