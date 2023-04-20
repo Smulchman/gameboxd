@@ -1,28 +1,86 @@
-// const {getGames} = require('../utils/api')
+const { getGames } = require('../utils/rawgAPI.js');
+require('dotenv').config();
+const { AuthenticationError } = require('apollo-server-express');
 const axios = require('axios');
 const { User, Entry } = require('../models');
+const ObjectId = require('mongoose').Types.ObjectId;
 require('dotenv').config();
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     users: async () => {
       return await User.find({});
     },
-    entries: async (_, { username }) => {
-      return await Entry.find({ username });
+    user: async (_, { username }) => {
+      return await User.findOne({ username });
     },
-    games: async () => {
-      const data = await axios.get(
-        `https://rawg-video-games-database.p.rapidapi.com/games?key=${process.env.RAWG_API_KEY}`,
-        {
-          headers: {
-            'x-rapidapi-key': `${process.env.RAPID_API_KEY}`,
-            'x-rapidapi-host': 'rawg-video-games-database.p.rapidapi.com',
-          },
-        }
+    entries: async (_, { user }) => {
+      let temp = await Entry.find().populate('user');
+      if(user){
+      temp = temp.filter(entry => entry.user.username === user);
+      }
+      return temp;
+    },
+    entry: async (_, { entryId }) => {
+      return await Entry.findById(entryId);
+    },
+    games: async (_, { game }) => {
+      const data = await getGames(game);
+      return data.results;
+    },
+    game: async (_, { gameId }) => {
+      const data = await getGames();
+      return data.results.find((game) => game.id === parseInt(gameId));
+    },
+  },
+  Mutation: {
+    addUser: async (_, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+
+      return { token, user };
+    },
+    login: async (_, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError('The infomation is incorrect');
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('The infomation is incorrect');
+      }
+
+      const token = signToken(user);
+      return { token, user };
+    },
+    updateUser: async (_, { userId, username, email, password }) => {
+      return User.findOneAndUpdate(
+        { _id: userId },
+        { username, email, password },
+        { new: true }
       );
-      const game = data.data.results;
-      return game;
+    },
+    removeUser: async (_, { userId }) => {
+      return User.findOneAndDelete({ _id: userId });
+    },
+    addEntry: async (
+      _,
+      { game, user, datePlayed, platform, review, score }
+    ) => {
+      const gameboy = await Entry.create({
+        game,
+        user: new ObjectId(user),
+        datePlayed,
+        platform,
+        review,
+        score,
+      });
+      User.findOneAndUpdate({ _id: user }, { $push: { entries: gameboy._id }});
+      return gameboy;
     },
   },
 };

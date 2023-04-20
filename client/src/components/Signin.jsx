@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -11,25 +12,60 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { LOGIN_USER } from '../utils/mutations';
+// import { Link } from 'react-router-dom';
 
 
 // const theme = createTheme();
 
 export default function SignIn(props) {
-  const {setSignUp} = props;
-  const handleSubmit = (event) => {
+  // const {setSignUp} = props;
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
+
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  //need to verify the mutation actually set up
+  const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+    console.log(formState);
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setFormState({
+      email: '',
+      password: '',
     });
   };
 
   return (
     // <ThemeProvider theme={theme}>
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
+      {/* <CssBaseline /> */}
       <Box
         sx={{
           marginTop: 8,
@@ -39,13 +75,15 @@ export default function SignIn(props) {
           color: 'white',
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+        <Avatar style={{backgroundColor: 'blue'}} >
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Please sign in
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" 
+        onSubmit={handleFormSubmit} noValidate sx={{ mt: 1 }}
+        className='input'>
           <TextField
             className="input"
             margin="normal"
@@ -56,6 +94,9 @@ export default function SignIn(props) {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={handleChange}
+            value={formState.email}
+            sx={{bgcolor: 'white'}}
           />
           <TextField
             className="input"
@@ -66,24 +107,22 @@ export default function SignIn(props) {
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" />}
-            label="Remember me"
-            className="input"
+            value={formState.password}
+            onChange={handleChange}
+            sx={{bgcolor: 'white'}}
           />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            style={{ cursor: 'crosshair', backgroundColor: 'blue' }}
           >
             Sign In
-          </Button>
+          </Button >
           <Grid container>
             <Grid item>
-              <Link href="#" onClick={()=>setSignUp(true)} variant="body2">
+              <Link href="/Signup" onClick={()=>setSignUp(true)} variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import VideogameAssetOffIcon from '@mui/icons-material/VideogameAssetOff';
@@ -15,15 +15,17 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { Link } from 'react-router-dom';
 import { borders } from '@mui/system';
 // import '../assets/css'
 
-const pages = [<VideogameAssetOffIcon />, <GamepadIcon />, <SearchIcon />];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = [<GamepadIcon />, <SearchIcon />];
+// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+// don't need an array for a couple dropdown options. easier to add onclick functions by putting them in the markup. -jr
 
-function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+export default function Navbar(currentPage, handlePageChange) {
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -39,6 +41,12 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  // const loggedInOut = isLoggedIn ? (
+  //   <VideogameAssetOffIcon />
+  // ) : (
+  //   <VideogameAssetOffIcon />
+  // );
 
   return (
     <AppBar position="static" sx={{ bgcolor: '#292827', borderBottom: 3 }}>
@@ -94,14 +102,14 @@ function ResponsiveAppBar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Link to="/SearchResults">
+                  <SearchIcon />
+                </Link>
+              </MenuItem>
             </Menu>
           </Box>
-          <VideogameAssetIcon
+          <VideogameAssetOffIcon
             sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
           />
           <Typography
@@ -123,21 +131,17 @@ function ResponsiveAppBar() {
             GameBoxed
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+            <Tooltip title="Search Games">
+              <Link to="/SearchResults">
+                <SearchIcon></SearchIcon>
+              </Link>
+            </Tooltip>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="User Options">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="bemy Sharp" src="" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -156,11 +160,11 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={() => handlePageChange('Profile')}>
+                Profile
+              </MenuItem>
+              <MenuItem>Log Out</MenuItem>
+              {/* ))} */}
             </Menu>
           </Box>
         </Toolbar>
@@ -168,4 +172,3 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
