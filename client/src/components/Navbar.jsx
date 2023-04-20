@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import VideogameAssetOffIcon from '@mui/icons-material/VideogameAssetOff';
@@ -95,8 +95,8 @@ export default function Navbar(currentPage, handlePageChange) {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page,index) => (
-                <MenuItem key={page[index]} onClick={handleCloseNavMenu}>
+              {pages.map((page, index) => (
+                <MenuItem key={`page${index}`} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -124,9 +124,9 @@ export default function Navbar(currentPage, handlePageChange) {
             GameBoxed
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page,index) => (
+            {pages.map((page, index) => (
               <Button
-                key={page[index]}
+                key={`page${index}`}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
@@ -161,8 +161,10 @@ export default function Navbar(currentPage, handlePageChange) {
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem> */}
-                <MenuItem onClick={() => handlePageChange('Profile')}>Profile</MenuItem>
-                <MenuItem >Log Out</MenuItem>
+              <MenuItem onClick={() => handlePageChange('Profile')}>
+                Profile
+              </MenuItem>
+              <MenuItem>Log Out</MenuItem>
               {/* ))} */}
             </Menu>
           </Box>
@@ -171,4 +173,3 @@ export default function Navbar(currentPage, handlePageChange) {
     </AppBar>
   );
 }
-
