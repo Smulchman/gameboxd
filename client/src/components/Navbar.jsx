@@ -22,7 +22,7 @@ const pages = [<VideogameAssetOffIcon />, <GamepadIcon />, <SearchIcon />];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 // don't need an array for a couple dropdown options. easier to add onclick functions by putting them in the markup. -jr
 
-function Navbar(currentPage, handlePageChange) {
+export default function Navbar(currentPage, handlePageChange) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -171,4 +171,4 @@ function Navbar(currentPage, handlePageChange) {
     </AppBar>
   );
 }
-export default Navbar;
+
