@@ -1,4 +1,4 @@
-const {getGames} = require('../utils/api')
+const {getGames} = require('../utils/rawgAPI.js')
 const axios = require('axios');
 const { User, Entry } = require('../models');
 require('dotenv').config();
@@ -23,7 +23,7 @@ const resolvers = {
     },
     game: async (_, { gameId }) => {
       const data = await getGames();
-      return data.results.find(game => game.id === gameId);
+      return data.results.find(game => game.id === parseInt(gameId));
     },
     // games: async () => {
     //   const data = await axios.get(
