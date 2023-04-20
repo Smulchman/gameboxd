@@ -17,19 +17,23 @@ const resolvers = {
     entry: async (_, { entryId }) => {
       return await Entry.findById(entryId);
     },
-    games: async () => {
-      const data = await axios.get(
-        `https://rawg-video-games-database.p.rapidapi.com/games?key=${process.env.RAWG_API_KEY}`,
-        {
-          headers: {
-            'x-rapidapi-key': `${process.env.RAPID_API_KEY}`,
-            'x-rapidapi-host': 'rawg-video-games-database.p.rapidapi.com',
-          },
-        }
-      );
-      const game = data.data.results;
-      return game;
+    games: async (_, { game }) => {
+      const data = await getGames(game);
+      return data.results;
     },
+    // games: async () => {
+    //   const data = await axios.get(
+    //     `https://rawg-video-games-database.p.rapidapi.com/games?key=${process.env.RAWG_API_KEY}`,
+    //     {
+    //       headers: {
+    //         'x-rapidapi-key': `${process.env.RAPID_API_KEY}`,
+    //         'x-rapidapi-host': 'rawg-video-games-database.p.rapidapi.com',
+    //       },
+    //     }
+    //   );
+    //   const game = data.data.results;
+    //   return game;
+    // },
   },
 };
 
