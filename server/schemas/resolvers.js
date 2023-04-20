@@ -51,6 +51,9 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    removeUser: async (parent, { userId }) => {
+      return User.findOneAndDelete({ _id: userId });
+    },
   },
 };
 
