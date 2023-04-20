@@ -21,6 +21,10 @@ const resolvers = {
       const data = await getGames(game);
       return data.results;
     },
+    game: async (_, { gameId }) => {
+      const data = await getGames();
+      return data.results.find(game => game.id === gameId);
+    },
     // games: async () => {
     //   const data = await axios.get(
     //     `https://rawg-video-games-database.p.rapidapi.com/games?key=${process.env.RAWG_API_KEY}`,
