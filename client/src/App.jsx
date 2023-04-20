@@ -8,6 +8,8 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import QuiltedImageList from './components/gamebox';
 import Signin from './pages/Signup'
+import SearchResults from './pages/SearchResults';
+import Profile from './pages/Profile'
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -15,6 +17,22 @@ const client = new ApolloClient({
 });
 
 function App() {
+
+  const[currentPage, setCurrentPage] = useState('Home');
+
+  const renderPage = () => {
+    if (currentPage === 'Signup') {
+      return <Signup />;
+    }
+    if (currentPage === 'Profile') {
+      return <Profile />;
+    }
+    if (currentPage === 'SearchResults') {
+      return <Projects />;
+    }
+    return <Home />;
+  };
+
   return (
     <ApolloProvider client={client}>
       <Navbar />
