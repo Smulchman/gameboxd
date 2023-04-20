@@ -13,6 +13,8 @@ import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
+// need to figure out dif between gamebox and getgame
+import QuiltedImageList from '../components/gamebox';
 // import Typography from '@mui/material/Typography';
 
 // modal stuff
@@ -36,7 +38,7 @@ export default function SimpleContainer() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" style={{height: '85vh'}}>
       <Box sx={{ bgcolor: '#292827', height: '50vh' }}>
         <img src={reactLogo} width="100%" height="100%" />
       </Box>
@@ -91,6 +93,7 @@ export default function SimpleContainer() {
           </Modal>
         </div>
       </div>
+      {/* <QuiltedImageList /> */}
     </Container>
   );
 }
