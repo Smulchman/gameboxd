@@ -3,9 +3,6 @@ const { Schema } = mongoose;
 const axios = require('axios');
 require('dotenv').config();
 
-const RAWG_API_KEY = process.env.RAWG_API_KEY;
-const RAPID_API_KEY = process.env.RAPID_API_KEY;
-
 const entrySchema = new Schema(
   {
     game: {
@@ -38,7 +35,7 @@ const entrySchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (timestamp) => dateFormat(timestamp),
+      get: (timestamp) => timestamp.toLocaleDateString()
     },
   },
   {

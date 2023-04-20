@@ -1,8 +1,10 @@
-const {getGames} = require('../utils/rawgAPI.js')
+const { getGames } = require('../utils/rawgAPI.js');
 require('dotenv').config();
 const { AuthenticationError } = require('apollo-server-express');
 const axios = require('axios');
 const { User, Entry } = require('../models');
+const ObjectId = require('mongoose').Types.ObjectId;
+require('dotenv').config();
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -13,8 +15,12 @@ const resolvers = {
     user: async (_, { username }) => {
       return await User.findOne({ username });
     },
-    entries: async (_, { username }) => {
-      return await Entry.find({ username });
+    entries: async (_, { user }) => {
+      let temp = await Entry.find().populate('user');
+      if(user){
+      temp = temp.filter(entry => entry.user.username === user);
+      }
+      return temp;
     },
     entry: async (_, { entryId }) => {
       return await Entry.findById(entryId);
@@ -25,19 +31,17 @@ const resolvers = {
     },
     game: async (_, { gameId }) => {
       const data = await getGames();
-      return data.results.find(game => game.id === parseInt(gameId));
+      return data.results.find((game) => game.id === parseInt(gameId));
     },
   },
-
   Mutation: {
-    addUser: async (parent, args) => {
+    addUser: async (_, args) => {
       const user = await User.create(args);
       const token = signToken(user);
 
       return { token, user };
     },
-
-    login: async (parent, { email, password }) => {
+    login: async (_, { email, password }) => {
       const user = await User.findOne({ email });
 
       if (!user) {
@@ -53,8 +57,30 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    removeUser: async (parent, { userId }) => {
+    updateUser: async (_, { userId, username, email, password }) => {
+      return User.findOneAndUpdate(
+        { _id: userId },
+        { username, email, password },
+        { new: true }
+      );
+    },
+    removeUser: async (_, { userId }) => {
       return User.findOneAndDelete({ _id: userId });
+    },
+    addEntry: async (
+      _,
+      { game, user, datePlayed, platform, review, score }
+    ) => {
+      const gameboy = await Entry.create({
+        game,
+        user: new ObjectId(user),
+        datePlayed,
+        platform,
+        review,
+        score,
+      });
+      User.findOneAndUpdate({ _id: user }, { $push: { entries: gameboy._id }});
+      return gameboy;
     },
   },
 };
