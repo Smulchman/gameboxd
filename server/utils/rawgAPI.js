@@ -9,20 +9,32 @@ const API_URL = 'https://rawg-video-games-database.p.rapidapi.com/games';
 
 async function getGames(query) {
   try {
-    const queryParams = query ? { search: query } : {};
-    const response = await axios.get(`${API_URL}?key=${RAWG_API_KEY}`, {
-      params: queryParams,
-      headers: {
-        'x-rapidapi-key': RAPID_API_KEY,
-        'x-rapidapi-host': RAPID_API_HOST,
-      },
-    });
-    const data = response.data;
-    return data;
+    if (query) {
+      let noSpaceQuery = query.replace(/ /g, '%20');
+      const response = await axios.get(
+        `${API_URL}?search=${query}&key=${RAWG_API_KEY}`,
+        {
+          headers: {
+            'x-rapidapi-key': RAPID_API_KEY,
+            'x-rapidapi-host': RAPID_API_HOST,
+          },
+        }
+      );
+      const data = response.data;
+      return data;
+    } else {
+      const response = await axios.get(`${API_URL}?key=${RAWG_API_KEY}`, {
+        headers: {
+          'x-rapidapi-key': RAPID_API_KEY,
+          'x-rapidapi-host': RAPID_API_HOST,
+        },
+      });
+      const data = response.data;
+      return data;
+    }
   } catch (error) {
     console.error(error);
   }
 }
 
 module.exports = { getGames };
-
