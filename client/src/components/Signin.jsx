@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -31,6 +32,35 @@ export default function SignIn(props) {
   //need to verify the mutation actually set up
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setFormState({
+      email: '',
+      password: '',
+    });
+  };
+
   return (
     // <ThemeProvider theme={theme}>
     <Container component="main" maxWidth="xs">
@@ -48,9 +78,10 @@ export default function SignIn(props) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Please sign in
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+        <Box component="form" 
+        onSubmit={handleFormSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             className="input"
             margin="normal"
@@ -61,6 +92,9 @@ export default function SignIn(props) {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={handleChange}
+            value={formState.email}
+            style={{color: 'white !important'}}
           />
           <TextField
             className="input"
@@ -71,18 +105,15 @@ export default function SignIn(props) {
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" />}
-            label="Remember me"
-            className="input"
+            value={formState.password}
+            onChange={handleChange}
           />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            style={{ cursor: 'wait' }}
           >
             Sign In
           </Button>

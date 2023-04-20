@@ -93,7 +93,7 @@ export default function SimpleContainer() {
           </Modal>
         </div>
       </div>
-      <QuiltedImageList />
+      {/* <QuiltedImageList /> */}
     </Container>
   );
 }
