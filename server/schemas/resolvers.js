@@ -11,7 +11,7 @@ const resolvers = {
     entries: async (_, { username }) => {
       return await Entry.find({ username });
     },
-    games: async () => {
+    games: async (_, { game }) => {
       const data = await axios.get(
         `https://rawg-video-games-database.p.rapidapi.com/games?key=${process.env.RAWG_API_KEY}`,
         {
@@ -21,8 +21,8 @@ const resolvers = {
           },
         }
       );
-      const game = data.data.results;
-      return game;
+      const gameResults = data.data.results;
+      return gameResults;
     },
   },
 };
