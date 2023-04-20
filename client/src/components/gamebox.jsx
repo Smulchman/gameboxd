@@ -4,6 +4,8 @@ import ImageListItem from '@mui/material/ImageListItem';
 import { getGames }  from '../API/rawgapi';
 import { useEffect, useState } from 'react';
 import '../assets/css/gamebox.css';
+import { GET_IMG } from '../utils/queries';
+import { useQuery } from '@apollo/client';
 
 
 function srcset(image, size, rows = 1, cols = 1) {
@@ -16,6 +18,7 @@ function srcset(image, size, rows = 1, cols = 1) {
 }
 
 export default function QuiltedImageList() {
+  const {loading,data} = useQuery(GET_IMG);
   const [games, setGames] = useState([]);
 
     useEffect(() => {
@@ -38,7 +41,7 @@ export default function QuiltedImageList() {
         cols={4}
         rowHeight={121}
       >
-        {games.map((game) => (
+        {data.map((game) => (
           <ImageListItem
             key={game.name}
             cols={Math.floor(Math.random() * 3) || 1}
@@ -46,7 +49,7 @@ export default function QuiltedImageList() {
           >
             <img
               {...srcset(game.background_image, 121, game.rows, game.cols)}
-              alt={game.title}
+              alt={game.name}
               loading="lazy"
               style={{ cursor: 'pointer' }}
               onClick={() => handleClick(game)}
