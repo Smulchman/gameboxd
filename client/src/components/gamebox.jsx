@@ -1,9 +1,9 @@
 import * as React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { getGames } from '../API/rawgapi';
+import { getGames }  from '../API/rawgapi';
 import { useEffect, useState } from 'react';
-import "../assets/css/gamebox.css"
+import '../assets/css/gamebox.css';
 
 
 function srcset(image, size, rows = 1, cols = 1) {
@@ -16,7 +16,7 @@ function srcset(image, size, rows = 1, cols = 1) {
 }
 
 export default function QuiltedImageList() {
-    const [games, setGames] = useState([]);
+  const [games, setGames] = useState([]);
 
     useEffect(() => {
       async function fetchData() {
@@ -40,7 +40,7 @@ export default function QuiltedImageList() {
       >
         {games.map((game) => (
           <ImageListItem
-            key={game.img}
+            key={game.name}
             cols={Math.floor(Math.random() * 3) || 1}
             rows={Math.floor(Math.random() * 3) || 1}
           >
@@ -57,6 +57,3 @@ export default function QuiltedImageList() {
     </div>
   );
 }
-
-
-
