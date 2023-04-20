@@ -1,9 +1,9 @@
 async function getGames() {
-  const apiKey = '5cb5074085274b3aab2431311200438c';
+  const apiKey = process.env.RAWG_API_KEY;
   const endpointUrl = 'https://rawg-video-games-database.p.rapidapi.com/games';
   const headers = {
     'Content-Type': 'application/json',
-    'X-RapidAPI-Key': '87cdee1fecmsha53138e19c8fc31p120979jsnc537093c677e',
+    'X-RapidAPI-Key': process.env.RAPID_API_KEY,
     'X-RapidAPI-Host': 'rawg-video-games-database.p.rapidapi.com',
     Authorization: `Bearer ${apiKey}`,
   };
