@@ -13,7 +13,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 const client = new ApolloClient({
-  uri: '/graphql',
+  uri: 'http://127.0.0.1:3001/graphql',
   cache: new InMemoryCache(),
 });
 

@@ -1,10 +1,10 @@
 import { gql } from '@apollo/client';
 
-export const GET_IMG = gql`
+export const GET_GAMES = gql`
   query Games {
     games {
-      name
       background_image
+      name
     }
   }
 `;

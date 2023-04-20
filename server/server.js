@@ -27,7 +27,7 @@ const PORT = process.env.PORT || 3001;
 // new apollo server
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
+  resolvers
 });
 
 // middlewares

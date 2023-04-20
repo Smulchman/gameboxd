@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import '../assets/css/gamebox.css';
-import { GET_IMG } from '../utils/queries';
+import { GET_GAMES } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 
 
@@ -16,21 +16,12 @@ function srcset(image, size, rows = 1, cols = 1) {
   };
 }
 
-export default function QuiltedImageList() {
-  const {loading,data} = useQuery(GET_IMG);
-  const [games, setGames] = useState([]);
-
-    useEffect(() => {
-      async function fetchData() {
-        const data = await getGames();
-        setGames(data.results);
-      }
-      fetchData();
-    }, []);
+export default  function QuiltedImageList() {
+  const {loading,error,data} = useQuery(GET_GAMES,{fetchPolicy:'no-cache'});
+  const games = data?.games || []; 
     const handleClick = (game) => {
         // handle the click event here, for example, navigate to a different page
-        window.location.href=(`https://rawg.io/games/${game.id}`);
-        
+        window.location.href=(`https://rawg.io/games/${game.id}`);       
     };
   return (
     <div className="gamebox">
@@ -40,7 +31,7 @@ export default function QuiltedImageList() {
         cols={4}
         rowHeight={121}
       >
-        {data.map((game, index) => (
+        {games.map((game, index) => (
           <ImageListItem
             key={`game${index}`}
             cols={Math.floor(Math.random() * 3) || 1}

@@ -17,6 +17,7 @@ import Button from '@mui/material/Button';
 import QuiltedImageList from '../components/gamebox';
 // import Typography from '@mui/material/Typography';
 
+
 // modal stuff
 const style = {
   position: 'absolute',
@@ -93,7 +94,7 @@ export default function SimpleContainer() {
           </Modal>
         </div>
       </div>
-      {/* <QuiltedImageList /> */}
+      <QuiltedImageList />
     </Container>
   );
 }
