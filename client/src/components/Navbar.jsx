@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import VideogameAssetOffIcon from '@mui/icons-material/VideogameAssetOff';
@@ -19,11 +19,12 @@ import { borders } from '@mui/system';
 // import '../assets/css'
 
 const pages = [<VideogameAssetOffIcon />, <GamepadIcon />, <SearchIcon />];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+// don't need an array for a couple dropdown options. easier to add onclick functions by putting them in the markup. -jr
 
-function ResponsiveAppBar() {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+function Navbar(currentPage, handlePageChange) {
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -156,11 +157,13 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
+              {/* {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+                </MenuItem> */}
+                <MenuItem onClick={() => handlePageChange('Profile')}>Profile</MenuItem>
+                <MenuItem >Log Out</MenuItem>
+              {/* ))} */}
             </Menu>
           </Box>
         </Toolbar>
@@ -168,4 +171,4 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+export default Navbar;
