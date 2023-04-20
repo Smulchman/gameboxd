@@ -18,7 +18,6 @@ import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import { borders } from '@mui/system';
 // import '../assets/css'
-import { Link } from 'react-router-dom';
 
 const pages = [<GamepadIcon />, <SearchIcon />];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
