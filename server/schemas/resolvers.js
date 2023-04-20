@@ -1,8 +1,10 @@
-// const {getGames} = require('../utils/api')
+require('dotenv').config();
+const { AuthenticationError } = require('apollo-server-express');
 const axios = require('axios');
 const { User, Entry } = require('../models');
 const ObjectId = require('mongoose').Types.ObjectId;
 require('dotenv').config();
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
@@ -27,13 +29,36 @@ const resolvers = {
     },
   },
   Mutation: {
-    addUser: async (_, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
-      // const token = signToken(user);
-      // below should return token as well I believe
-      return { user };
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+
+      return { token, user };
     },
-    addEntry: async (_, { game, user, datePlayed, platform, review, score }) => {
+
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError('The infomation is incorrect');
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('The infomation is incorrect');
+      }
+
+      const token = signToken(user);
+      return { token, user };
+    },
+    removeUser: async (parent, { userId }) => {
+      return User.findOneAndDelete({ _id: userId });
+    },
+    addEntry: async (
+      _,
+      { game, user, datePlayed, platform, review, score }
+    ) => {
       const gameboy = await Entry.create({
         game,
         user: new ObjectId(user),
@@ -44,8 +69,8 @@ const resolvers = {
       });
       console.log(gameboy);
       return gameboy;
-    }
-  }
+    },
+  },
 };
 
 module.exports = resolvers;
