@@ -13,6 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { LOGIN_USER } from '../utils/mutations';
+// import { Link } from 'react-router-dom';
 
 
 // const theme = createTheme();
@@ -74,7 +75,7 @@ export default function SignIn(props) {
           color: 'white',
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+        <Avatar style={{backgroundColor: 'blue'}} >
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -115,13 +116,13 @@ export default function SignIn(props) {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            style={{ cursor: 'wait' }}
+            style={{ cursor: 'crosshair', backgroundColor: 'blue' }}
           >
             Sign In
-          </Button>
+          </Button >
           <Grid container>
             <Grid item>
-              <Link href="#" onClick={()=>setSignUp(true)} variant="body2">
+              <Link href="/Signup" onClick={()=>setSignUp(true)} variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

@@ -24,6 +24,7 @@ const { typeDefs, resolvers } = require('./schemas');
 // app & port
 const app = express();
 const PORT = process.env.PORT || 3001;
+
 // new apollo server
 const server = new ApolloServer({
   typeDefs,

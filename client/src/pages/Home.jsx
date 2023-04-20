@@ -43,9 +43,7 @@ export default function SimpleContainer() {
       <Box sx={{ bgcolor: '#292827', height: '50vh' }}>
         <img src={reactLogo} width="100%" height="100%" />
       </Box>
-
       {/* modal stuff starts */}
-
       <div
         style={{
           display: 'flex',
@@ -70,8 +68,9 @@ export default function SimpleContainer() {
             size="large"
             sx={{ width: '200px', height: '60px' }}
             onClick={handleOpen}
+            style={{padding: '4px', margin: '5px'}}
           >
-            Get Started!
+            Sign in!
           </Button>
           <Modal
             aria-labelledby="transition-modal-title"

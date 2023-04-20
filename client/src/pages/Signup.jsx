@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import { Button } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,23 +12,60 @@ import { Link, Grid, Box } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-const theme = createTheme();
+import Auth from '../utils/auth';
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
 
 export default function SignUp(props) {
-  const { setSignUp } = props;
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+  // const { setSignUp } = props;
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
+  const [formState, setFormState] = useState({
+    username: '',
+    email: '',
+    password: '',
+  });
+
+  const [addUser, { error, data }] = useMutation(ADD_USER);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
     });
+    console.log(formState)
+  };
+
+  // need function to validate email
+  const yeller = () => {
+    console.log('get back here')
+  }
+
+  // submit form
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+
+    try {
+      const { data } = await addUser({
+        variables: { ...formState },
+      });
+      console.log(data);
+      Auth.login(data.addUser.token);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
-    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -49,29 +86,20 @@ export default function SignUp(props) {
           <Box
             component="form"
             noValidate
-            onSubmit={handleSubmit}
+            onSubmit={handleFormSubmit}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12}>
                 <TextField
                   required
                   fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
+                  id="username"
+                  label="username"
+                  name="username"
+                  autoComplete="username"
+                  onChange={handleChange}
+                  
                 />
               </Grid>
               <Grid item xs={12}>
@@ -82,6 +110,9 @@ export default function SignUp(props) {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  // add RegEx function to validate email 
+                  onChange={handleChange}
+                  onBlur={yeller}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -93,6 +124,7 @@ export default function SignUp(props) {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={handleChange}
                 />
               </Grid>
               {/* removes checkbox */}
@@ -107,14 +139,13 @@ export default function SignUp(props) {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" onClick={() => setSignUp(false)} variant="body2">
-                  {'Already have an account? Sign in'}
+                <Link href="/" onClick={() => setSignUp(false)} variant="body2">
+                  {'Already have an account? Sign in on the homepage'}
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
   );
 }
