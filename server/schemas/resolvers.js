@@ -1,4 +1,4 @@
-const { getGames } = require('../utils/rawgAPI.js');
+const { getGames, getGame } = require('../utils/rawgAPI.js');
 require('dotenv').config();
 const { AuthenticationError } = require('apollo-server-express');
 const axios = require('axios');
@@ -30,8 +30,8 @@ const resolvers = {
       return data.results;
     },
     game: async (_, { gameId }) => {
-      const data = await getGames();
-      return data.results.find((game) => game.id === parseInt(gameId));
+      const data = await getGame(gameId);
+      return data;
     },
   },
   Mutation: {
