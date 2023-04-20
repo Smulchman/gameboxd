@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import QuiltedImageList from './components/gamebox';
-
+import Signin from './pages/Signup'
 
 const client = new ApolloClient({
   uri: '/graphql',
@@ -18,8 +18,9 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Navbar />
-      <Home />
-      <QuiltedImageList />     
+      {/* <Home /> */}
+      {/* <QuiltedImageList />      */}
+      <Signin />
       <Footer />
     </ApolloProvider>
   );
