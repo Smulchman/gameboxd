@@ -12,9 +12,7 @@ import { Link, Grid, Box } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const theme = createTheme();
 
 export default function SignUp(props) {
   const { setSignUp } = props;
@@ -28,7 +26,6 @@ export default function SignUp(props) {
   };
 
   return (
-    <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -115,6 +112,5 @@ export default function SignUp(props) {
           </Box>
         </Box>
       </Container>
-    </ThemeProvider>
   );
 }

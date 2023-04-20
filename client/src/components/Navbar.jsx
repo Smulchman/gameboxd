@@ -17,6 +17,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { borders } from '@mui/system';
 // import '../assets/css'
+import { Link } from 'react-router-dom';
 
 const pages = [<VideogameAssetOffIcon />, <GamepadIcon />, <SearchIcon />];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -95,11 +96,11 @@ export default function Navbar(currentPage, handlePageChange) {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page, index) => (
-                <MenuItem key={`page${index}`} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Link to='/SearchResults'>
+                 <SearchIcon />
+                </Link>
+              </MenuItem>
             </Menu>
           </Box>
           <VideogameAssetIcon
@@ -124,21 +125,19 @@ export default function Navbar(currentPage, handlePageChange) {
             GameBoxed
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page, index) => (
-              <Button
-                key={`page${index}`}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+           
+              <Tooltip title="Search Games">
+              <Link to='/SearchResults'>
+              <SearchIcon></SearchIcon>
+              </Link>
+              </Tooltip>
+            
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="User Options">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="bemy Sharp" src="" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -157,14 +156,9 @@ export default function Navbar(currentPage, handlePageChange) {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {/* {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem> */}
-              <MenuItem onClick={() => handlePageChange('Profile')}>
-                Profile
-              </MenuItem>
-              <MenuItem>Log Out</MenuItem>
+
+                <MenuItem onClick={() => handlePageChange('Profile')}>Profile</MenuItem>
+                <MenuItem >Log Out</MenuItem>
               {/* ))} */}
             </Menu>
           </Box>
