@@ -133,7 +133,7 @@ export default function Navbar(currentPage, handlePageChange) {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Tooltip title="Search Games">
               <Link to="/SearchResults">
-                <SearchIcon></SearchIcon>
+                <SearchIcon style={{ color: 'white' }} />
               </Link>
             </Tooltip>
           </Box>
