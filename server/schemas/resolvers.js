@@ -1,7 +1,8 @@
-// const {getGames} = require('../utils/api')
+require('dotenv').config();
+const { AuthenticationError } = require('apollo-server-express');
 const axios = require('axios');
 const { User, Entry } = require('../models');
-require('dotenv').config();
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
