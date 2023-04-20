@@ -15,11 +15,11 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { Link } from 'react-router-dom';
 import { borders } from '@mui/system';
 // import '../assets/css'
-import { Link } from 'react-router-dom';
 
-const pages = [<VideogameAssetOffIcon />, <GamepadIcon />, <SearchIcon />];
+const pages = [<GamepadIcon />, <SearchIcon />];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 // don't need an array for a couple dropdown options. easier to add onclick functions by putting them in the markup. -jr
 
@@ -41,6 +41,12 @@ export default function Navbar(currentPage, handlePageChange) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  // const loggedInOut = isLoggedIn ? (
+  //   <VideogameAssetOffIcon />
+  // ) : (
+  //   <VideogameAssetOffIcon />
+  // );
 
   return (
     <AppBar position="static" sx={{ bgcolor: '#292827', borderBottom: 3 }}>
@@ -97,13 +103,13 @@ export default function Navbar(currentPage, handlePageChange) {
               }}
             >
               <MenuItem onClick={handleCloseNavMenu}>
-                <Link to='/SearchResults'>
-                 <SearchIcon />
+                <Link to="/SearchResults">
+                  <SearchIcon />
                 </Link>
               </MenuItem>
             </Menu>
           </Box>
-          <VideogameAssetIcon
+          <VideogameAssetOffIcon
             sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
           />
           <Typography
@@ -125,13 +131,11 @@ export default function Navbar(currentPage, handlePageChange) {
             GameBoxed
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-           
-              <Tooltip title="Search Games">
-              <Link to='/SearchResults'>
-              <SearchIcon></SearchIcon>
+            <Tooltip title="Search Games">
+              <Link to="/SearchResults">
+                <SearchIcon></SearchIcon>
               </Link>
-              </Tooltip>
-            
+            </Tooltip>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -156,9 +160,10 @@ export default function Navbar(currentPage, handlePageChange) {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-
-                <MenuItem onClick={() => handlePageChange('Profile')}>Profile</MenuItem>
-                <MenuItem >Log Out</MenuItem>
+              <MenuItem onClick={() => handlePageChange('Profile')}>
+                Profile
+              </MenuItem>
+              <MenuItem>Log Out</MenuItem>
               {/* ))} */}
             </Menu>
           </Box>
