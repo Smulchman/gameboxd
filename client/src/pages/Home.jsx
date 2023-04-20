@@ -67,8 +67,9 @@ export default function SimpleContainer() {
             size="large"
             sx={{ width: '200px', height: '60px' }}
             onClick={handleOpen}
+            style={{padding: '4px', margin: '5px'}}
           >
-            Get Started!
+            Sign in!
           </Button>
           <Modal
             aria-labelledby="transition-modal-title"
