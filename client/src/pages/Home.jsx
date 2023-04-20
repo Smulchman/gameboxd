@@ -4,7 +4,7 @@
 // header with hero image/ logo and name
 import * as React from 'react';
 // import CssBaseline from '@mui/material/CssBaseline';
-import Box from '@mui/material/Box';
+import { Box } from '@mui/material';
 import Container from '@mui/material/Container';
 import reactLogo from '../assets/react.svg';
 import Signin from '../components/Signin.jsx';

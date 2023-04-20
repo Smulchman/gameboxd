@@ -102,11 +102,9 @@ export default function Navbar(currentPage, handlePageChange) {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
-                    <Link to="/SearchResults">{pages}</Link>
-                  </Typography>
+              {pages.map((page, index) => (
+                <MenuItem key={`page${index}`} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
               ;
@@ -134,9 +132,9 @@ export default function Navbar(currentPage, handlePageChange) {
             GameBoxed
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {pages.map((page, index) => (
               <Button
-                key={page}
+                key={`page${index}`}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
