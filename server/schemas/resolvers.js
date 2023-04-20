@@ -1,4 +1,4 @@
-// const {getGames} = require('../utils/api')
+const {getGames} = require('../utils/api')
 const axios = require('axios');
 const { User, Entry } = require('../models');
 require('dotenv').config();
@@ -7,6 +7,9 @@ const resolvers = {
   Query: {
     users: async () => {
       return await User.find({});
+    },
+    user: async (_, { username }) => {
+      return await User.findOne({ username });
     },
     entries: async (_, { username }) => {
       return await Entry.find({ username });
