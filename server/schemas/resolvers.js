@@ -1,3 +1,4 @@
+const {getGames} = require('../utils/rawgAPI.js')
 require('dotenv').config();
 const { AuthenticationError } = require('apollo-server-express');
 const axios = require('axios');
@@ -11,21 +12,22 @@ const resolvers = {
     users: async () => {
       return await User.find({});
     },
+    user: async (_, { username }) => {
+      return await User.findOne({ username });
+    },
     entries: async (_, { username }) => {
       return await Entry.find({ username }).populate('user');
     },
+    entry: async (_, { entryId }) => {
+      return await Entry.findById(entryId);
+    },
     games: async (_, { game }) => {
-      const data = await axios.get(
-        `https://rawg-video-games-database.p.rapidapi.com/games?key=${process.env.RAWG_API_KEY}`,
-        {
-          headers: {
-            'x-rapidapi-key': `${process.env.RAPID_API_KEY}`,
-            'x-rapidapi-host': 'rawg-video-games-database.p.rapidapi.com',
-          },
-        }
-      );
-      const gameResults = data.data.results;
-      return gameResults;
+      const data = await getGames(game);
+      return data.results;
+    },
+    game: async (_, { gameId }) => {
+      const data = await getGames();
+      return data.results.find(game => game.id === parseInt(gameId));
     },
   },
   Mutation: {
