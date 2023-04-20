@@ -18,7 +18,7 @@ const typeDefs = gql`
     _id: ID
     game: Int
     gameData: Game
-    User: User
+    user: User
     datePlayed: String
     platform: String
     review: String
@@ -69,7 +69,7 @@ const typeDefs = gql`
     user(username: String!): User
     games(game: String): [Game]
     game(gameId: ID!): Game
-    entries(username: String): [Entry]
+    entries(user: String): [Entry]
     entry(entryId: ID!): Entry
   }
 

@@ -15,8 +15,10 @@ const resolvers = {
     user: async (_, { username }) => {
       return await User.findOne({ username });
     },
-    entries: async (_, { username }) => {
-      return await Entry.find({ username }).populate('user');
+    entries: async (_, { user }) => {
+      const temp = await Entry.find().populate('user');
+      console.log(temp);
+      return temp;
     },
     entry: async (_, { entryId }) => {
       return await Entry.findById(entryId);
@@ -31,14 +33,13 @@ const resolvers = {
     },
   },
   Mutation: {
-    addUser: async (parent, args) => {
+    addUser: async (_, args) => {
       const user = await User.create(args);
       const token = signToken(user);
 
       return { token, user };
     },
-
-    login: async (parent, { email, password }) => {
+    login: async (_, { email, password }) => {
       const user = await User.findOne({ email });
 
       if (!user) {
@@ -54,7 +55,7 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    removeUser: async (parent, { userId }) => {
+    removeUser: async (_, { userId }) => {
       return User.findOneAndDelete({ _id: userId });
     },
     addEntry: async (
