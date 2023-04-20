@@ -15,7 +15,6 @@ import Container from '@mui/material/Container';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth'
 
-
 // const theme = createTheme();
 
 export default function SignIn(props) {
@@ -75,15 +74,19 @@ export default function SignIn(props) {
           color: 'white',
         }}
       >
-        <Avatar style={{backgroundColor: 'blue'}} >
+        <Avatar style={{ backgroundColor: 'blue' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Please sign in
         </Typography>
-        <Box component="form" 
-        onSubmit={handleFormSubmit} noValidate sx={{ mt: 1 }}
-        className='input'>
+        <Box
+          component="form"
+          onSubmit={handleFormSubmit}
+          noValidate
+          sx={{ mt: 1 }}
+          className="input"
+        >
           <TextField
             className="input"
             margin="normal"
@@ -96,7 +99,7 @@ export default function SignIn(props) {
             autoFocus
             onChange={handleChange}
             value={formState.email}
-            sx={{bgcolor: 'white'}}
+            sx={{ bgcolor: 'white' }}
           />
           <TextField
             className="input"
@@ -109,7 +112,7 @@ export default function SignIn(props) {
             id="password"
             value={formState.password}
             onChange={handleChange}
-            sx={{bgcolor: 'white'}}
+            sx={{ bgcolor: 'white' }}
           />
           <Button
             type="submit"
@@ -119,10 +122,14 @@ export default function SignIn(props) {
             style={{ cursor: 'crosshair', backgroundColor: 'blue' }}
           >
             Sign In
-          </Button >
-          <Grid container>
+          </Button>
+          <Grid container justifyContent="center">
             <Grid item>
-              <Link href="/Signup" onClick={()=>setSignUp(true)} variant="body2">
+              <Link
+                href="/Signup"
+                onClick={() => setSignUp(true)}
+                variant="body2"
+              >
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
