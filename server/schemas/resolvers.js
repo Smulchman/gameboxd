@@ -56,9 +56,8 @@ const resolvers = {
     updateUser: async (parent, { userId, username, email, password }) => {
       return User.findOneAndUpdate(
         { _id: userId },
-        { username: username },
-        { email: email },
-        { password: password }
+        { username, email, password },
+        { new: true }
       );
     },
     removeUser: async (parent, { userId }) => {
