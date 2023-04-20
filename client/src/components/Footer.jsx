@@ -17,6 +17,11 @@ export default function StickyFooter() {
         flexDirection: 'row',
         minHeight: '5vh',
         bgcolor: '#292827',
+        position: 'fixed',
+        width: '100%',
+        bottom: 0,
+        borderTop: 2,
+        borderColor: 'white',
       }}
     >
       <CssBaseline />
