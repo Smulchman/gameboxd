@@ -16,8 +16,10 @@ const resolvers = {
       return await User.findOne({ username });
     },
     entries: async (_, { user }) => {
-      const temp = await Entry.find().populate('user');
-      console.log(temp);
+      let temp = await Entry.find().populate('user');
+      if(user){
+      temp = temp.filter(entry => entry.user.username === user);
+      }
       return temp;
     },
     entry: async (_, { entryId }) => {
