@@ -79,7 +79,7 @@ const resolvers = {
         review,
         score,
       });
-      console.log(gameboy);
+      User.findOneAndUpdate({ _id: user }, { $push: { entries: gameboy._id }});
       return gameboy;
     },
   },
