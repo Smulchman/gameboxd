@@ -14,7 +14,7 @@ import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 // need to figure out dif between gamebox and getgame
-import gamebox from '../components/gamebox';
+import QuiltedImageList from '../components/gamebox';
 // import Typography from '@mui/material/Typography';
 
 // modal stuff
@@ -93,7 +93,7 @@ export default function SimpleContainer() {
           </Modal>
         </div>
       </div>
-      <gamebox />
+      <QuiltedImageList />
     </Container>
   );
 }
