@@ -22,5 +22,10 @@ module.exports = {
     } catch {
       console.log('Invalid Token');
     }
+    return req;
+  },
+  signToken: function ({ email, password, _id }) {
+    const payload = { email, password, _id };
+    return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 };
