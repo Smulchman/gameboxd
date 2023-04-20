@@ -58,7 +58,7 @@ export default function SignUp(props) {
       const { data } = await addUser({
         variables: { ...formState },
       });
-
+      console.log(data);
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
@@ -111,6 +111,7 @@ export default function SignUp(props) {
                   name="email"
                   autoComplete="email"
                   // add RegEx function to validate email 
+                  onChange={handleChange}
                   onBlur={yeller}
                 />
               </Grid>
@@ -123,6 +124,7 @@ export default function SignUp(props) {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  onChange={handleChange}
                 />
               </Grid>
               {/* removes checkbox */}
