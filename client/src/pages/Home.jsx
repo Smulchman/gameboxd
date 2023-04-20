@@ -38,7 +38,7 @@ export default function SimpleContainer() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <Container maxWidth="xl" style={{height: '85vh'}}>
+    <Container maxWidth="xl" style={{ height: '85vh' }}>
       <Box sx={{ bgcolor: '#292827', height: '50vh' }}>
         <img src={reactLogo} width="100%" height="100%" />
       </Box>
@@ -93,7 +93,7 @@ export default function SimpleContainer() {
           </Modal>
         </div>
       </div>
-      {/* <QuiltedImageList /> */}
+      <QuiltedImageList />
     </Container>
   );
 }
