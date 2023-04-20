@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import VideogameAssetOffIcon from '@mui/icons-material/VideogameAssetOff';
@@ -96,11 +96,6 @@ export default function Navbar(currentPage, handlePageChange) {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {/* {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))} */}
               <MenuItem onClick={handleCloseNavMenu}>
                 <Link to='/SearchResults'>
                  <SearchIcon />
@@ -130,15 +125,6 @@ export default function Navbar(currentPage, handlePageChange) {
             GameBoxed
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {/* {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))} */}
            
               <Tooltip title="Search Games">
               <Link to='/SearchResults'>
@@ -151,7 +137,7 @@ export default function Navbar(currentPage, handlePageChange) {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="User Options">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="bemy Sharp" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="bemy Sharp" src="" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -181,4 +167,3 @@ export default function Navbar(currentPage, handlePageChange) {
     </AppBar>
   );
 }
-
