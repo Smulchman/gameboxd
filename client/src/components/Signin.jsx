@@ -11,20 +11,25 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { LOGIN_USER } from '../utils/mutations';
 
 
 // const theme = createTheme();
 
 export default function SignIn(props) {
-  const {setSignUp} = props;
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+  // const {setSignUp} = props;
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get('email'),
+  //     password: data.get('password'),
+  //   });
+  // };
+
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  //need to verify the mutation actually set up
+  const [login, { error, data }] = useMutation(LOGIN_USER);
 
   return (
     // <ThemeProvider theme={theme}>
