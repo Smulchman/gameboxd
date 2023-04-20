@@ -18,29 +18,16 @@ const client = new ApolloClient({
 });
 
 function App() {
-
   return (
     <ApolloProvider client={client}>
       <Router>
         {/* want nav on all pages */}
         <Navbar />
         <Routes>
-          <Route
-          path='/'
-          element={<Home />}
-          />
-          <Route
-          path='/Profile'
-          element={<Profile />}
-          />
-          <Route
-          path='/SearchResults'
-          element={<SearchResults />}
-          />
-          <Route
-          path='/Signup'
-          element={<Signup />}
-          />
+          <Route path="/" element={<Home />} />
+          <Route path="/Profile" element={<Profile />} />
+          <Route path="/SearchResults" element={<SearchResults />} />
+          <Route path="/Signup" element={<Signup />} />
         </Routes>
         <Footer />
       </Router>
