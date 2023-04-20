@@ -67,7 +67,7 @@ export default function SimpleContainer() {
             size="large"
             sx={{ width: '200px', height: '60px' }}
             onClick={handleOpen}
-            style={{padding: '4px', margin: '5px'}}
+            style={{ padding: '4px', margin: '5px' }}
           >
             Sign in!
           </Button>
