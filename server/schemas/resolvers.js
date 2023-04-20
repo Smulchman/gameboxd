@@ -1,6 +1,7 @@
 // const {getGames} = require('../utils/api')
 const axios = require('axios');
 const { User, Entry } = require('../models');
+const ObjectId = require('mongoose').Types.ObjectId;
 require('dotenv').config();
 
 const resolvers = {
@@ -9,7 +10,7 @@ const resolvers = {
       return await User.find({});
     },
     entries: async (_, { username }) => {
-      return await Entry.find({ username });
+      return await Entry.find({ username }).populate('user');
     },
     games: async (_, { game }) => {
       const data = await axios.get(
@@ -32,6 +33,18 @@ const resolvers = {
       // below should return token as well I believe
       return { user };
     },
+    addEntry: async (_, { game, user, datePlayed, platform, review, score }) => {
+      const gameboy = await Entry.create({
+        game,
+        user: new ObjectId(user),
+        datePlayed,
+        platform,
+        review,
+        score,
+      });
+      console.log(gameboy);
+      return gameboy;
+    }
   }
 };
 
