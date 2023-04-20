@@ -25,6 +25,14 @@ const resolvers = {
       return gameResults;
     },
   },
+  Mutation: {
+    addUser: async (_, { username, email, password }) => {
+      const user = await User.create({ username, email, password });
+      // const token = signToken(user);
+      // below should return token as well I believe
+      return { user };
+    },
+  }
 };
 
 module.exports = resolvers;
