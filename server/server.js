@@ -1,27 +1,28 @@
+// Dependecies
 // .env
 require('dotenv').config({ path: '../.env' });
 
-// express
+// Express
 const express = require('express');
 const path = require('path');
-// apollo server
+// Apollo server
 const { ApolloServer } = require('apollo-server-express');
-// database connection
+// Database connection
 const db = require('./config/connection');
 
-// graphql schemas
+// Graphql schemas
 const { typeDefs, resolvers } = require('./schemas');
-// app & port
+// App & port
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// new apollo server
+// New apollo server
 const server = new ApolloServer({
   typeDefs,
-  resolvers
+  resolvers,
 });
 
-// middlewares
+// Middlewares
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -29,27 +30,30 @@ app.use(
   })
 );
 
-// point to dist folder
+// Point to dist folder
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
+// Use index.html from client side
 app.get('/', (req, res) =>
   res.sendFile(__dirname, '../client/dist/index.html')
 );
 
-// startserver
+// Start server function
 const startServer = async () => {
-  // start apollo server
+  // Start apollo server
   await server.start();
-  // connect express middleware for apollo
+  // Connect express middleware for apollo
   server.applyMiddleware({ app });
-  // connect the db
+  // Connect the db
   db.once('open', () => {
     app.listen(PORT, () => {
+      // Server Page
       console.log('server running on http://localhost:3001');
+      // Graphql Page
       console.log(`graphql at http://localhost:${PORT}${server.graphqlPath}`);
     });
   });
 };
 
-// start the express server
+// Start the express server
 startServer();
