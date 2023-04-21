@@ -170,3 +170,32 @@ export default function GameReviewCard() {
     </Box>
   );
 }
+
+// import React from 'react';
+// import Card from '@mui/material/Card';
+// import CardContent from '@mui/material/CardContent';
+// import CardMedia from '@mui/material/CardMedia';
+// import Typography from '@mui/material/Typography';
+
+// export default function GameReviewCard({ gameId, title, imageUrl,  }) {
+//   return (
+//     <div>
+//         <Card>
+//           <CardMedia
+//             component="img"
+//             height="200"
+//             image={imageUrl}
+//             alt={title}
+//           />
+//           <CardContent>
+//             <Typography gutterBottom variant="h5" component="div">
+//               {title}
+//             </Typography>
+//             <Typography variant="body2" color="text.secondary">
+//               ID: {gameId}
+//             </Typography>
+//           </CardContent>
+//         </Card>
+//     </div>
+//   );
+// }

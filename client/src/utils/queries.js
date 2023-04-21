@@ -31,3 +31,14 @@ query Games($game: String) {
   }
 }
 `;
+
+export const GET_GAME_BY_ID = gql`
+query Game($gameId: Int!) {
+  game(gameId: $gameId) {
+    name
+    description_raw
+    background_image
+    released
+  }
+}
+`;
