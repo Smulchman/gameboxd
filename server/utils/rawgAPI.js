@@ -5,7 +5,7 @@ const RAWG_API_KEY = process.env.RAWG_API_KEY;
 const RAPID_API_KEY = process.env.RAPID_API_KEY;
 
 const RAPID_API_HOST = 'rawg-video-games-database.p.rapidapi.com';
-const API_URL = 'https://rawg-video-games-database.p.rapidapi.com/games';
+const API_URL = 'https://rawg-video-games-database.p.rapidapi.com/games'
 
 async function getGames(query) {
   try {
