@@ -35,7 +35,7 @@ const entrySchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (timestamp) => timestamp.toLocaleDateString()
+      get: (timestamp) => timestamp.toLocaleDateString(),
     },
   },
   {
@@ -46,6 +46,7 @@ const entrySchema = new Schema(
   }
 );
 
+// Mongoose Virtual to allow us to view the api data with the database
 entrySchema.virtual('gameData').get(async function () {
   const gameID = this.game;
   const { data } = await axios.get(
