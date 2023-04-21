@@ -27,7 +27,6 @@ query Games($game: String) {
   games(game: $game) {
     background_image
     id
-    description_raw
     name
   }
 }
