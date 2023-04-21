@@ -21,24 +21,21 @@ export const GET_GAMES = gql`
     }
   }
 `;
-
 export const GET_GAME_BY_NAME = gql`
-query Games($game: String) {
-  games(game: $game) {
-    background_image
-    id
-    name
+  query Games($game: String) {
+    games(game: $game) {
+      id
+      name
+      background_image
+      released
+      genres {
+        name
+      }
+      platforms {
+        platform {
+          name
+        }
+      }
+    }
   }
-}
-`;
-
-export const GET_GAME_BY_ID = gql`
-query Game($gameId: Int!) {
-  game(gameId: $gameId) {
-    name
-    description_raw
-    background_image
-    released
-  }
-}
 `;
