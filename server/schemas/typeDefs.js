@@ -50,6 +50,10 @@ const typeDefs = gql`
   type PlatformObj {
     platform: Platform
   }
+  
+  type description_raw {
+    name: String
+  }
 
   type Platform {
     name: String

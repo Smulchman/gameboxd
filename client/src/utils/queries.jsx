@@ -22,13 +22,3 @@ export const GET_GAMES = gql`
   }
 `;
 
-export const GET_GAME_BY_NAME = gql`
-query Games($game: String) {
-  games(game: $game) {
-    background_image
-    id
-    description_raw
-    name
-  }
-}
-`;
