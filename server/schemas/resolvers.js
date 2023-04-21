@@ -70,6 +70,12 @@ const resolvers = {
         { $push: { wishlist: gameId } },
       )
     },
+    removeFromWishlist: async (_, { userId, gameId }) => {
+      return User.findOneAndUpdate(
+        { _id: userId },
+        { $pull: { wishlist: gameId } },
+      )
+    },
     removeUser: async (_, { userId }) => {
       return User.findOneAndDelete({ _id: userId });
     },

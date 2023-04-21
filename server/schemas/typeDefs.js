@@ -101,6 +101,8 @@ const typeDefs = gql`
       platform: String
       review: String
     ): Entry
+    addToWishlist(userId: ID!, gameId: Int!): User
+    removeFromWishlist(userId: ID!, gameId: Int!): User
     removeUser(userId: ID!): User
     removeEntry(entryId: ID!): Entry
   }
