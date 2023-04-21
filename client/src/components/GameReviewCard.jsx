@@ -32,7 +32,7 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function GameReviewCard({title,imageUrl,gameId,released,genres,platforms}) {
+export default function GameReviewCard({title,imageUrl,gameId,released,genres,platform}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [expanded, setExpanded] = React.useState(false);
   const { loading, error, data } = useQuery(GET_GAMES, {
@@ -49,7 +49,7 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
 
     // Build the tweet URL with the game URL and the tweet text
     const tweetUrl = `${TWITTER_SHARE}?text=${tweetText}&url=${
-      title.length > 0 ? imageUrl : 'No game found'
+      imageUrl
     }`;
 
     // Open the Twitter share URL in a new window
@@ -76,7 +76,9 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              {title.length > 0 ? title[0] : 'No game found'}
+              {title && title.hasOwnProperty('length') && title.length > 0
+                ? title[0]
+                : 'No game found'}
             </Avatar>
           }
           action={
@@ -97,19 +99,27 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
               </Menu>
             </React.Fragment>
           }
-          title={title.length > 0 ? title[0] : 'No game found'}
-          subheader={title.length > 0 ? released : 'No game found'}
+          title={
+            title && title.hasOwnProperty('length') && title.length > 0
+              ? title
+              : 'No game found'
+          }
+          subheader={
+          released && released.hasOwnProperty('length') && released.length > 0
+              ? released
+              : 'No game found'
+          }
         />
 
         <CardMedia
           component="img"
           height="194"
-          image={title.length > 0 ? imageUrl : 'No game found'}
+          image={imageUrl}
           alt={title}
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {title.length > 0 ? title : 'No game found'}
+            {title}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -139,17 +149,18 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
           <CardContent>
             <Typography paragraph>Method:</Typography>
             <Typography paragraph>
-              {title.length > 0 ? title : 'No game found'}
+              {title}
             </Typography>
             <Typography paragraph>
-              {genres.length > 0 ? genres : 'No game found'}
+              {genres}
             </Typography>
             <Typography paragraph>
-              {platforms.length > 0 ? platforms : 'No game found'}
-            </Typography>            
+              {platform}
+            </Typography>
           </CardContent>
         </Collapse>
       </Card>
     </Box>
   );
 }
+

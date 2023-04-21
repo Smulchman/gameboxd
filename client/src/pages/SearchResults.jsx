@@ -7,11 +7,10 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import { useQuery } from '@apollo/client';
 import { GET_GAME_BY_NAME } from '../utils/queries';
-import { getGameData } from '../utils/getSingleGame';
-
 
 export default function SearchResults() {
-  const [formState, setFormState] = useState({ game: '' });
+  const [formState, setFormState] = useState({game: ''});
+  const [gameData, setGameData] = useState([]);
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -28,10 +27,17 @@ export default function SearchResults() {
   
   const getGameData = () => {
     const results = data;
-    console.log(results);
+    // if (data) {
+    //   console.log(data.games);
+    // }
+    if (data) {
+      setGameData(data.games);
+      console.log(gameData);
+    }
+    
   };
+  console.log(gameData);
 
-  
   return (
     <div
       style={{
@@ -86,15 +92,15 @@ export default function SearchResults() {
         </FormControl>
       </div>
       <div style={{ marginTop: '2em' }}>
-        {gameDate.map((game) => (
+        {gameData.map((game) => (
           <GameReviewCard
             key={game.id}
             title={game.name}
             imageUrl={game.background_image}
             gameId={game.id}
             released={game.released}
-            genres={game.genres.name[0]}
-            platform={platforms.platform.name[0]}
+            genres={game.genres.name}
+            platform={game.platforms.platform}
           />
         ))}
       </div>
