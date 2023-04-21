@@ -12,7 +12,7 @@ async function getGames(query) {
     if (query) {
       let noSpaceQuery = query.replace(/ /g, '%20');
       const response = await axios.get(
-        `${API_URL}?search=${query}&key=${RAWG_API_KEY}`,
+        `${API_URL}?search=${noSpaceQuery}&key=${RAWG_API_KEY}`,
         {
           headers: {
             'x-rapidapi-key': RAPID_API_KEY,

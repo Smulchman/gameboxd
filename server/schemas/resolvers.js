@@ -10,10 +10,10 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     users: async () => {
-      return await User.find({});
+      return await User.find({}).populate('entries');
     },
     user: async (_, { username }) => {
-      return await User.findOne({ username });
+      return await User.findOne({ username }).populate('entries');
     },
     entries: async (_, { user }) => {
       let temp = await Entry.find().populate('user');
@@ -63,6 +63,18 @@ const resolvers = {
         { username, email, password },
         { new: true }
       );
+    },
+    addToWishlist: async (_, { userId, gameId }) => {
+      return User.findOneAndUpdate(
+        { _id: userId },
+        { $push: { wishlist: gameId } },
+      )
+    },
+    removeFromWishlist: async (_, { userId, gameId }) => {
+      return User.findOneAndUpdate(
+        { _id: userId },
+        { $pull: { wishlist: gameId } },
+      )
     },
     removeUser: async (_, { userId }) => {
       return User.findOneAndDelete({ _id: userId });
