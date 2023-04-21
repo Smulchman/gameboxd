@@ -18,6 +18,11 @@ import { useQuery } from '@apollo/client';
 import { GET_GAMES } from '../utils/queries';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Box from '@mui/material/Box';
+import { TWITTER_SHARE } from '../utils/constants';
+import {
+  Menu,
+  MenuItem
+} from '@mui/material';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -32,6 +37,7 @@ const ExpandMore = styled((props) => {
 
 
 export default function GameReviewCard() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const [expanded, setExpanded] = React.useState(false);
   const { loading, error, data } = useQuery(GET_GAMES, { fetchPolicy: 'no-cache' });
   const [isFavorite, setIsFavorite] = React.useState(false);
@@ -45,12 +51,18 @@ export default function GameReviewCard() {
     const tweetText = encodeURIComponent('Check out this game!');
 
     // Build the tweet URL with the game URL and the tweet text
-    const tweetUrl = `${TWITTER_SHARE_URL}&text=${tweetText}`;
+    const tweetUrl = `${TWITTER_SHARE}?text=${tweetText}&url=${games.length > 0 ? games[0].background_image : 'No game found'}`;
 
     // Open the Twitter share URL in a new window
     window.open(tweetUrl, '_blank');
   };
+  const handleSettingsClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -69,9 +81,22 @@ export default function GameReviewCard() {
             </Avatar>
           }
           action={
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
+            <React.Fragment>
+              <IconButton aria-label="settings" onClick={handleSettingsClick}>
+                <MoreVertIcon />
+              </IconButton>
+              <Menu
+                id="settings-menu"
+                anchorEl={anchorEl}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleMenuClose}
+              >
+                <MenuItem onClick={handleMenuClose}>add it to library</MenuItem>
+                <MenuItem onClick={handleMenuClose}>add it to played</MenuItem>
+                <MenuItem onClick={handleMenuClose}>add a review</MenuItem>
+              </Menu>
+            </React.Fragment>
           }
           title={games.length > 0 ? games[0].name : 'No game found'}
           subheader={games.length > 0 ? games[0].released : 'No game found'}
