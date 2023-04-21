@@ -1,9 +1,12 @@
 const { gql } = require('apollo-server-express');
 
-// adding comments up here, gql can't handle issues in the typedefs string
-
 // I might want to change the type from 'Platform' in the Entry typedef and have it just be a string
 // Further down, the 'Platform' Type is for the specific console, not the 'parent platform'
+
+// """"
+// Comment
+// """"
+// ^ The structure above is a comment inside graphql. You can view it in the apollo server sandbox
 
 const typeDefs = gql`
   type User {
