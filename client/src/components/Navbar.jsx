@@ -17,6 +17,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import { borders } from '@mui/system';
+import Auth from '../utils/auth.js';
 // import '../assets/css'
 
 const pages = [<GamepadIcon />, <SearchIcon />];
@@ -144,6 +145,7 @@ export default function Navbar(currentPage, handlePageChange) {
                 <Avatar alt="bemy Sharp" src="" />
               </IconButton>
             </Tooltip>
+            {Auth.loggedIn() && (
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -163,9 +165,10 @@ export default function Navbar(currentPage, handlePageChange) {
               <MenuItem onClick={() => handlePageChange('Profile')}>
                 Profile
               </MenuItem>
-              <MenuItem>Log Out</MenuItem>
-              {/* ))} */}
+              <MenuItem onClick={Auth.logout}>Log Out</MenuItem>
+              
             </Menu>
+            )}
           </Box>
         </Toolbar>
       </Container>

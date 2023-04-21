@@ -1,24 +1,22 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+// material stuff
 import GameReviewCard from '../components/GameReviewCard';
-
 import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 
 
 export default function SearchResults() {
+
+
+
   return (
     <div style={{ 
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
-      justifyContent: 'center',
+      // justifyContent: 'center',
       height: '100vh',
       background: '#292827'
     }}>
@@ -31,7 +29,7 @@ export default function SearchResults() {
        <FormControl style={{ 
           width: '60%' 
         }} variant="standard">
-          <h3 style={{color: 'white', fontSize: '2em'}}>Search a game to review!</h3>
+          <h3 style={{color: 'white', fontSize: '1.5em'}}>Search a game to review!</h3>
         <Input
         style={{ 
           background: 'white',
