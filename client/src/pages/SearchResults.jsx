@@ -7,34 +7,31 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import { useQuery } from '@apollo/client';
 import { GET_GAME_BY_NAME } from '../utils/queries';
-
+import { getGameData } from '../utils/getSingleGame';
 
 
 export default function SearchResults() {
-  const [formState, setFormState] = useState({game: ''});
-
-  const getGameData = () => {
-    const { loading, error, data } = useQuery(GET_GAME_BY_NAME, {
-      variables: {
-        game: formState.game,
-      },
-    });
-
-    if (loading) return 'Loading...';
-    if (error) return `Error! ${error.message}`;
-    console.log(data);
-    return data;
-  };
-
+  const [formState, setFormState] = useState({ game: '' });
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
       ...formState,
       [name]: value,
     });
-    console.log(formState);
+    // console.log(formState);
+  };
+  const { loading, error, data } = useQuery(GET_GAME_BY_NAME, {
+    variables: {
+      game: formState.game,
+    },
+  });
+  
+  const getGameData = () => {
+    const results = data;
+    console.log(results);
   };
 
+  
   return (
     <div
       style={{
@@ -74,24 +71,33 @@ export default function SearchResults() {
             }}
             id="gameSearch"
             startAdornment={
-              
-                <InputAdornment position="start">
-                  <SearchIcon
-                    onClick={getGameData}
-                    style={{
-                      margin: '1em',
-                      fontSize: '2em',
-                      cursor: 'crosshair',
-                    }}
-                  />
-                </InputAdornment>
-              
+              <InputAdornment position="start">
+                <SearchIcon
+                  onClick={getGameData}
+                  style={{
+                    margin: '1em',
+                    fontSize: '2em',
+                    cursor: 'crosshair',
+                  }}
+                />
+              </InputAdornment>
             }
           />
         </FormControl>
       </div>
-      <GameReviewCard style={{ marginTop: '2em' }} />
+      <div style={{ marginTop: '2em' }}>
+        {gameDate.map((game) => (
+          <GameReviewCard
+            key={game.id}
+            title={game.name}
+            imageUrl={game.background_image}
+            gameId={game.id}
+            released={game.released}
+            genres={game.genres.name[0]}
+            platform={platforms.platform.name[0]}
+          />
+        ))}
+      </div>
     </div>
   );
 }
-
