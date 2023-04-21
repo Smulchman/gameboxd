@@ -8,10 +8,14 @@ import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
-
+// jimmy's cool images
 import QuiltedImageList from '../components/gamebox';
-
+// auth for conditional rendering
 import Auth from '../utils/auth.js';
+// stuff for making queries
+import { useQuery } from '@apollo/client';
+import { GET_ENTRIES } from '../utils/queries.js';
+
 // modal stuff
 const style = {
   position: 'absolute',
@@ -32,6 +36,11 @@ export default function SimpleContainer() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const { loading, data, error } = useQuery(GET_ENTRIES);
+
+  console.log(data);
+
   return (
     <div
       style={{
