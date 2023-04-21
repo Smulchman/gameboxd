@@ -26,11 +26,6 @@ export default function SearchResults() {
     return data;
   };
 
-  const getGame = () => {
-    // console.log(getGameData());
-    console.log(formState);
-  };
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -41,46 +36,61 @@ export default function SearchResults() {
   };
 
   return (
-    <div style={{ 
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      // justifyContent: 'center',
-      height: '100vh',
-      background: '#292827'
-    }}>
-      <div style={{ 
-        display: 'flex', 
-        width: '100%', 
-        justifyContent: 'center',
-        margin: '1em' 
-      }}>
-       <FormControl style={{ 
-          width: '60%' 
-        }} variant="standard">
-          <h3 style={{color: 'white', fontSize: '1.5em'}}>Search a game to review!</h3>
-        <Input
-        onChange={handleChange}
-        name='game'
-        style={{ 
-          background: 'white',
-          height: '3em',
-          borderRadius: '2em',
-          fontSize: '1.5em' 
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        // justifyContent: 'center',
+        height: '100vh',
+        background: '#292827',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          width: '100%',
+          justifyContent: 'center',
+          margin: '1em',
         }}
-          id="gameSearch"
-          startAdornment={
-            <InputAdornment position="start">
-              <SearchIcon 
-              onClick={getGame}
-              style={{margin: '1em', fontSize: '2em', cursor: 'crosshair'}}
-               />
-            </InputAdornment>
-          }
-        />
-       </FormControl>
+      >
+        <FormControl
+          style={{
+            width: '60%',
+          }}
+          variant="standard"
+        >
+          <h3 style={{ color: 'white', fontSize: '1.5em' }}>
+            Search a game to review!
+          </h3>
+          <Input
+            onChange={handleChange}
+            name="game"
+            style={{
+              background: 'white',
+              height: '3em',
+              borderRadius: '2em',
+              fontSize: '1.5em',
+            }}
+            id="gameSearch"
+            startAdornment={
+              
+                <InputAdornment position="start">
+                  <SearchIcon
+                    onClick={getGameData}
+                    style={{
+                      margin: '1em',
+                      fontSize: '2em',
+                      cursor: 'crosshair',
+                    }}
+                  />
+                </InputAdornment>
+              
+            }
+          />
+        </FormControl>
       </div>
-      <GameReviewCard style={{ marginTop: '2em'}} />
+      <GameReviewCard style={{ marginTop: '2em' }} />
     </div>
   );
 }
