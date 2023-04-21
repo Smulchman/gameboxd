@@ -19,14 +19,12 @@ export default function SearchResults() {
     });
     // console.log(formState);
   };
-
   const { loading, error, data } = useQuery(GET_GAME_BY_NAME, {
     variables: {
       game: formState.game,
     },
   });
-
-
+  
   const getGameData = () => {
     const results = data;
     // if (data) {
@@ -41,46 +39,58 @@ export default function SearchResults() {
   console.log(gameData);
 
   return (
-    <div style={{ 
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      // justifyContent: 'center',
-      height: '100vh',
-      background: '#292827'
-    }}>
-      <div style={{ 
-        display: 'flex', 
-        width: '100%', 
-        justifyContent: 'center',
-        margin: '1em' 
-      }}>
-       <FormControl style={{ 
-          width: '60%' 
-        }} variant="standard">
-          <h3 style={{color: 'white', fontSize: '1.5em'}}>Search a game to review!</h3>
-        <Input
-        onChange={handleChange}
-        name='game'
-        style={{ 
-          background: 'white',
-          height: '3em',
-          borderRadius: '2em',
-          fontSize: '1.5em' 
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        // justifyContent: 'center',
+        height: '100vh',
+        background: '#292827',
+      }}
+    >
+      <div
+        style={{
+          display: 'flex',
+          width: '100%',
+          justifyContent: 'center',
+          margin: '1em',
         }}
-          id="gameSearch"
-          startAdornment={
-            <InputAdornment position="start">
-              <SearchIcon 
-              onClick={getGameData}
-              style={{margin: '1em', fontSize: '2em', cursor: 'crosshair'}}
-               />
-            </InputAdornment>
-          }
-        />
-       </FormControl>
+      >
+        <FormControl
+          style={{
+            width: '60%',
+          }}
+          variant="standard"
+        >
+          <h3 style={{ color: 'white', fontSize: '1.5em' }}>
+            Search a game to review!
+          </h3>
+          <Input
+            onChange={handleChange}
+            name="game"
+            style={{
+              background: 'white',
+              height: '3em',
+              borderRadius: '2em',
+              fontSize: '1.5em',
+            }}
+            id="gameSearch"
+            startAdornment={
+              <InputAdornment position="start">
+                <SearchIcon
+                  onClick={getGameData}
+                  style={{
+                    margin: '1em',
+                    fontSize: '2em',
+                    cursor: 'crosshair',
+                  }}
+                />
+              </InputAdornment>
+            }
+          />
+        </FormControl>
       </div>
-      {/* <GameReviewCard style={{ marginTop: '2em'}} /> */}
       <div style={{ marginTop: '2em' }}>
         {gameData.map((game) => (
           <GameReviewCard
@@ -88,10 +98,12 @@ export default function SearchResults() {
             title={game.name}
             imageUrl={game.background_image}
             gameId={game.id}
+            released={game.released}
+            genres={game.genres.name}
+            platform={game.platforms.platform}
           />
         ))}
       </div>
     </div>
   );
 }
-

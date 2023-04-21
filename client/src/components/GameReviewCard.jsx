@@ -19,10 +19,7 @@ import { GET_GAMES } from '../utils/queries';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Box from '@mui/material/Box';
 import { TWITTER_SHARE } from '../utils/constants';
-import {
-  Menu,
-  MenuItem
-} from '@mui/material';
+import { Menu, MenuItem } from '@mui/material';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -35,14 +32,14 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-
-export default function GameReviewCard() {
+export default function GameReviewCard({title,imageUrl,gameId,released,genres,platform}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [expanded, setExpanded] = React.useState(false);
-  const { loading, error, data } = useQuery(GET_GAMES, { fetchPolicy: 'no-cache' });
+  const { loading, error, data } = useQuery(GET_GAMES, {
+    fetchPolicy: 'no-cache',
+  });
   const [isFavorite, setIsFavorite] = React.useState(false);
   const games = data?.games || [];
-  console.log(games);
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
   };
@@ -51,7 +48,9 @@ export default function GameReviewCard() {
     const tweetText = encodeURIComponent('Check out this game!');
 
     // Build the tweet URL with the game URL and the tweet text
-    const tweetUrl = `${TWITTER_SHARE}?text=${tweetText}&url=${games.length > 0 ? games[0].background_image : 'No game found'}`;
+    const tweetUrl = `${TWITTER_SHARE}?text=${tweetText}&url=${
+      imageUrl
+    }`;
 
     // Open the Twitter share URL in a new window
     window.open(tweetUrl, '_blank');
@@ -77,7 +76,9 @@ export default function GameReviewCard() {
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              {games.length > 0 ? games[0].name[0] : 'No game found'}
+              {title && title.hasOwnProperty('length') && title.length > 0
+                ? title[0]
+                : 'No game found'}
             </Avatar>
           }
           action={
@@ -98,19 +99,27 @@ export default function GameReviewCard() {
               </Menu>
             </React.Fragment>
           }
-          title={games.length > 0 ? games[0].name : 'No game found'}
-          subheader={games.length > 0 ? games[0].released : 'No game found'}
+          title={
+            title && title.hasOwnProperty('length') && title.length > 0
+              ? title
+              : 'No game found'
+          }
+          subheader={
+          released && released.hasOwnProperty('length') && released.length > 0
+              ? released
+              : 'No game found'
+          }
         />
 
         <CardMedia
           component="img"
           height="194"
-          image={games.length > 0 ? games[0].background_image : 'No game found'}
-          alt={games.name}
+          image={imageUrl}
+          alt={title}
         />
         <CardContent>
           <Typography variant="body2" color="text.secondary">
-            {games.length > 0 ? games[0].description_raw : 'No game found'}
+            {title}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -140,29 +149,13 @@ export default function GameReviewCard() {
           <CardContent>
             <Typography paragraph>Method:</Typography>
             <Typography paragraph>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero,
-              adipisci!
+              {title}
             </Typography>
             <Typography paragraph>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex fuga
-              vero blanditiis vel expedita tenetur molestiae, distinctio ut
-              doloribus illum, provident alias. Perspiciatis, veniam obcaecati.
-              Rerum sunt ut eveniet magnam ex repellat temporibus suscipit quis
-              nam, mollitia excepturi aperiam voluptatum eos quam molestiae
-              doloremque. Amet ducimus fuga sed quaerat totam!
+              {genres}
             </Typography>
             <Typography paragraph>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae
-              delectus accusantium temporibus vero hic harum excepturi, autem
-              esse ipsa maiores totam dignissimos? Delectus voluptates
-              perferendis qui provident dolorem animi expedita natus recusandae,
-              cum aperiam quas! Obcaecati sit, veniam quidem, eius magnam
-              adipisci repellendus nesciunt neque corrupti ipsa quae similique
-              sed!
-            </Typography>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit,
-              dolores.
+              {platform}
             </Typography>
           </CardContent>
         </Collapse>
@@ -171,31 +164,3 @@ export default function GameReviewCard() {
   );
 }
 
-// import React from 'react';
-// import Card from '@mui/material/Card';
-// import CardContent from '@mui/material/CardContent';
-// import CardMedia from '@mui/material/CardMedia';
-// import Typography from '@mui/material/Typography';
-
-// export default function GameReviewCard({ gameId, title, imageUrl,  }) {
-//   return (
-//     <div>
-//         <Card>
-//           <CardMedia
-//             component="img"
-//             height="200"
-//             image={imageUrl}
-//             alt={title}
-//           />
-//           <CardContent>
-//             <Typography gutterBottom variant="h5" component="div">
-//               {title}
-//             </Typography>
-//             <Typography variant="body2" color="text.secondary">
-//               ID: {gameId}
-//             </Typography>
-//           </CardContent>
-//         </Card>
-//     </div>
-//   );
-// }

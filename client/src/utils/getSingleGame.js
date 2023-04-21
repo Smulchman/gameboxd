@@ -7,8 +7,8 @@ export const getGameData = async (formState) => {
     variables: {
       game: formState.game,
     },
-  });
+});
   return data;
 };
 
-// export default getGameData();
+export default getGameData();
