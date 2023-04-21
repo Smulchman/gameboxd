@@ -43,19 +43,19 @@ export default function Navbar(currentPage, handlePageChange) {
     setAnchorElUser(null);
   };
 
-  // const loggedInOut = isLoggedIn ? (
-  //   <VideogameAssetOffIcon />
-  // ) : (
-  //   <VideogameAssetOffIcon />
-  // );
 
   return (
     <AppBar position="static" sx={{ bgcolor: '#292827', borderBottom: 3 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+          {Auth.loggedIn() ? ( 
           <VideogameAssetIcon
             sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
+          />) : (
+          <VideogameAssetOffIcon
+            sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
           />
+          )}
           <Typography
             variant="h6"
             noWrap
@@ -66,7 +66,7 @@ export default function Navbar(currentPage, handlePageChange) {
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
+              letterSpacing: '.4rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
@@ -110,9 +110,14 @@ export default function Navbar(currentPage, handlePageChange) {
               </MenuItem>
             </Menu>
           </Box>
-          <VideogameAssetOffIcon
+          {Auth.loggedIn() ? (
+          <VideogameAssetIcon
             sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
-          />
+          /> ) : (
+            <VideogameAssetOffIcon
+            sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
+          />  
+          )}
           <Typography
             variant="h5"
             noWrap
@@ -169,7 +174,7 @@ export default function Navbar(currentPage, handlePageChange) {
             </Menu>
           </Box>
           )}
-          
+
         </Toolbar>
       </Container>
     </AppBar>
