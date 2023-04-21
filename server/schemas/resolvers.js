@@ -85,6 +85,9 @@ const resolvers = {
       );
       return gameboy;
     },
+    removeEntry: async (_, {entryId}) => {
+      return Entry.findOneAndDelete({_id: entryId})
+    } 
   },
 };
 
