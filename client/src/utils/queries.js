@@ -39,3 +39,30 @@ export const GET_GAME_BY_NAME = gql`
     }
   }
 `;
+
+export const GET_ENTRIES = gql`
+query Query {
+  entries {
+    _id
+    createdAt
+    game
+    gameData {
+      platforms {
+        platform {
+          name
+        }
+      }
+      background_image
+      description_raw
+      genres {
+        name
+      }
+      id
+    }
+    review
+    user {
+      username
+    }
+  }
+}
+`;
