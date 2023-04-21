@@ -13,6 +13,8 @@ import SearchResults from './pages/SearchResults';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
+let inProduction = process.env.NODE_ENV === 'production';
+
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   const token = localStorage.getItem('id_token');
@@ -27,7 +29,7 @@ const authLink = setContext((_, { headers }) => {
 
 
 const client = new ApolloClient({
-  uri: 'http://127.0.0.1:3001/graphql',
+  uri: inProduction ? '/graphql':'http://127.0.0.1:3001/graphql',
   cache: new InMemoryCache(),
 });
 
