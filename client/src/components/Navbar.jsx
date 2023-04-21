@@ -138,15 +138,14 @@ export default function Navbar(currentPage, handlePageChange) {
               </Link>
             </Tooltip>
           </Box>
-
+          {/* make sure the user is logged in to display user menu  */}
+          {Auth.loggedIn() && (
           <Box sx={{ flexGrow: 0 }}>
-            {Auth.loggedIn() && (
             <Tooltip title="User Options">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="bemy Sharp" src="" />
               </IconButton>
-            </Tooltip> )}
-            {Auth.loggedIn() && (
+            </Tooltip> 
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -167,10 +166,10 @@ export default function Navbar(currentPage, handlePageChange) {
                 Profile
               </MenuItem>
               <MenuItem onClick={Auth.logout}>Log Out</MenuItem>
-              
             </Menu>
-            )}
           </Box>
+          )}
+          
         </Toolbar>
       </Container>
     </AppBar>
