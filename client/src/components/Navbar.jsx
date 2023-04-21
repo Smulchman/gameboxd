@@ -48,13 +48,14 @@ export default function Navbar(currentPage, handlePageChange) {
     <AppBar position="static" sx={{ bgcolor: '#292827', borderBottom: 3 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {Auth.loggedIn() ? ( 
-          <VideogameAssetIcon
-            sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
-          />) : (
-          <VideogameAssetOffIcon
-            sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
-          />
+          {Auth.loggedIn() ? (
+            <VideogameAssetIcon
+              sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
+            />
+          ) : (
+            <VideogameAssetOffIcon
+              sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
+            />
           )}
           <Typography
             variant="h6"
@@ -108,15 +109,21 @@ export default function Navbar(currentPage, handlePageChange) {
                   <SearchIcon />
                 </Link>
               </MenuItem>
+              <MenuItem onClick={handleCloseNavMenu}>
+                <Link to="/ShoppingCart">
+                 <p>Cart</p>
+                </Link>
+              </MenuItem>
             </Menu>
           </Box>
           {Auth.loggedIn() ? (
-          <VideogameAssetIcon
-            sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
-          /> ) : (
+            <VideogameAssetIcon
+              sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
+            />
+          ) : (
             <VideogameAssetOffIcon
-            sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
-          />  
+              sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
+            />
           )}
           <Typography
             variant="h5"
@@ -139,44 +146,48 @@ export default function Navbar(currentPage, handlePageChange) {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Tooltip title="Search Games">
               <Link to="/SearchResults">
-                <SearchIcon style={{ color: 'white', fontSize: '2em', marginLeft: '1em', marginTop: '0.25em' }} />
+                <SearchIcon
+                  style={{
+                    color: 'white',
+                    fontSize: '2em',
+                    marginLeft: '1em',
+                    marginTop: '0.25em',
+                  }}
+                />
               </Link>
             </Tooltip>
           </Box>
           {/* make sure the user is logged in to display user menu  */}
           {Auth.loggedIn() && (
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="User Options">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="bemy Sharp" src="" />
-              </IconButton>
-            </Tooltip> 
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              <MenuItem>
-              <Link to='/Profile'>
-                Profile
-              </Link>
-              </MenuItem>
-              <MenuItem onClick={Auth.logout}>Log Out</MenuItem>
-            </Menu>
-          </Box>
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="User Options">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="bemy Sharp" src="" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <MenuItem>
+                  <Link to="/Profile">Profile</Link>
+                </MenuItem>
+                <MenuItem onClick={Auth.logout}>Log Out</MenuItem>
+              </Menu>
+            </Box>
           )}
-
         </Toolbar>
       </Container>
     </AppBar>

@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@apollo/client';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 // router for changing pages and connecting to server
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -12,6 +17,7 @@ import SearchResults from './pages/SearchResults';
 // navbar and footer will be displayed on all pages
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Cart from './components/Cart';
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -24,7 +30,6 @@ const authLink = setContext((_, { headers }) => {
     },
   };
 });
-
 
 const client = new ApolloClient({
   uri: 'http://127.0.0.1:3001/graphql',
@@ -40,6 +45,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/Profile" element={<Profile />} />
           <Route path="/SearchResults" element={<SearchResults />} />
+          <Route path="/ShoppingCart" element={<Cart />} />
           <Route path="/Signup" element={<Signup />} />
         </Routes>
         <Footer />
