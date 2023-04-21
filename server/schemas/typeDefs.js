@@ -50,6 +50,10 @@ const typeDefs = gql`
   type PlatformObj {
     platform: Platform
   }
+  
+  type description_raw {
+    name: String
+  }
 
   type Platform {
     name: String
@@ -68,7 +72,7 @@ const typeDefs = gql`
     users: [User]
     user(username: String!): User
     games(game: String): [Game]
-    game(gameId: ID!): Game
+    game(gameId: Int!): Game
     entries(user: String): [Entry]
     entry(entryId: ID!): Entry
   }

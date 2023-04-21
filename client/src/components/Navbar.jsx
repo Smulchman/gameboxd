@@ -17,6 +17,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import { borders } from '@mui/system';
+import Auth from '../utils/auth.js';
 // import '../assets/css'
 
 const pages = [<GamepadIcon />, <SearchIcon />];
@@ -42,19 +43,19 @@ export default function Navbar(currentPage, handlePageChange) {
     setAnchorElUser(null);
   };
 
-  // const loggedInOut = isLoggedIn ? (
-  //   <VideogameAssetOffIcon />
-  // ) : (
-  //   <VideogameAssetOffIcon />
-  // );
 
   return (
     <AppBar position="static" sx={{ bgcolor: '#292827', borderBottom: 3 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
+          {Auth.loggedIn() ? ( 
           <VideogameAssetIcon
             sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
+          />) : (
+          <VideogameAssetOffIcon
+            sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
           />
+          )}
           <Typography
             variant="h6"
             noWrap
@@ -65,7 +66,7 @@ export default function Navbar(currentPage, handlePageChange) {
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: '.3rem',
+              letterSpacing: '.4rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
@@ -109,14 +110,19 @@ export default function Navbar(currentPage, handlePageChange) {
               </MenuItem>
             </Menu>
           </Box>
-          <VideogameAssetOffIcon
+          {Auth.loggedIn() ? (
+          <VideogameAssetIcon
             sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
-          />
+          /> ) : (
+            <VideogameAssetOffIcon
+            sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }}
+          />  
+          )}
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -133,17 +139,18 @@ export default function Navbar(currentPage, handlePageChange) {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Tooltip title="Search Games">
               <Link to="/SearchResults">
-                <SearchIcon style={{ color: 'white' }} />
+                <SearchIcon style={{ color: 'white', fontSize: '2em', marginLeft: '1em', marginTop: '0.25em' }} />
               </Link>
             </Tooltip>
           </Box>
-
+          {/* make sure the user is logged in to display user menu  */}
+          {Auth.loggedIn() && (
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="User Options">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="bemy Sharp" src="" />
               </IconButton>
-            </Tooltip>
+            </Tooltip> 
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -160,13 +167,16 @@ export default function Navbar(currentPage, handlePageChange) {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={() => handlePageChange('Profile')}>
+              <MenuItem>
+              <Link to='/Profile'>
                 Profile
+              </Link>
               </MenuItem>
-              <MenuItem>Log Out</MenuItem>
-              {/* ))} */}
+              <MenuItem onClick={Auth.logout}>Log Out</MenuItem>
             </Menu>
           </Box>
+          )}
+
         </Toolbar>
       </Container>
     </AppBar>

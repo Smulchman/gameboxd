@@ -1,23 +1,17 @@
-// if the user is not signed in, the signin button is displayed
-// signin button triggers modal popup which contains signin form.
-
-// header with hero image/ logo and name
 import * as React from 'react';
-// import CssBaseline from '@mui/material/CssBaseline';
 import { Box } from '@mui/material';
 import Container from '@mui/material/Container';
-import reactLogo from '../assets/react.svg';
+// import reactLogo from '../assets/react.svg';
 import Signin from '../components/Signin.jsx';
 // modal stuff
 import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
-// need to figure out dif between gamebox and getgame
-import QuiltedImageList from '../components/gamebox';
-// import Typography from '@mui/material/Typography';
-import '../assets/css/Home.css';
 
+import QuiltedImageList from '../components/gamebox';
+
+import Auth from '../utils/auth.js';
 // modal stuff
 const style = {
   position: 'absolute',
@@ -41,7 +35,13 @@ export default function SimpleContainer() {
   return (
     <Container maxWidth="xl" style={{ height: '85vh' }}>
       <Box sx={{ bgcolor: '#292827', height: '50vh' }}>
-        <img src={reactLogo} width="100%" height="100%" />
+        <img
+          src={
+            'https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg?w=121&h=121&fit=crop&auto=format'
+          }
+          width="100%"
+          height="100%"
+        />
       </Box>
       {/* modal stuff starts */}
       <div
@@ -63,15 +63,22 @@ export default function SimpleContainer() {
         >
           <h3 style={{ width: '100%' }}>Track Games You've Played</h3>
           <h3 style={{ width: '100%' }}>Save Those You Want To Play</h3>
-          <Button
-            variant="contained"
-            size="large"
-            sx={{ width: '200px', height: '60px' }}
-            onClick={handleOpen}
-            style={{ padding: '4px', margin: '5px' }}
-          >
-            Sign in!
-          </Button>
+          {Auth.loggedIn() ? (
+            <h3 style={{ width: '100%' }}>
+              {' '}
+              Click the search icon to find games
+            </h3>
+          ) : (
+            <Button
+              variant="contained"
+              size="large"
+              sx={{ width: '200px', height: '60px' }}
+              onClick={handleOpen}
+              style={{ padding: '4px', margin: '5px' }}
+            >
+              Sign in!
+            </Button>
+          )}
           <Modal
             aria-labelledby="transition-modal-title"
             aria-describedby="transition-modal-description"
@@ -93,7 +100,7 @@ export default function SimpleContainer() {
           </Modal>
         </div>
       </div>
-      {/* <QuiltedImageList /> */}
+      <QuiltedImageList />
     </Container>
   );
 }
