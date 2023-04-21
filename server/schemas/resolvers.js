@@ -77,7 +77,7 @@ const resolvers = {
       );
     },
     removeUser: async (_, { userId }) => {
-      return User.findOneAndDelete({ _id: userId });
+      return await User.findOneAndDelete({ _id: userId });
     },
     addEntry: async (
       _,
