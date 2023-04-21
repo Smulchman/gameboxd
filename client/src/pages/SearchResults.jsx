@@ -1,15 +1,44 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 // material stuff
 import GameReviewCard from '../components/GameReviewCard';
 import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
+import { useQuery } from '@apollo/client';
+import { GET_GAME_BY_NAME } from '../utils/queries';
+
 
 
 export default function SearchResults() {
+  const [formState, setFormState] = useState({game: ''});
 
+  const getGameData = () => {
+    const { loading, error, data } = useQuery(GET_GAME_BY_NAME, {
+      variables: {
+        game: formState.game,
+      },
+    });
 
+    if (loading) return 'Loading...';
+    if (error) return `Error! ${error.message}`;
+    console.log(data);
+    return data;
+  };
+
+  const getGame = () => {
+    // console.log(getGameData());
+    console.log(formState);
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+    console.log(formState);
+  };
 
   return (
     <div style={{ 
@@ -31,6 +60,8 @@ export default function SearchResults() {
         }} variant="standard">
           <h3 style={{color: 'white', fontSize: '1.5em'}}>Search a game to review!</h3>
         <Input
+        onChange={handleChange}
+        name='game'
         style={{ 
           background: 'white',
           height: '3em',
@@ -40,7 +71,10 @@ export default function SearchResults() {
           id="gameSearch"
           startAdornment={
             <InputAdornment position="start">
-              <SearchIcon style={{margin: '2em', fontSize: '2em'}} />
+              <SearchIcon 
+              onClick={getGame}
+              style={{margin: '1em', fontSize: '2em', cursor: 'crosshair'}}
+               />
             </InputAdornment>
           }
         />
@@ -50,3 +84,4 @@ export default function SearchResults() {
     </div>
   );
 }
+
