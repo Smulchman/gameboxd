@@ -115,7 +115,9 @@ export default function SimpleContainer() {
             </Modal>
           </div>
         </div>
-        <div>
+        <div
+        style={{backgroundColor: '#292827'}}
+        >
           <QuiltedImageList />
         </div>
       </Container>
