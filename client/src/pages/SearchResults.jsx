@@ -30,13 +30,10 @@ export default function SearchResults() {
 
 
   const getGameData = () => {
-    console.log(data);
-  };
+    const results = data;
+    console.log(results.games[2])
 
-  // const getGame = () => {
-  //   // console.log(getGameData());
-  //   console.log(formState.game);
-  // };
+  };
 
   
 
