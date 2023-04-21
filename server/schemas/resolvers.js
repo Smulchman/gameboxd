@@ -1,4 +1,4 @@
-const { getGames } = require('../utils/rawgAPI.js');
+const { getGames, getGame } = require('../utils/rawgAPI.js');
 require('dotenv').config();
 const { AuthenticationError } = require('apollo-server-express');
 const axios = require('axios');
@@ -17,8 +17,8 @@ const resolvers = {
     },
     entries: async (_, { user }) => {
       let temp = await Entry.find().populate('user');
-      if(user){
-      temp = temp.filter(entry => entry.user.username === user);
+      if (user) {
+        temp = temp.filter((entry) => entry.user.username === user);
       }
       return temp;
     },
@@ -30,8 +30,8 @@ const resolvers = {
       return data.results;
     },
     game: async (_, { gameId }) => {
-      const data = await getGames();
-      return data.results.find((game) => game.id === parseInt(gameId));
+      const data = await getGame(gameId);
+      return data;
     },
   },
   Mutation: {
@@ -79,7 +79,10 @@ const resolvers = {
         review,
         score,
       });
-      User.findOneAndUpdate({ _id: user }, { $push: { entries: gameboy._id }});
+      await User.findOneAndUpdate(
+        { _id: user },
+        { $push: { entries: new ObjectId(gameboy._id) } }
+      );
       return gameboy;
     },
   },
