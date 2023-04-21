@@ -23,17 +23,17 @@ export const GET_GAMES = gql`
 `;
 
 export const GET_GAME_BY_NAME = gql`
-query Games($game: String) {
-  games(game: $game) {
-    background_image
-    id
-    name
+  query Games($game: String) {
+    games(game: $game) {
+      background_image
+      id
+      name
+    }
   }
-}
 `;
 export const QUERY_CHECKOUT = gql`
-  query getCheckout($products: [ID]!) {
-    checkout(products: $products) {
+  query getCheckout($user:String, $description:String, $amount:Int) {
+    checkout(user: $user, description: $description, amount: $amount) {
       session
     }
   }

@@ -13,6 +13,7 @@ const typeDefs = gql`
     password: String
     entries: [Entry]
     wishlist: [Int]
+    donations: [Donation]
   }
 
   type Entry {
@@ -39,6 +40,13 @@ const typeDefs = gql`
     platforms: [PlatformObj]
     short_screenshots: [Screenshot]
   }
+  type Donation {
+    _id: ID!
+    amount: Int
+    createdAt: String
+    name: String
+    description: String
+  }
 
   type ESRB {
     name: String
@@ -51,7 +59,7 @@ const typeDefs = gql`
   type PlatformObj {
     platform: Platform
   }
-  
+
   type description_raw {
     name: String
   }
@@ -69,6 +77,9 @@ const typeDefs = gql`
     user: User
   }
 
+  type Checkout {
+    session: ID
+  }
   type Query {
     users: [User]
     user(username: String!): User
@@ -76,6 +87,7 @@ const typeDefs = gql`
     game(gameId: Int!): Game
     entries(user: String): [Entry]
     entry(entryId: ID!): Entry
+    checkout(name: String!, description: String!, amount: Int!): Checkout
   }
 
   type Mutation {

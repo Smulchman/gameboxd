@@ -2,7 +2,7 @@ const { getGames, getGame } = require('../utils/rawgAPI.js');
 require('dotenv').config();
 const { AuthenticationError } = require('apollo-server-express');
 const axios = require('axios');
-const { User, Entry } = require('../models');
+const { User, Entry, Donation } = require('../models');
 const ObjectId = require('mongoose').Types.ObjectId;
 require('dotenv').config();
 const { signToken } = require('../utils/auth');
@@ -35,29 +35,29 @@ const resolvers = {
     },
     checkout: async (parent, args, context) => {
       const url = new URL(context.headers.referer).origin;
-      const order = new Order({ products: args.products });
-      const line_items = [];
+      // const order = new Donation({ name: args.name, description: args.description, amount: args.amount });
+      const line_items = [{name: args.name, description: args.description, amount: args.amount, currency: 'usd', quantity: 1}];
 
-      const { products } = await order.populate('products');
+      // const { products } = await order.populate('products');
 
-      for (let i = 0; i < products.length; i++) {
-        const product = await stripe.products.create({
-          name: products[i].name,
-          description: products[i].description,
-          images: [`${url}/images/${products[i].image}`],
-        });
+      // for (let i = 0; i < products.length; i++) {
+      //   const product = await stripe.products.create({
+      //     name: products[i].name,
+      //     description: products[i].description,
+      //     images: [`${url}/images/${products[i].image}`],
+      //   });
 
-        const price = await stripe.prices.create({
-          product: product.id,
-          unit_amount: products[i].price * 100,
-          currency: 'usd',
-        });
+      //   const price = await stripe.prices.create({
+      //     product: product.id,
+      //     unit_amount: products[i].price * 100,
+      //     currency: 'usd',
+      //   });
 
-        line_items.push({
-          price: price.id,
-          quantity: 1,
-        });
-      }
+      //   line_items.push({
+      //     price: price.id,
+      //     quantity: 1,
+      //   });
+      // }
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
