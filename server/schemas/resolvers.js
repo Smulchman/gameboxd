@@ -67,17 +67,17 @@ const resolvers = {
     addToWishlist: async (_, { userId, gameId }) => {
       return User.findOneAndUpdate(
         { _id: userId },
-        { $push: { wishlist: gameId } },
-      )
+        { $push: { wishlist: gameId } }
+      );
     },
     removeFromWishlist: async (_, { userId, gameId }) => {
       return User.findOneAndUpdate(
         { _id: userId },
-        { $pull: { wishlist: gameId } },
-      )
+        { $pull: { wishlist: gameId } }
+      );
     },
     removeUser: async (_, { userId }) => {
-      return User.findOneAndDelete({ _id: userId });
+      return await User.findOneAndDelete({ _id: userId });
     },
     addEntry: async (
       _,
@@ -96,6 +96,9 @@ const resolvers = {
         { $push: { entries: new ObjectId(gameboy._id) } }
       );
       return gameboy;
+    },
+    removeEntry: async (_, { entryId }) => {
+      return await Entry.findOneAndDelete({ _id: entryId });
     },
   },
 };
