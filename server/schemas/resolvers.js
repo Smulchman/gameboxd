@@ -97,6 +97,13 @@ const resolvers = {
       );
       return gameboy;
     },
+    updateEntry: async (_, { entryId, datePlayed, platform, review }) => {
+      return await Entry.findOneAndUpdate(
+        { _id: entryId },
+        { datePlayed, platform, review },
+        { new: true }
+      );
+    },
     removeEntry: async (_, { entryId }) => {
       return await Entry.findOneAndDelete({ _id: entryId });
     },
