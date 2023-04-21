@@ -35,7 +35,7 @@ const entrySchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      get: (timestamp) => timestamp.toLocaleDateString(),
+      get: (timestamp) => timestamp.toLocaleDateString().concat(' ', timestamp.toLocaleTimeString()),
     },
   },
   {
