@@ -11,10 +11,21 @@ const typeDefs = gql`
     username: String
     email: String
     password: String
+
+    """
+    Entries is an array of all the review entries that the specific user has made
+    """
     entries: [Entry]
+
+    """
+    Wishlist is an array of all the games that the user added in their wishlist
+    """
     wishlist: [Int]
   }
 
+  """
+  Entries has an infinite that occurs with User referencing to an array of entries and the entries reference to the users. Just add the User once in graphql to see the data you need via the entries.
+  """
   type Entry {
     _id: ID
     game: Int
@@ -36,6 +47,10 @@ const typeDefs = gql`
     description_raw: String
     genres: [Genre]
     metacritic: Int
+
+    """
+    The api has the game systems within an object of "platforms" within another object of "platforms", so we need to layer the platform typeDefs multiple times
+    """
     platforms: [PlatformObj]
     short_screenshots: [Screenshot]
   }
@@ -51,7 +66,7 @@ const typeDefs = gql`
   type PlatformObj {
     platform: Platform
   }
-  
+
   type description_raw {
     name: String
   }
