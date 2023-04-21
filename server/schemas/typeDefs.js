@@ -12,6 +12,7 @@ const typeDefs = gql`
     email: String
     password: String
     entries: [Entry]
+    wishlist: [Int]
   }
 
   type Entry {
