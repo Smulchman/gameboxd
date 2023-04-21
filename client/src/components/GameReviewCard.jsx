@@ -147,15 +147,29 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>Method:</Typography>
             <Typography paragraph>
               {title}
             </Typography>
             <Typography paragraph>
-              {genres}
+            Genre :  {genres.map((genre,index) => {
+                return (
+                  <span key={index}>
+                    {genre.name}
+                    {genres.length > 1 && ', '}
+                  </span>
+                );
+              } )}
             </Typography>
             <Typography paragraph>
-              {platform}
+            Platform :  {platform.map((platform,index) => {
+                return (
+                  <span key={index}>
+                    {platform.platform.name}
+                    { ', '}
+                  </span>
+                );
+              }
+                )}
             </Typography>
           </CardContent>
         </Collapse>

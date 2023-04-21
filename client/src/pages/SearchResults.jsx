@@ -99,8 +99,8 @@ export default function SearchResults() {
             imageUrl={game.background_image}
             gameId={game.id}
             released={game.released}
-            genres={game.genres.name}
-            platform={game.platforms.platform}
+            genres={game.genres}
+            platform={game.platforms}
           />
         ))}
       </div>
