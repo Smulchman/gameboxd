@@ -12,11 +12,11 @@ const { ApolloServer } = require('apollo-server-express');
 const db = require('./config/connection');
 
 // rawG API
-const api = require('./utils/rawgAPI.js');
+// const api = require('./utils/rawgAPI.js');
 // Axios 
 const axios = require('axios');
 // import function 
-const {getGames} = require('./utils/rawgAPI.js'); 
+// const {getGames} = require('./utils/rawgAPI.js'); 
 
 
 // graphql schemas
@@ -39,7 +39,7 @@ app.use(
   })
 );
 
-getGames();
+// getGames();
 
 // point to dist folder
 app.use(express.static(path.join(__dirname, '../client/dist')));
