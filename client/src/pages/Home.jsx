@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import Container from '@mui/material/Container';
 // import reactLogo from '../assets/react.svg';
@@ -15,6 +15,7 @@ import Auth from '../utils/auth.js';
 // stuff for making queries
 import { useQuery } from '@apollo/client';
 import { GET_ENTRIES } from '../utils/queries.js';
+import Entries from '../components/Entries.jsx';
 
 // modal stuff
 const style = {
@@ -33,13 +34,33 @@ const style = {
 
 export default function SimpleContainer() {
   // modal stuff
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [entryData, setEntryData] = useState([]);
 
   const { loading, data, error } = useQuery(GET_ENTRIES);
 
-  console.log(data);
+  useEffect(() => {
+    const getEntries = () => {
+      if (data && !loading ) {
+        setEntryData(data.entries)
+      }
+    }
+    if (data && !loading ) {
+      getEntries();
+    }
+  }, [data, loading]);
+
+  console.log(entryData);
+// function loadEntries() {
+//   getEntries();
+// }
+
+// window.onload = loadEntries;
+
+// window.onload(getEntries)
+  
 
   return (
     <div
@@ -125,9 +146,24 @@ export default function SimpleContainer() {
           </div>
         </div>
         <div
-        style={{backgroundColor: '#292827'}}
+        style={{backgroundColor: '#292827', marginTop: '100px'}}
         >
           <QuiltedImageList />
+        </div>
+        <div>
+          {entryData.map((entry, index) => (
+            <Entries
+              key={index}
+              image={entry.gameData.background_image}
+              game={entry.game}
+              review={entry.review}
+              username={entry.user.username}
+              createdAt={entry.createdAt}
+              genre={entry.genres}
+              platform={entry.platforms}
+
+            />
+          ))}
         </div>
       </Container>
     </div>
