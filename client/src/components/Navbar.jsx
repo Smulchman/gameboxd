@@ -122,7 +122,7 @@ export default function Navbar(currentPage, handlePageChange) {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -167,8 +167,10 @@ export default function Navbar(currentPage, handlePageChange) {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem onClick={() => handlePageChange('Profile')}>
+              <MenuItem>
+              <Link to='/Profile'>
                 Profile
+              </Link>
               </MenuItem>
               <MenuItem onClick={Auth.logout}>Log Out</MenuItem>
             </Menu>
