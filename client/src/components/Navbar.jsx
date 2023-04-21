@@ -17,7 +17,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
 import { borders } from '@mui/system';
-import Auth from '../utils/auth.js';
+import Auth from '../utils/auth.jsx';
 // import '../assets/css'
 
 const pages = [<GamepadIcon />, <SearchIcon />];

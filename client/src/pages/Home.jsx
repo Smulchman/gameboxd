@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 
 import QuiltedImageList from '../components/gamebox';
 
-import Auth from '../utils/auth.js';
+import Auth from '../utils/auth.jsx';
 // modal stuff
 const style = {
   position: 'absolute',

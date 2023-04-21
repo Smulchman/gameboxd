@@ -34,7 +34,14 @@ const userSchema = new Schema({
     {
       type: Number
     },
-  ]
+  ],
+  
+  donations: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Donation',
+    },
+  ],
 });
 
 // pre-save middleware to create encrypted password
