@@ -58,7 +58,7 @@ const resolvers = {
       return { token, user };
     },
     updateUser: async (_, { userId, username, email, password }) => {
-      return User.findOneAndUpdate(
+      return await User.findOneAndUpdate(
         { _id: userId },
         { username, email, password },
         { new: true }
@@ -96,6 +96,13 @@ const resolvers = {
         { $push: { entries: new ObjectId(gameboy._id) } }
       );
       return gameboy;
+    },
+    updateEntry: async (_, { entryId, datePlayed, platform, review }) => {
+      return await Entry.findOneAndUpdate(
+        { _id: entryId },
+        { datePlayed, platform, review },
+        { new: true }
+      );
     },
     removeEntry: async (_, { entryId }) => {
       return await Entry.findOneAndDelete({ _id: entryId });
