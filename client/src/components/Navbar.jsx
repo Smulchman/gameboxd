@@ -134,17 +134,18 @@ export default function Navbar(currentPage, handlePageChange) {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Tooltip title="Search Games">
               <Link to="/SearchResults">
-                <SearchIcon style={{ color: 'white' }} />
+                <SearchIcon style={{ color: 'white', fontSize: '2em', marginLeft: '1em', marginTop: '0.25em' }} />
               </Link>
             </Tooltip>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
+            {Auth.loggedIn() && (
             <Tooltip title="User Options">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="bemy Sharp" src="" />
               </IconButton>
-            </Tooltip>
+            </Tooltip> )}
             {Auth.loggedIn() && (
             <Menu
               sx={{ mt: '45px' }}
