@@ -1,21 +1,53 @@
 [
     {
       "username": "JohnDoe",
-      "email": "jd@email.com",
-      "password": "password",
-      "entries": []
+      "email": "john@email.com",
+      "password": "$2y$10$7ve54ZLlAZkaoWgGJo6AeOVuKL0A.kvccYzl/zu4GDzyGgzna.Sv."
     },
       {
       "username": "JaneDoe",
-      "email": "jad@email.com",
-      "password": "password2",
-      "entries": []
+      "email": "jane@email.com",
+      "password": "$2y$10$qc7A2FUIfv5RxO.tyNktwu8WGE6s5b2khSxTm3aGVUSEvvt4spP9m"
     },
     {
       "username": "HamboneDoe",
+      "email": "hambone@email.com",
+      "password": "$2y$10$/xwNnt2eGtiT0eHYmP0K2O.mE2rUg2QnL7iME0zCDLzy/PZ2Ont9y"
+    },
+    {
+      "username": "smulchman",
+      "email": "sam@email.com",
+      "password": "$2y$10$Hn7/gi0aELEF980z9EugYuzZ15qF7QEkrZ3NELimYSy7H/cMSqESS"
+    },
+    {
+      "username": "dev-devin",
+      "email": "devin@email.com",
+      "password": "$2y$10$Yvn8lPuOjVJqgIG.4Nh3ruoloj0rW67TFxkGVfjc3l/cEDcauLZb2"
+    },
+    {
+      "username": "Alieny-oyi",
+      "email": "jimmy@email.com",
+      "password": "$2y$10$ZT3MzASGVdJaF40jD9eNv.ojp8o.JeNCtzUz0Tt4DvHjuzqaM.fAy"
+    },
+    {
+      "username": "Josephreis646",
+      "email": "joseph@email.com",
+      "password": "$2y$10$yUE6HyvUWaNNjNU.n.445..F1RiZ6JVSl7fYjgSYg4BV7MRVARH6a"
+    },
+    {
+      "username": "JDR8888",
+      "email": "jake@email.com",
+      "password": "$2y$10$LsOUXjDKBNacGEthLsIStu4PyxP7qCamcXOM9TYsJU51mXtG2dPEO"
+    },
+    {
+      "username": "Elvisdiaz1",
+      "email": "elvis@email.com",
+      "password": "$2y$10$6Te0BaAD2sMXCPQ8rUIh4uRm3NOUNkAzZyZ8zLHfLlzZaExUr.jjW"
+    },
+    {
+      "username": "jAndreassi",
       "email": "hd@email.com",
-      "password": "password3",
-      "entries": []
+      "password": "$2y$10$uSc6d5czjdetMgudTJcqCekPzMtsQ/3z.UjncMV8hI3e1A.VSvKde"
     }
   ]
   
