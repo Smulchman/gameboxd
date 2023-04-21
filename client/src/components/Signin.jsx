@@ -6,7 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
+import { Link } from 'react-router-dom';
 
 // const theme = createTheme();
 
@@ -118,9 +119,7 @@ export default function SignIn(props) {
           </Button>
           <Grid container justifyContent="center">
             <Grid item>
-              <Link
-                href="/Signup"
-                onClick={() => setSignUp(true)}
+              <Link to='/Signup'
                 variant="body2"
                 style={{ color: 'white', textDecoration: 'underline' }}
               >
