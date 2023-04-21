@@ -13,16 +13,15 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { LOGIN_USER } from '../utils/mutations';
-import Auth from '../utils/auth'
+import Auth from '../utils/auth';
 
 // const theme = createTheme();
 
 export default function SignIn(props) {
-  
   const logout = (event) => {
-      event.preventDefault();
-      Auth.logout();
-    };
+    event.preventDefault();
+    Auth.logout();
+  };
 
   const [formState, setFormState] = useState({ email: '', password: '' });
   //need to verify the mutation actually set up
@@ -68,7 +67,7 @@ export default function SignIn(props) {
           color: 'white',
         }}
       >
-        <Avatar style={{ backgroundColor: 'blue' }}>
+        <Avatar style={{ backgroundColor: '#133955' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -113,7 +112,7 @@ export default function SignIn(props) {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            style={{ cursor: 'crosshair', backgroundColor: 'blue' }}
+            style={{ cursor: 'crosshair', backgroundColor: '#133955' }}
           >
             Sign In
           </Button>
@@ -123,6 +122,7 @@ export default function SignIn(props) {
                 href="/Signup"
                 onClick={() => setSignUp(true)}
                 variant="body2"
+                style={{ color: 'white', textDecoration: 'underline' }}
               >
                 {"Don't have an account? Sign Up"}
               </Link>

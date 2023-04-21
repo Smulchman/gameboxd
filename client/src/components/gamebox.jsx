@@ -5,7 +5,6 @@ import '../assets/css/gamebox.css';
 import { GET_GAMES } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 
-
 function srcset(image, size, rows = 1, cols = 1) {
   return {
     src: `${image}?w=${size * cols}&h=${size * rows}&fit=crop&auto=format`,
@@ -15,13 +14,15 @@ function srcset(image, size, rows = 1, cols = 1) {
   };
 }
 
-export default  function QuiltedImageList() {
-  const {loading,error,data} = useQuery(GET_GAMES,{fetchPolicy:'no-cache'});
-  const games = data?.games || []; 
-    const handleClick = (game) => {
-        // handle the click event here, for example, navigate to a different page
-        window.location.href=(`https://rawg.io/games/${game.id}`);       
-    };
+export default function QuiltedImageList() {
+  const { loading, error, data } = useQuery(GET_GAMES, {
+    fetchPolicy: 'no-cache',
+  });
+  const games = data?.games || [];
+  const handleClick = (game) => {
+    // handle the click event here, for example, navigate to a different page
+    window.location.href = `https://rawg.io/games/${game.id}`;
+  };
   return (
     <div className="gamebox">
       <ImageList
