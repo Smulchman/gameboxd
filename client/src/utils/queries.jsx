@@ -21,3 +21,4 @@ export const GET_GAMES = gql`
     }
   }
 `;
+

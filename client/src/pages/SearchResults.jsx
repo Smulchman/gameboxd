@@ -7,6 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import GameReviewCard from '../components/GameReviewCard';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -79,6 +80,7 @@ export default function SearchResults() {
           </Toolbar>
         </AppBar>
       </Box>
+      <GameReviewCard />
     </>
   );
 }
