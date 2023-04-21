@@ -1,10 +1,8 @@
-const { getGames, getGame } = require('../utils/rawgAPI.js');
 require('dotenv').config();
-const { AuthenticationError } = require('apollo-server-express');
-const axios = require('axios');
-const { User, Entry } = require('../models');
 const ObjectId = require('mongoose').Types.ObjectId;
-require('dotenv').config();
+const { getGames, getGame } = require('../utils/rawgAPI.js');
+const { AuthenticationError } = require('apollo-server-express');
+const { User, Entry } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
