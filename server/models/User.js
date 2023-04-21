@@ -30,6 +30,11 @@ const userSchema = new Schema({
       ref: 'Entry',
     },
   ],
+  wishlist: [
+    {
+      type: Number
+    },
+  ]
 });
 
 // pre-save middleware to create encrypted password

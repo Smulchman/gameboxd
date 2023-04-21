@@ -13,32 +13,32 @@ import { GET_GAME_BY_NAME } from '../utils/queries';
 export default function SearchResults() {
   const [formState, setFormState] = useState({game: ''});
 
-  const getGameData = () => {
-    const { loading, error, data } = useQuery(GET_GAME_BY_NAME, {
-      variables: {
-        game: formState.game,
-      },
-    });
-
-    if (loading) return 'Loading...';
-    if (error) return `Error! ${error.message}`;
-    console.log(data);
-    return data;
-  };
-
-  const getGame = () => {
-    // console.log(getGameData());
-    console.log(formState);
-  };
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
       ...formState,
       [name]: value,
     });
-    console.log(formState);
+    // console.log(formState);
   };
+
+  const { loading, error, data } = useQuery(GET_GAME_BY_NAME, {
+    variables: {
+      game: formState.game,
+    },
+  });
+
+
+  const getGameData = () => {
+    console.log(data);
+  };
+
+  // const getGame = () => {
+  //   // console.log(getGameData());
+  //   console.log(formState.game);
+  // };
+
+  
 
   return (
     <div style={{ 
@@ -72,7 +72,7 @@ export default function SearchResults() {
           startAdornment={
             <InputAdornment position="start">
               <SearchIcon 
-              onClick={getGame}
+              onClick={getGameData}
               style={{margin: '1em', fontSize: '2em', cursor: 'crosshair'}}
                />
             </InputAdornment>
