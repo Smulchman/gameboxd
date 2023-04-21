@@ -1,7 +1,5 @@
 // .env
-require('dotenv').config({ path: "../.env" });
-console.log('RAWG_API_KEY', process.env.RAWG_API_KEY)
-// import dotenv from "dotenv";
+require('dotenv').config({ path: '../.env' });
 
 // express
 const express = require('express');
@@ -10,14 +8,6 @@ const path = require('path');
 const { ApolloServer } = require('apollo-server-express');
 // database connection
 const db = require('./config/connection');
-
-// rawG API
-// const api = require('./utils/rawgAPI.js');
-// Axios 
-const axios = require('axios');
-// import function 
-// const {getGames} = require('./utils/rawgAPI.js'); 
-
 
 // graphql schemas
 const { typeDefs, resolvers } = require('./schemas');
@@ -39,8 +29,6 @@ app.use(
   })
 );
 
-// getGames();
-
 // point to dist folder
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
@@ -50,9 +38,11 @@ app.get('/', (req, res) =>
 
 // startserver
 const startServer = async () => {
+  // start apollo server
   await server.start();
+  // connect express middleware for apollo
   server.applyMiddleware({ app });
-
+  // connect the db
   db.once('open', () => {
     app.listen(PORT, () => {
       console.log('server running on http://localhost:3001');
@@ -60,9 +50,6 @@ const startServer = async () => {
     });
   });
 };
-// start apollo server
-// connect express middlewar for apollo
 
-// connect the db
 // start the express server
 startServer();
