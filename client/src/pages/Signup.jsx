@@ -80,7 +80,7 @@ export default function SignUp(props) {
           color: 'white',
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: 'blue' }}>
+        <Avatar sx={{ m: 1, bgcolor: '#133955' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -140,13 +140,18 @@ export default function SignUp(props) {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
-            style={{ cursor: 'crosshair', backgroundColor: 'blue' }}
+            style={{ cursor: 'crosshair', backgroundColor: '#133955' }}
           >
             Sign Up
           </Button>
           <Grid container justifyContent="center">
             <Grid item>
-              <Link href="/" onClick={() => setSignUp(false)} variant="body2">
+              <Link
+                href="/"
+                onClick={() => setSignUp(false)}
+                variant="body2"
+                style={{ color: 'white', textDecoration: 'underline' }}
+              >
                 {'Already have an account? Sign in on the homepage'}
               </Link>
             </Grid>
