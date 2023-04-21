@@ -58,7 +58,7 @@ const resolvers = {
       return { token, user };
     },
     updateUser: async (_, { userId, username, email, password }) => {
-      return User.findOneAndUpdate(
+      return await User.findOneAndUpdate(
         { _id: userId },
         { username, email, password },
         { new: true }
