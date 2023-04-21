@@ -15,7 +15,7 @@ import Container from '@mui/material/Container';
 import Auth from '../utils/auth';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
-import '../assets/css/signup.css';
+
 export default function SignUp(props) {
   // const { setSignUp } = props;
   // const handleSubmit = (event) => {

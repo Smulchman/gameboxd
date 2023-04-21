@@ -16,6 +16,7 @@ import Button from '@mui/material/Button';
 // need to figure out dif between gamebox and getgame
 import QuiltedImageList from '../components/gamebox';
 // import Typography from '@mui/material/Typography';
+import '../assets/css/Home.css';
 
 // modal stuff
 const style = {
