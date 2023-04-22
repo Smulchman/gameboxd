@@ -16,7 +16,7 @@ import Auth from '../utils/auth.js';
 import { useQuery } from '@apollo/client';
 import { GET_ENTRIES } from '../utils/queries.js';
 import Entries from '../components/Entries.jsx';
-import '../assets/css/Home.css'
+import '../assets/css/Home.css';
 
 // modal stuff
 const style = {
@@ -39,16 +39,16 @@ export default function SimpleContainer() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [entryData, setEntryData] = useState([]);
-//  query to get game review entries
+  //  query to get game review entries
   const { loading, data, error } = useQuery(GET_ENTRIES, {
     variables: { limit: 10 },
   });
-// checks to see if there is data from query --> sets entryData state with the array of entries
+  // checks to see if there is data from query --> sets entryData state with the array of entries
   useEffect(() => {
     const getEntries = () => {
-      if (data && !loading ) {
-        const entries = data.entries.slice(0,10);
-        setEntryData(entries)
+      if (data && !loading) {
+        const entries = data.entries.slice(0, 10);
+        setEntryData(entries);
       }
     };
     if (data && !loading) {
@@ -65,9 +65,13 @@ export default function SimpleContainer() {
         // justifyContent: 'center',
         // height: '100vh',
         background: '#292827',
+        marginBottom: '1em',
       }}
     >
-      <Container maxWidth="xl" style={{ height: '85vh', marginTop: 25, height: '100%' }}>
+      <Container
+        maxWidth="xl"
+        style={{ height: '85vh', marginTop: 25, height: '100%' }}
+      >
         <Box sx={{ bgcolor: '#292827', height: '50vh' }}>
           <img
             src={
@@ -172,6 +176,11 @@ export default function SimpleContainer() {
             />
           ))}
         </div>
+        <div
+          style={{
+            marginBottom: '1em',
+          }}
+        ></div>
       </Container>
     </div>
   );
