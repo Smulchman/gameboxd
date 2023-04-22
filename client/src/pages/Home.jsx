@@ -17,7 +17,6 @@ import Auth from '../utils/auth.js';
 // stuff for making queries
 import { useQuery } from '@apollo/client';
 import { GET_ENTRIES } from '../utils/queries.js';
-
 import Entries from '../components/Entries.jsx';
 import '../assets/css/Home.css';
 // modal stuff
@@ -74,7 +73,7 @@ export default function SimpleContainer() {
     >
       <Container
         maxWidth="xl"
-        style={{ height: '85vh', marginTop: 25, height: '100%' }}
+        style={{ marginTop: 25, height: '100%' }}
       >
         <Hero />
         {/* modal stuff starts */}

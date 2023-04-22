@@ -42,7 +42,7 @@ const gamePics = [
     "https://media.rawg.io/media/games/c92/c9207a31f0eeb9904a840fc26eae6afb.jpg",
 ];
 
-export const getGamePic = () => {
+export default function hero () {
     const randomIndex = Math.floor(Math.random() * gamePics.length);
     return gamePics[randomIndex];
 };
