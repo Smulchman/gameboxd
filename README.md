@@ -55,5 +55,6 @@ This application license is: MIT
 ## Questions
 
 
-If you have any questions, please contact us on our project GitHub at https://github.com/Smulchman/gameboxd. We will reach back to you as soon as possible
+If you have any questions, please contact us on our project GitHub at https://github.com/Smulchman/gameboxd. We will reach back to you as soon as possible. Thank you
+
         
