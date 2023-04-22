@@ -50,13 +50,12 @@ export default function SimpleContainer() {
         const entries = data.entries.slice(0,10);
         setEntryData(entries)
       }
-    }
-    if (data && !loading ) {
+    };
+    if (data && !loading) {
       getEntries();
     }
   }, [data, loading]);
 
-  
   return (
     <div
       style={{
@@ -105,8 +104,8 @@ export default function SimpleContainer() {
                 {' '}
                 Click the search icon to find games
               </h3>
-              // if not logged in, allow button to launch modal
             ) : (
+              // if not logged in, allow button to launch modal
               <Button
                 variant="contained"
                 size="large"
@@ -143,17 +142,23 @@ export default function SimpleContainer() {
             </Modal>
           </div>
         </div>
-        <div
-        style={{backgroundColor: '#292827', marginTop: '100px'}}
-        >
+        <div style={{ backgroundColor: '#292827', marginTop: '100px' }}>
           {/* adds jimmy's ultra cool image collage */}
           <QuiltedImageList />
         </div>
         <div>
           <h2
-          style={{textAlign: 'center', backgroundColor: '#292827', color: 'white', fontSize: '2em'}}
-          >What have users been saying?</h2>
+            style={{
+              textAlign: 'center',
+              backgroundColor: '#292827',
+              color: 'white',
+              fontSize: '2em',
+            }}
+          >
+            What have users been saying?
+          </h2>
           {/* map through all the entries returned from the query and display each one in an Entries component */}
+
           {entryData.map((entry, index) => (
             <Entries
               key={index}
