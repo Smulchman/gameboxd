@@ -46,6 +46,7 @@ query Query {
     _id
     createdAt
     game
+    platform
     gameData {
       platforms {
         platform {
@@ -76,3 +77,24 @@ query Query($email: String!) {
   }
 }
 `;
+
+export const GET_ENTRIES_BY_USER = gql`
+query Query( $email: String!) {
+  user(email: $email) {
+    entries {
+      user {
+        username
+      }
+      review
+      platform
+      gameData {
+        background_image
+        description_raw
+        name
+      }
+      createdAt
+      _id
+    }
+  }
+}
+`

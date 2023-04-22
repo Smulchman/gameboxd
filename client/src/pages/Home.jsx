@@ -17,7 +17,6 @@ import { useQuery } from '@apollo/client';
 import { GET_ENTRIES } from '../utils/queries.js';
 import Entries from '../components/Entries.jsx';
 import '../assets/css/Home.css';
-
 // modal stuff
 const style = {
   position: 'absolute',
@@ -56,6 +55,8 @@ export default function SimpleContainer() {
     }
   }, [data, loading]);
 
+  console.log(entryData);
+
   return (
     <div
       style={{
@@ -65,7 +66,7 @@ export default function SimpleContainer() {
         // justifyContent: 'center',
         // height: '100vh',
         background: '#292827',
-        marginBottom: '1em',
+        marginBottom: '2em',
       }}
     >
       <Container
@@ -100,20 +101,23 @@ export default function SimpleContainer() {
               alignItems: 'center',
             }}
           >
-            <h3 style={{ width: '100%' }}>Track Games You've Played</h3>
-            <h3 style={{ width: '100%' }}>Save Those You Want To Play</h3>
+            <div
+            style={{border: '2px dashed white', padding: '2em', margin: '1em'}}
+            >
+            <h2 style={{ width: '100%' }}>Track Games You've Played</h2>
+            <h2 style={{ width: '100%' }}>Save Those You Want To Play</h2>
+            </div>
             {/* display login button for modal if not logged in */}
             {Auth.loggedIn() ? (
               <h3 style={{ width: '100%' }}>
-                {' '}
-                Click the search icon to find games
               </h3>
+              
             ) : (
               // if not logged in, allow button to launch modal
               <Button
                 variant="contained"
                 size="large"
-                sx={{ width: '200px', height: '60px' }}
+                sx={{ width: '200px', height: '60px', margin: '1em' }}
                 onClick={handleOpen}
                 style={{
                   padding: '4px',
@@ -162,7 +166,6 @@ export default function SimpleContainer() {
             What have users been saying?
           </h2>
           {/* map through all the entries returned from the query and display each one in an Entries component */}
-
           {entryData.map((entry, index) => (
             <Entries
               key={index}
@@ -171,19 +174,18 @@ export default function SimpleContainer() {
               review={entry.review}
               username={entry.user.username}
               createdAt={entry.createdAt}
-              genre={entry.genres}
-              platform={entry.platforms}
+              genre={entry.gameData.genres}
+              platform={entry.platform}
             />
           ))}
         </div>
         <div
           style={{
-            marginBottom: '1em',
+            marginBottom: '2em',
           }}
         ></div>
       </Container>
+      
     </div>
   );
 }
-// if the user is not signed in, the signin button is displayed
-// signin button triggers modal popup which contains signin form.
