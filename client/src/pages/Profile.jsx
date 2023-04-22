@@ -17,13 +17,13 @@ export default function Profile() {
   // nested two layers in is email 
   const myEmail = me.data.email;
   // get user by email query
-  const { loading, error, data } = useQuery(GET_USER, {
+  const userQuery = useQuery(GET_USER, {
     variables: {email: me.data.email}
   })
   // check if the'res data (if query worked) and set name variable 
-  if (data && !loading) {
-  console.log(data);
-  myName = data.user.username
+  if (userQuery.data && !userQuery.loading) {
+  console.log(userQuery.data);
+  myName = userQuery.data.user.username
   }
 
   // the JSX
@@ -47,7 +47,7 @@ export default function Profile() {
         </CardContent>
       </Card>
       <div>
-        
+
         
       </div>
 

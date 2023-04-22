@@ -79,16 +79,22 @@ query Query($email: String!) {
 `;
 
 export const GET_ENTRIES_BY_USER = gql`
-query Query($user: String) {
-  entries(user: $user) {
-    createdAt
-    gameData {
-      name
-      background_image
-      description_raw
+query Query( $email: String!) {
+  user(email: $email) {
+    entries {
+      user {
+        username
+      }
+      review
+      platform
+      gameData {
+        background_image
+        description_raw
+        name
+      }
+      createdAt
+      _id
     }
-    review
-    platform
   }
 }
 `
