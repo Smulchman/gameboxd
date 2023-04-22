@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Avatar, Paper } from '@mui/material';
 
-
+// pass all props that will be used in Home.jsx (from entry query)
 export default function Entries({ image, platform, game, createdAt, genre, username, review }) {
     return (
         <Box py={2} sx={{backgroundColor: '#292827'}}>
@@ -23,6 +23,7 @@ export default function Entries({ image, platform, game, createdAt, genre, usern
               <p>played on {platform}</p>
             </Box>
           </Paper>
+          {/* defines a shimmer effect for the reviews */}
           <style>
             {`
               /* define the shimmer animation */
