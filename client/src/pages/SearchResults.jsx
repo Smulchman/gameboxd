@@ -96,8 +96,18 @@ export default function SearchResults() {
           />
         </FormControl>
       </div>
-      <div style={{ marginTop: '2em' }}>
-        {gameData.map((game) => (
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateRows: 'repeat(2, 1fr)',
+          gap: '1em',
+          marginTop: '2em',
+          backgroundColor: '#292827',
+          
+        }}
+      >
+        {gameData.slice(0, 6).map((game) => (
           <GameReviewCard
             key={game.id}
             title={game.name}

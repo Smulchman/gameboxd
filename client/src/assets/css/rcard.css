@@ -1,0 +1,41 @@
+#r-card {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    max-width: 345px;   
+}
+
+#r-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+
+
+#r-card .r-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.3s ease-in-out;
+}
+
+#r-card .r-card-image:hover img {
+    transform: scale(1.1);
+}
+
+
+#r-card .r-card-content h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+#r-card .r-card-content p {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+

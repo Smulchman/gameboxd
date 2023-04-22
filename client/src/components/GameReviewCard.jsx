@@ -16,8 +16,11 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import { TWITTER_SHARE } from '../utils/constants';
-import { Menu, MenuItem } from '@mui/material';
+import { Hidden, Menu, MenuItem } from '@mui/material';
+import '../assets/css/rcard.css'
+
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -63,12 +66,8 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
   };
 
   return (
-    <Box display="flex" justifyContent="center" alignItems="center">
-      <Card
-        sx={{
-          maxWidth: 345,
-        }}
-      >
+    <Container sx={{ overflow: 'hidden' }}>
+      <Card id="r-card">
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -142,9 +141,14 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
             <ExpandMoreIcon />
           </ExpandMore>
         </CardActions>
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <Collapse
+          
+          in={expanded}
+          timeout="auto"
+          unmountOnExit
+        >
           <CardContent>
-            <Typography paragraph>{title}</Typography>
+            <Typography paragraph>Name:{title}</Typography>
             <Typography paragraph>
               Genre :{' '}
               {genres.map((genre, index) => {
@@ -170,7 +174,7 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
           </CardContent>
         </Collapse>
       </Card>
-    </Box>
+    </Container>
   );
 }
 
