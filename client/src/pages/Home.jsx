@@ -17,7 +17,6 @@ import { useQuery } from '@apollo/client';
 import { GET_ENTRIES } from '../utils/queries.js';
 import Entries from '../components/Entries.jsx';
 import '../assets/css/Home.css';
-
 // modal stuff
 const style = {
   position: 'absolute',
@@ -55,6 +54,8 @@ export default function SimpleContainer() {
       getEntries();
     }
   }, [data, loading]);
+
+  console.log(entryData);
 
   return (
     <div
@@ -165,7 +166,6 @@ export default function SimpleContainer() {
             What have users been saying?
           </h2>
           {/* map through all the entries returned from the query and display each one in an Entries component */}
-
           {entryData.map((entry, index) => (
             <Entries
               key={index}
@@ -174,8 +174,8 @@ export default function SimpleContainer() {
               review={entry.review}
               username={entry.user.username}
               createdAt={entry.createdAt}
-              genre={entry.genres}
-              platform={entry.platforms}
+              genre={entry.gameData.genres}
+              platform={entry.platform}
             />
           ))}
         </div>
@@ -189,5 +189,3 @@ export default function SimpleContainer() {
     </div>
   );
 }
-// if the user is not signed in, the signin button is displayed
-// signin button triggers modal popup which contains signin form.

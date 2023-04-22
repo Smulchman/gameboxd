@@ -1,15 +1,16 @@
 // import React, { useState, useEffect } from 'react';
-import * as React from 'react';
-import Box from '@mui/material/Box';
+import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+// our auth and query imports for getting user info
 import Auth from '../utils/auth';
-import { GET_USER } from '../utils/queries';
+import { GET_USER, GET_ENTRIES_BY_USER } from '../utils/queries';
 import { useQuery } from '@apollo/client';
-
+// component to display reviews
+import SingleUserEntries from '../components/SingleUserEntries';
 
 export default function Profile() {
+  const [userEntries, setUserEntries] = useState([]);
   // decode JWT token
   const me = Auth.getProfile();
   // initiate variable to store name from query results
@@ -17,14 +18,32 @@ export default function Profile() {
   // nested two layers in is email 
   const myEmail = me.data.email;
   // get user by email query
-  const { loading, error, data } = useQuery(GET_USER, {
+  const userQuery = useQuery(GET_USER, {
     variables: {email: me.data.email}
   })
-  // check if the'res data (if query worked) and set name variable 
-  if (data && !loading) {
-  console.log(data);
-  myName = data.user.username
+
+  // take the email from decoded jwt and query user
+  const entryQuery = useQuery(GET_ENTRIES_BY_USER, {
+    variables: {email: myEmail}
+  })
+  // if query for user info works, set profile username
+  if (userQuery.data && !userQuery.loading) {
+  myName = userQuery.data.user.username
   }
+
+  useEffect(() => {
+    const getEntries = () => {
+      if (entryQuery.data && !entryQuery.loading) {
+        const entries = entryQuery.data.user;
+        setUserEntries(entries.entries);
+      }
+    };
+    if(entryQuery.data) {
+      getEntries();
+    }
+  }, [entryQuery.data, entryQuery.loading] );
+
+  console.log(userEntries);
 
   // the JSX
   return (
@@ -46,11 +65,32 @@ export default function Profile() {
           </h3>
         </CardContent>
       </Card>
+    {entryQuery.data && (
       <div>
-        
-        
-      </div>
+        <h2
+        style={{
+          textAlign: 'center',
+          backgroundColor: '#292827',
+          color: 'white',
+          fontSize: '2em',
+        }}
+        > 
+          Your saved games and reviews:
+        </h2>
 
+        {userEntries.map((entry, index) => (
+          <SingleUserEntries 
+          key={index}
+          image={entry.gameData.background_image}
+          game={entry.gameData.name}
+          description={entry.gameData.description_raw}
+          platform={entry.platform}
+          review={entry.review}
+          createdAt={entry.createdAt}
+          />
+      ))}
+      </div>
+  )}
     </div>
   );
 }
