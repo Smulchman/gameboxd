@@ -14,8 +14,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { useQuery } from '@apollo/client';
-import { GET_GAMES } from '../utils/queries';
+
+
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Box from '@mui/material/Box';
 import { TWITTER_SHARE } from '../utils/constants';
@@ -35,11 +35,9 @@ const ExpandMore = styled((props) => {
 export default function GameReviewCard({title,imageUrl,gameId,released,genres,platform}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [expanded, setExpanded] = React.useState(false);
-  const { loading, error, data } = useQuery(GET_GAMES, {
-    fetchPolicy: 'no-cache',
-  });
+  
   const [isFavorite, setIsFavorite] = React.useState(false);
-  const games = data?.games || [];
+  
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
   };
@@ -105,18 +103,19 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
               : 'No game found'
           }
           subheader={
-          released && released.hasOwnProperty('length') && released.length > 0
+            released && released.hasOwnProperty('length') && released.length > 0
               ? released
               : 'No game found'
           }
         />
-
-        <CardMedia
-          component="img"
-          height="194"
-          image={imageUrl}
-          alt={title}
-        />
+        <a href={`https://rawg.io/games/${gameId}`}>
+          <CardMedia
+            component="img"
+            height="194"
+            image={imageUrl}
+            alt={title}
+          />
+        </a>
         <CardContent>
           <Typography variant="body2" color="text.secondary">
             {title}
@@ -147,29 +146,28 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
+            <Typography paragraph>{title}</Typography>
             <Typography paragraph>
-              {title}
-            </Typography>
-            <Typography paragraph>
-            Genre :  {genres.map((genre,index) => {
+              Genre :{' '}
+              {genres.map((genre, index) => {
                 return (
                   <span key={index}>
                     {genre.name}
                     {genres.length > 1 && ', '}
                   </span>
                 );
-              } )}
+              })}
             </Typography>
             <Typography paragraph>
-            Platform :  {platform.map((platform,index) => {
+              Platform :{' '}
+              {platform.map((platform, index) => {
                 return (
                   <span key={index}>
                     {platform.platform.name}
-                    { ', '}
+                    {', '}
                   </span>
                 );
-              }
-                )}
+              })}
             </Typography>
           </CardContent>
         </Collapse>

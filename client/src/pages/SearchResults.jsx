@@ -17,8 +17,12 @@ export default function SearchResults() {
       ...formState,
       [name]: value,
     });
-    // console.log(formState);
   };
+    const handleKeyPress = (event) => {
+      if (event.key === 'Enter') {
+        getGameData();
+      }
+    };
   const { loading, error, data } = useQuery(GET_GAME_BY_NAME, {
     variables: {
       game: formState.game,
@@ -68,6 +72,7 @@ export default function SearchResults() {
           </h3>
           <Input
             onChange={handleChange}
+            onKeyPress={handleKeyPress}
             name="game"
             style={{
               background: 'white',
