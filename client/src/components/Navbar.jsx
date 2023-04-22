@@ -171,7 +171,9 @@ export default function Navbar(currentPage, handlePageChange) {
               onClose={handleCloseUserMenu}
             >
               <MenuItem>
-              <Link to='/Profile'>
+              <Link to='/Profile'
+              onClick={handleCloseUserMenu}
+              >
                 Profile
               </Link>
               </MenuItem>
