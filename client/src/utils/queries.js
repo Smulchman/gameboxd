@@ -67,3 +67,12 @@ query Query {
   }
 }
 `;
+
+export const GET_USER = gql`
+query Query($email: String!) {
+  user(email: $email) {
+    username
+    _id
+  }
+}
+`;
