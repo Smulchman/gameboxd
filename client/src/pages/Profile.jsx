@@ -47,7 +47,14 @@ export default function Profile() {
 
   // the JSX
   return (
-    <div style={{ backgroundColor: '#282827', height: '100%', padding: '1em' }}>
+    <div
+      style={{
+        backgroundColor: '#282827',
+        height: '100%',
+        padding: '1em',
+        marginBottom: '1em',
+      }}
+    >
       <Card
         sx={{ minWidth: 275, display: 'flex', justifyContent: 'center' }}
         style={{
@@ -88,6 +95,11 @@ export default function Profile() {
           ))}
         </div>
       )}
+      <div
+        style={{
+          marginBottom: '2em',
+        }}
+      ></div>
     </div>
   );
 }
