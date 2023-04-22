@@ -101,9 +101,19 @@ export default function SearchResults() {
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
+          gap: '1em',
+          background: '#292827',
         }}
       >
         {gameData.map((game) => (
+          // <div
+          //   key={game.id}
+          //   style={{
+          //     width: '250px',
+          //     height: '350px',
+          //     marginBotton: '1em',
+          //   }}
+          // >
           <GameReviewCard
             key={game.id}
             title={game.name}
@@ -113,6 +123,8 @@ export default function SearchResults() {
             genres={game.genres}
             platform={game.platforms}
           />
+
+          // </div>
         ))}
       </div>
     </div>
