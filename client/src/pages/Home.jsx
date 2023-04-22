@@ -65,9 +65,13 @@ export default function SimpleContainer() {
         // justifyContent: 'center',
         // height: '100vh',
         background: '#292827',
+        marginBottom: '1em',
       }}
     >
-      <Container maxWidth="xl" style={{ height: '85vh', marginTop: 25, height: '100%' }}>
+      <Container
+        maxWidth="xl"
+        style={{ height: '85vh', marginTop: 25, height: '100%' }}
+      >
         <Box sx={{ bgcolor: '#292827', height: '50vh' }}>
           <img
             src={
@@ -169,10 +173,14 @@ export default function SimpleContainer() {
               createdAt={entry.createdAt}
               genre={entry.genres}
               platform={entry.platforms}
-              className={index === entryData.length - 1 ? 'last-entry' : ''}
             />
           ))}
         </div>
+        <div
+          style={{
+            marginBottom: '1em',
+          }}
+        ></div>
       </Container>
     </div>
   );

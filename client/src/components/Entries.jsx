@@ -2,30 +2,60 @@ import React from 'react';
 import { Box, Typography, Avatar, Paper } from '@mui/material';
 
 // pass all props that will be used in Home.jsx (from entry query)
-export default function Entries({ image, platform, game, createdAt, genre, username, review }) {
-    return (
-        <Box py={2} sx={{backgroundColor: '#292827'}}>
-          <Paper elevation={3} sx={{ p: 2, backgroundColor: '#292827', color: 'white', display: 'flex' }}>
-            {/* left column */}
-            <Box mr={2} sx={{ flex: '1 1 33%', textAlign: 'center' }}>
-              {/* image display */}
-              <img src={image} style={{ maxWidth: '100%', height: 'auto' }} />
-            </Box>
-            {/* middle column */}
-            <Box mr={2} sx={{ flex: '1 1 33%', textAlign: 'center' }} className='shimmer'>
-              <h3> {game}</h3>
-              <p>Review: <span style={{fontStyle: 'italic', fontFamily: 'cursive'}}>{review}</span> </p>
-            </Box>
-            {/* right column */}
-            <Box sx={{ flex: '1 1 33%', textAlign: 'center' }} className='shimmer'>
-              <p>Reviewed by {username} on {createdAt}</p>
-              <p>genre: {genre}</p>
-              <p>played on {platform}</p>
-            </Box>
-          </Paper>
-          {/* defines a shimmer effect for the reviews */}
-          <style>
-            {`
+export default function Entries({
+  image,
+  platform,
+  game,
+  createdAt,
+  genre,
+  username,
+  review,
+}) {
+  return (
+    <Box py={2} sx={{ backgroundColor: '#292827' }}>
+      <Paper
+        elevation={5}
+        sx={{
+          p: 2,
+          backgroundColor: '#292827',
+          color: 'white',
+          display: 'flex',
+        }}
+        style={{
+          border: '2px solid silver',
+        }}
+      >
+        {/* left column */}
+        <Box mr={2} sx={{ flex: '1 1 33%', textAlign: 'center' }}>
+          {/* image display */}
+          <img src={image} style={{ maxWidth: '100%', height: 'auto' }} />
+        </Box>
+        {/* middle column */}
+        <Box
+          mr={2}
+          sx={{ flex: '1 1 33%', textAlign: 'center' }}
+          className="shimmer"
+        >
+          <h3> {game}</h3>
+          <p>
+            Review:{' '}
+            <span style={{ fontStyle: 'italic', fontFamily: 'cursive' }}>
+              {review}
+            </span>{' '}
+          </p>
+        </Box>
+        {/* right column */}
+        <Box sx={{ flex: '1 1 33%', textAlign: 'center' }} className="shimmer">
+          <p>
+            Reviewed by {username} on {createdAt}
+          </p>
+          <p>genre: {genre}</p>
+          <p>played on {platform}</p>
+        </Box>
+      </Paper>
+      {/* defines a shimmer effect for the reviews */}
+      <style>
+        {`
               /* define the shimmer animation */
               @keyframes shimmer {
                 0% {
@@ -47,8 +77,7 @@ export default function Entries({ image, platform, game, createdAt, genre, usern
                 animation-iteration-count: infinite;
               }
             `}
-          </style>
-        </Box>
-      );
-
+      </style>
+    </Box>
+  );
 }
