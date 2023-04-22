@@ -9,7 +9,7 @@ import { useQuery } from '@apollo/client';
 import { GET_GAME_BY_NAME } from '../utils/queries';
 
 export default function SearchResults() {
-  const [formState, setFormState] = useState({game: ''});
+  const [formState, setFormState] = useState({ game: '' });
   const [gameData, setGameData] = useState([]);
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -18,17 +18,17 @@ export default function SearchResults() {
       [name]: value,
     });
   };
-    const handleKeyPress = (event) => {
-      if (event.key === 'Enter') {
-        getGameData();
-      }
-    };
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      getGameData();
+    }
+  };
   const { loading, error, data } = useQuery(GET_GAME_BY_NAME, {
     variables: {
       game: formState.game,
     },
   });
-  
+
   const getGameData = () => {
     const results = data;
     // if (data) {
@@ -38,7 +38,6 @@ export default function SearchResults() {
       setGameData(data.games);
       console.log(gameData);
     }
-    
   };
   console.log(gameData);
 
@@ -96,7 +95,14 @@ export default function SearchResults() {
           />
         </FormControl>
       </div>
-      <div style={{ marginTop: '2em' }}>
+      <div
+        style={{
+          marginTop: '2em',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+        }}
+      >
         {gameData.map((game) => (
           <GameReviewCard
             key={game.id}
