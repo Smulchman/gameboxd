@@ -1,26 +1,202 @@
 [
   {
-    "game": 11859,
-    "user": "644164c0e63fe05bb1720851",
+    "game": 24919,
+    "user": "",
     "score": 100,
-    "platform": "Nintendo Switch"
+    "platform": "NES",
+    "review": "Such a classic!",
+    "datePlayed": "2019-01-01"
   },
   {
-    "game": 11859,
-    "user": "644164c0e63fe05bb1720852",
+    "game": 3387,
+    "user": "",
     "score": 100,
-    "platform": "Nintendo Switch"
+    "platform": "PS4",
+    "review": "A masterclass in game design AND world design. What more could you ask for?",
+    "datePlayed": "2015-03-30"
   },
   {
-    "game": 11859,
-    "user": "644164c0e63fe05bb1720853",
+    "game": 732512,
+    "user": "",
     "score": 100,
-    "platform": "Nintendo Switch"
+    "platform": "PC",
+    "review": "A masterclass in PS1 Era Graphic design AND it brings Bloodborne to PC. What more could you ask for?",
+    "datePlayed": "2022-02-10"
   },
   {
-    "game": 11859,
-    "user": "644164c0e63fe05bb1720853",
+    "game": 50734,
+    "user": "",
+    "score": 53,
+    "platform": "PC",
+    "review": "Easy game. Didn't die once.",
+    "datePlayed": "2022-08-25"
+  },
+  {
+    "game": 10872,
+    "user": "",
+    "score": 73,
+    "platform": "PC",
+    "review": "Pretty fun game. I liked my time with it. The combat can feel a bit repetetive and I genuinely dislike the art style, but otherwise I think it's fun. Traversing the world and taking on more and more interesting contracts as your company grows in size and skill is a blast, it's a very very satisfying game loop. If you've been on the hunt for a mercenary company management simulator, this is the best option on the market today in my opinion.",
+    "datePlayed": "2023-01-03"
+  },
+  {
+    "game": 9809,
+    "user": "",
+    "score": 98,
+    "platform": "PC",
+    "review": "The saw hander had chased me well past it's hold through the salt marshes. I'm quick, but not quick enough. I try to line up a shot with my chain pistols but the saw hander is a pillar of the robot community, a people I wish to befriend, so I keep running to the southwest. Through witchwood and saltvine I stumble, my 4 hands carrying the Crysteel blades tight, my knuckles tinted white, away from their natural green. I come to a river. The river Zym. I've managed to create some space between me and the Saw hander but not enough. If I run along the side I'll be dismembered. There's only one option. I take a deep breath and dive in, furiously swimming to the southwest. It isn't far, I should be able to make it. But then I see them. Madpoles. Swarming up from the depths a mass of fish with distended jaws of mangled teeth. They want me for dinner. I swim harder. Not hard enough. They start on my feet and hands. The pain is white, hot, I can barely focus on the movements of my limbs. My extremeities begin to regrow but more and more madpoles surround me. It's done. My fate is sealed. Another life claimed by Qud.",
+    "datePlayed": "2019-01-01"
+  },
+  {
+    "game": 326243,
+    "user": "",
+    "score": 92,
+    "platform": "PC",
+    "review": "This game is awesome!",
+    "datePlayed": "2019-01-01"
+  },
+  {
+    "game": 326243,
+    "user": "",
+    "score": 3,
+    "platform": "PS4",
+    "review": "This game STINKS, it's WAY too hard! What am I even supposed to do, I couldn't beat the first boss and got thrown down a well or something? So stupid. I'm never playing this again.",
+    "datePlayed": "2023-04-15"
+  },
+  {
+    "game": 326243,
+    "user": "",
     "score": 100,
-    "platform": "PC"
+    "platform": "PS6",
+    "review": "Listen, this is very important. I bring you a message from the future, a global religion will emerge from this game's lore on June 19th, 2024. You must prepare. The inquisitorial council will be watching your every move, you need to learn the lore now lest you be captured and consumed by the blasphemous snake! Heed my words and prepare for the coming of the great serpent, tarnished one!",
+    "datePlayed": "2039-13-02"
+  },
+  {
+    "game": 19395,
+    "user": "",
+    "score": 34,
+    "platform": "PC",
+    "review": "Need whatever drugs these game designers were taking when they made this game I want to see the world through their eyes",
+    "datePlayed": "2021-07-01"
+  },
+  {
+    "game": 10715,
+    "user": "",
+    "score": 100,
+    "platform": "PC",
+    "review": "You really need a super specific sort of mental illness to play this game. Unfortunately I have it. I love this game, 10/10",
+    "datePlayed": "2018-04-13"
+  },
+  {
+    "game": 263590,
+    "user": "",
+    "score": 87,
+    "platform": "PC",
+    "review": "I like this game a lot, trying to cobble together broken builds is a lot of fun. I do think it feels too rng based at times, but overall I still absolutely recommend it. (ps: if you don't like the rng, just play with the artifact of command on)",
+    "datePlayed": "2020-11-23"
+  },
+  {
+    "game": 36766,
+    "user": "",
+    "score": 50,
+    "platform": "PC",
+    "review": "Never played this game but looks cool lol",
+    "datePlayed": "2015-01-01"
+  },
+  {
+    "game": 9551,
+    "user": "",
+    "score": 93,
+    "platform": "PS5",
+    "review": "Rock and Stone",
+    "datePlayed": "2019-01-01"
+  },
+  {
+    "game": 56222,
+    "user": "",
+    "score": 100,
+    "platform": "Gamecube",
+    "review": "A game so broken it developed one of the most dynamic and competetive scenes in the world. Well done Nintendo.",
+    "datePlayed": "2005-06-11"
+  },
+  {
+    "game": 56222,
+    "user": "",
+    "score": 84,
+    "platform": "Gamecube",
+    "review": "The crazy thing about the smash bros series is that Nintendo developed an fascinating physics engine to dictate how players interact and then, when super dynamic gameplay emerged from that, they did everything they could to dumb it down. I don't know if I'll ever understand Nintendo's design philosophy.",
+    "datePlayed": "2016-12-25"
+  },
+  {
+    "game": 3498,
+    "user": "",
+    "score": 100,
+    "platform": "Xbox 360",
+    "review": "This game is awesome!",
+    "datePlayed": "2015-09-13"
+  },
+  {
+    "game": 3498,
+    "user": "",
+    "score": 70,
+    "platform": "Xbox One",
+    "review": "This game is still awesome!",
+    "datePlayed": "2017-08-14"
+  },
+  {
+    "game": 3498,
+    "user": "",
+    "score": 50,
+    "platform": "Xbox Series S/X",
+    "review": "Stop releasing this game Rockstar, Please!",
+    "datePlayed": "2021-05-08"
+  },
+  {
+    "game": 3498,
+    "user": "",
+    "score": 100,
+    "platform": "PS3",
+    "review": "Bought it and played it on release, love it",
+    "datePlayed": "2013-09-17"
+  },
+  {
+    "game": 3498,
+    "user": "",
+    "score": 100,
+    "platform": "PS4",
+    "review": "My mom said I wasn't allowed to play this game, but the nice man at gamestop sold it to me anyways!",
+    "datePlayed": "2017-01-18"
+  },
+  {
+    "game": 3498,
+    "user": "",
+    "score": 20,
+    "platform": "PS5",
+    "review": "Rockstar must be stopped, no matter the cost.",
+    "datePlayed": "2019-01-01"
+  },
+  {
+    "game": 3498,
+    "user": "",
+    "score": 88,
+    "platform": "PC",
+    "review": "Yes.",
+    "datePlayed": "2013-12-12"
+  },
+  {
+    "game": 4544,
+    "user": "",
+    "score": 100,
+    "platform": "Xbox 360",
+    "review": "A piece of high art about the flaw inherent in the soul of America. A tale of people who are forced to combat their very nature to serve their masters and feed their family. John Marston is all of us. Dutch is all of us.",
+    "datePlayed": "2019-01-01"
+  },
+  {
+    "game": 54380,
+    "user": "",
+    "score": 75,
+    "platform": "PC",
+    "review": "Way too many collectables but also woohoo, flimpy :)",
+    "datePlayed": "2000-02-23"
   }
 ]
