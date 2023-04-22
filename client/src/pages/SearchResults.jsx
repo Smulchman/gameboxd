@@ -3,10 +3,12 @@ import SearchIcon from '@mui/icons-material/Search';
 // material stuff
 import GameReviewCard from '../components/GameReviewCard';
 import Input from '@mui/material/Input';
-import InputAdornment from '@mui/material/InputAdornment';
+
 import FormControl from '@mui/material/FormControl';
 import { useQuery } from '@apollo/client';
 import { GET_GAME_BY_NAME } from '../utils/queries';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 
 export default function SearchResults() {
   const [formState, setFormState] = useState({ game: '' });
@@ -63,36 +65,40 @@ export default function SearchResults() {
         <FormControl
           style={{
             width: '60%',
+            outline: 'none',
           }}
-          variant="standard"
+          // variant="standard"
         >
           <h3 style={{ color: 'white', fontSize: '1.5em' }}>
             Search a game to review!
           </h3>
-          <Input
+          <TextField
+            id="gameSearch"
             onChange={handleChange}
             onKeyPress={handleKeyPress}
             name="game"
             style={{
               background: 'white',
-              height: '3em',
-              borderRadius: '2em',
+              height: '2em',
+              // borderRadius: '1em',
               fontSize: '1.5em',
             }}
-            id="gameSearch"
+          />
+          {/* id="gameSearch"
+            
             startAdornment={
               <InputAdornment position="start">
                 <SearchIcon
                   onClick={getGameData}
                   style={{
-                    margin: '1em',
-                    fontSize: '2em',
+                    margin: '.5em',
+                    fontSize: '1em',
                     cursor: 'crosshair',
                   }}
                 />
               </InputAdornment>
             }
-          />
+          /> */}
         </FormControl>
       </div>
       <div
