@@ -1,14 +1,13 @@
 // import React, { useState, useEffect } from 'react';
 import React, { useState, useEffect } from 'react';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
+// our auth and query imports for getting user info
 import Auth from '../utils/auth';
 import { GET_USER, GET_ENTRIES_BY_USER } from '../utils/queries';
 import { useQuery } from '@apollo/client';
+// component to display reviews
 import SingleUserEntries from '../components/SingleUserEntries';
-
 
 export default function Profile() {
   const [userEntries, setUserEntries] = useState([]);
@@ -23,13 +22,12 @@ export default function Profile() {
     variables: {email: me.data.email}
   })
 
+  // take the email from decoded jwt and query user
   const entryQuery = useQuery(GET_ENTRIES_BY_USER, {
     variables: {email: myEmail}
   })
-  // check if the'res data (if query worked) and set name variable 
+  // if query for user info works, set profile username
   if (userQuery.data && !userQuery.loading) {
-  // console.log(userQuery.data);
-  // console.log(entryQuery.data)
   myName = userQuery.data.user.username
   }
 
