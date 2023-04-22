@@ -1,7 +1,9 @@
+import { PaymentElement } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { useLazyQuery } from '@apollo/client';
 import { QUERY_CHECKOUT } from '../../utils/queries';
+
 // import { idbPromise } from '../../utils/helpers';
 // import CartItem from '../CartItem';
 import Auth from '../../utils/auth';
@@ -45,10 +47,14 @@ const Cart = () => {
   //   }
 
   return (
-    <div className="cart">
+    <div>
       {/* <div className="close" onClick={toggleCart}>[close]</div> */}
       <h2>Donations</h2>
-      <form onSubmit={handleFormSubmit}>
+      {/* <form>
+        <PaymentElement />
+        <button>Submit</button>
+      </form> */}
+      {/* <form onSubmit={handleFormSubmit}>
         <input
           className="form-input"
           placeholder="username"
@@ -96,7 +102,7 @@ const Cart = () => {
         >
           Submit
         </button>
-      </form>
+      </form> */}
       {/* {state.cart.length ? (
         <div>
           {state.cart.map((item) => (
