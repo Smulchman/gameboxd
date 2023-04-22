@@ -16,8 +16,14 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import { TWITTER_SHARE } from '../utils/constants';
-import { Menu, MenuItem } from '@mui/material';
+import { Hidden, Menu, MenuItem } from '@mui/material';
+import '../assets/css/rcard.css'
+
+
+//for review modal
+import TextField from '@mui/material/TextField';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -30,12 +36,20 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
-export default function GameReviewCard({title,imageUrl,gameId,released,genres,platform}) {
+export default function GameReviewCard({
+  title,
+  imageUrl,
+  gameId,
+  released,
+  genres,
+  platform,
+}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [expanded, setExpanded] = React.useState(false);
-  
+
   const [isFavorite, setIsFavorite] = React.useState(false);
-  
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
   };
@@ -44,9 +58,7 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
     const tweetText = encodeURIComponent('Check out this game!');
 
     // Build the tweet URL with the game URL and the tweet text
-    const tweetUrl = `${TWITTER_SHARE}?text=${tweetText}&url=${
-      imageUrl
-    }`;
+    const tweetUrl = `${TWITTER_SHARE}?text=${tweetText}&url=${imageUrl}`;
 
     // Open the Twitter share URL in a new window
     window.open(tweetUrl, '_blank');
@@ -62,13 +74,10 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
     setExpanded(!expanded);
   };
 
+
   return (
-    <Box display="flex" justifyContent="center" alignItems="center">
-      <Card
-        sx={{
-          maxWidth: 345,
-        }}
-      >
+    <Container >
+      <Card id="r-card">
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -91,6 +100,7 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
               >
                 <MenuItem onClick={handleMenuClose}>add it to library</MenuItem>
                 <MenuItem onClick={handleMenuClose}>add it to played</MenuItem>
+
                 <MenuItem onClick={handleMenuClose}>add a review</MenuItem>
               </Menu>
             </React.Fragment>
@@ -144,7 +154,11 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>{title}</Typography>
+            <Typography
+              paragraph
+            >
+              Name:{title}
+            </Typography>
             <Typography paragraph>
               Genre :{' '}
               {genres.map((genre, index) => {
@@ -166,11 +180,10 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
                   </span>
                 );
               })}
-            </Typography>
+            </Typography>          
           </CardContent>
         </Collapse>
       </Card>
-    </Box>
+    </Container>
   );
 }
-

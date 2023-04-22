@@ -103,23 +103,16 @@ export default function SearchResults() {
       </div>
       <div
         style={{
-          marginTop: '2em',
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateRows: 'repeat(2, 1fr)',
           gap: '1em',
-          background: '#292827',
+          marginTop: '2em',
+          backgroundColor: '#292827',
+          
         }}
       >
-        {gameData.map((game) => (
-          // <div
-          //   key={game.id}
-          //   style={{
-          //     width: '250px',
-          //     height: '350px',
-          //     marginBotton: '1em',
-          //   }}
-          // >
+        {gameData.slice(0, 6).map((game) => (
           <GameReviewCard
             key={game.id}
             title={game.name}
