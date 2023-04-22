@@ -38,9 +38,9 @@ export default function SimpleContainer() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [entryData, setEntryData] = useState([]);
-
+//  query to get game review entries
   const { loading, data, error } = useQuery(GET_ENTRIES);
-
+// checks to see if there is data from query --> sets entryData state with the array of entries
   useEffect(() => {
     const getEntries = () => {
       if (data && !loading ) {
@@ -52,16 +52,7 @@ export default function SimpleContainer() {
     }
   }, [data, loading]);
 
-  console.log(entryData);
-// function loadEntries() {
-//   getEntries();
-// }
-
-// window.onload = loadEntries;
-
-// window.onload(getEntries)
   
-
   return (
     <div
       style={{
@@ -104,11 +95,13 @@ export default function SimpleContainer() {
           >
             <h3 style={{ width: '100%' }}>Track Games You've Played</h3>
             <h3 style={{ width: '100%' }}>Save Those You Want To Play</h3>
+            {/* display login button for modal if not logged in */}
             {Auth.loggedIn() ? (
               <h3 style={{ width: '100%' }}>
                 {' '}
                 Click the search icon to find games
               </h3>
+              // if not logged in, allow button to launch modal
             ) : (
               <Button
                 variant="contained"
@@ -139,6 +132,7 @@ export default function SimpleContainer() {
             >
               <Fade in={open}>
                 <Box sx={style}>
+                  {/* add signin form component to modal */}
                   <Signin />
                 </Box>
               </Fade>
@@ -148,12 +142,14 @@ export default function SimpleContainer() {
         <div
         style={{backgroundColor: '#292827', marginTop: '100px'}}
         >
+          {/* adds jimmy's ultra cool image collage */}
           <QuiltedImageList />
         </div>
         <div>
           <h2
           style={{textAlign: 'center', backgroundColor: '#292827', color: 'white', fontSize: '2em'}}
           >What have users been saying?</h2>
+          {/* map through all the entries returned from the query and display each one in an Entries component */}
           {entryData.map((entry, index) => (
             <Entries
               key={index}
@@ -164,7 +160,6 @@ export default function SimpleContainer() {
               createdAt={entry.createdAt}
               genre={entry.genres}
               platform={entry.platforms}
-
             />
           ))}
         </div>
