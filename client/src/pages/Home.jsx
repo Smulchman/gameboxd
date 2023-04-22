@@ -151,6 +151,9 @@ export default function SimpleContainer() {
           <QuiltedImageList />
         </div>
         <div>
+          <h2
+          style={{textAlign: 'center', backgroundColor: '#292827', color: 'white', fontSize: '2em'}}
+          >What have users been saying?</h2>
           {entryData.map((entry, index) => (
             <Entries
               key={index}
