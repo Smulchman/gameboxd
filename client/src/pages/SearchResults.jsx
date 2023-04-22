@@ -7,6 +7,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import { useQuery } from '@apollo/client';
 import { GET_GAME_BY_NAME } from '../utils/queries';
+import "../assets/css/rcard.css"
 
 export default function SearchResults() {
   const [formState, setFormState] = useState({game: ''});

@@ -65,8 +65,9 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
     setExpanded(!expanded);
   };
 
+
   return (
-    <Container sx={{ overflow: 'hidden' }}>
+    <Container >
       <Card id="r-card">
         <CardHeader
           avatar={
@@ -141,14 +142,13 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
             <ExpandMoreIcon />
           </ExpandMore>
         </CardActions>
-        <Collapse
-          
-          in={expanded}
-          timeout="auto"
-          unmountOnExit
-        >
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography paragraph>Name:{title}</Typography>
+            <Typography
+              paragraph
+            >
+              Name:{title}
+            </Typography>
             <Typography paragraph>
               Genre :{' '}
               {genres.map((genre, index) => {
@@ -170,7 +170,7 @@ export default function GameReviewCard({title,imageUrl,gameId,released,genres,pl
                   </span>
                 );
               })}
-            </Typography>
+            </Typography>          
           </CardContent>
         </Collapse>
       </Card>
