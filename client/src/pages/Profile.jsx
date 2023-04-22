@@ -2,44 +2,55 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Auth from '../utils/auth';
 import { GET_USER } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 
+
 export default function Profile() {
-
+  // decode JWT token
   const me = Auth.getProfile();
+  // initiate variable to store name from query results
   let myName;
+  // nested two layers in is email 
   const myEmail = me.data.email;
-
+  // get user by email query
   const { loading, error, data } = useQuery(GET_USER, {
     variables: {email: me.data.email}
   })
-
+  // check if the'res data (if query worked) and set name variable 
   if (data && !loading) {
   console.log(data);
   myName = data.user.username
   }
-  console.log(myName);
+
+  // the JSX
   return (
-    <div>
-      <Card sx={{ minWidth: 275, display: 'flex', justifyContent: 'center' }}>
+    <div
+    style={{backgroundColor: '#282827', height: '100vh', padding: '1em'}} 
+    >
+      <Card sx={{ minWidth: 275, display: 'flex', justifyContent: 'center' }}
+      style={{backgroundColor: '#282827', color: 'white', border: '2px solid white'}}
+      >
         <CardContent>
-          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+          <h2>
             Welcome to your profile:
-          </Typography>
-          <Typography variant="h5" component="div">
+          </h2>
+          <h2>
             {myName}
-          </Typography>
-          <Typography sx={{ mb: 1.5 }}>
+          </h2>
+          <h3>
             {myEmail}
-          </Typography>
+          </h3>
         </CardContent>
       </Card>
+      <div>
+        
+        
+      </div>
+
     </div>
   );
 }
