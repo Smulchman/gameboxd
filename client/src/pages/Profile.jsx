@@ -7,13 +7,19 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Auth from '../utils/auth';
+import { GET_USER } from '../utils/queries';
+import { useQuery } from '@apollo/client';
 
 
 
 export default function Profile() {
 
   const me = Auth.getProfile();
-  console.log(me);
+  console.log(me.data.email);
+  const profile = useQuery(GET_USER, {
+    variables: {email: me.data.email}
+  })
+  // console.log(profile)
 
   return (
     <>
