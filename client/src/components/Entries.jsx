@@ -22,7 +22,7 @@ export default function Entries({
           display: 'flex',
         }}
         style={{
-          border: '2px solid silver',
+          border: '2px solid #D6D7D8',
         }}
       >
         {/* left column */}
