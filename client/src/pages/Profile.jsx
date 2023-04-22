@@ -10,33 +10,36 @@ import Auth from '../utils/auth';
 import { GET_USER } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 
-
-
 export default function Profile() {
 
   const me = Auth.getProfile();
-  console.log(me.data.email);
-  const profile = useQuery(GET_USER, {
+  let myName;
+  const myEmail = me.data.email;
+
+  const { loading, error, data } = useQuery(GET_USER, {
     variables: {email: me.data.email}
   })
-  // console.log(profile)
 
+  if (data && !loading) {
+  console.log(data);
+  myName = data.user.username
+  }
+  console.log(myName);
   return (
-    <>
+    <div>
       <Card sx={{ minWidth: 275, display: 'flex', justifyContent: 'center' }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-            Welcome:
+            Welcome to your profile:
           </Typography>
           <Typography variant="h5" component="div">
-            UserName
+            {myName}
           </Typography>
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            email
+          <Typography sx={{ mb: 1.5 }}>
+            {myEmail}
           </Typography>
-          {/* <Typography variant="body2">Maybe Avatar</Typography> */}
         </CardContent>
       </Card>
-    </>
+    </div>
   );
 }
