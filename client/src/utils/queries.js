@@ -41,29 +41,60 @@ export const GET_GAME_BY_NAME = gql`
 `;
 
 export const GET_ENTRIES = gql`
-query Query {
-  entries {
-    _id
-    createdAt
-    game
-    gameData {
-      platforms {
-        platform {
+  query Query {
+    entries {
+      _id
+      createdAt
+      game
+      platform
+      gameData {
+        platforms {
+          platform {
+            name
+          }
+        }
+        background_image
+        description_raw
+        genres {
           name
         }
-      }
-      background_image
-      description_raw
-      genres {
+        id
         name
       }
-      id
-      name
-    }
-    review
-    user {
-      username
+      review
+      user {
+        username
+      }
     }
   }
-}
+`;
+
+export const GET_USER = gql`
+  query Query($email: String!) {
+    user(email: $email) {
+      username
+      _id
+    }
+  }
+`;
+
+export const GET_ENTRIES_BY_USER = gql`
+  query Query($email: String!) {
+    user(email: $email) {
+      entries {
+        user {
+          username
+        }
+        review
+        platform
+        gameData {
+          background_image
+          description_raw
+          name
+        }
+        createdAt
+        _id
+      }
+    }
+  }
 `;

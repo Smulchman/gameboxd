@@ -13,8 +13,9 @@ const resolvers = {
     },
 
     // Returns a single user with their entries
-    user: async (_, { username }) => {
-      return await User.findOne({ username }).populate('entries');
+
+    user: async (_, { email }) => {
+      return await User.findOne({ email }).populate('entries');
     },
 
     // Returns all entries made by a user

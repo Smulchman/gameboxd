@@ -16,7 +16,7 @@ import Auth from '../utils/auth.js';
 import { useQuery } from '@apollo/client';
 import { GET_ENTRIES } from '../utils/queries.js';
 import Entries from '../components/Entries.jsx';
-
+import '../assets/css/Home.css';
 // modal stuff
 const style = {
   position: 'absolute',
@@ -38,21 +38,25 @@ export default function SimpleContainer() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [entryData, setEntryData] = useState([]);
-//  query to get game review entries
-  const { loading, data, error } = useQuery(GET_ENTRIES);
-// checks to see if there is data from query --> sets entryData state with the array of entries
+  //  query to get game review entries
+  const { loading, data, error } = useQuery(GET_ENTRIES, {
+    variables: { limit: 10 },
+  });
+  // checks to see if there is data from query --> sets entryData state with the array of entries
   useEffect(() => {
     const getEntries = () => {
-      if (data && !loading ) {
-        setEntryData(data.entries)
+      if (data && !loading) {
+        const entries = data.entries.slice(0, 10);
+        setEntryData(entries);
       }
-    }
-    if (data && !loading ) {
+    };
+    if (data && !loading) {
       getEntries();
     }
   }, [data, loading]);
 
-  
+  console.log(entryData);
+
   return (
     <div
       style={{
@@ -60,11 +64,15 @@ export default function SimpleContainer() {
         flexDirection: 'column',
         alignItems: 'center',
         // justifyContent: 'center',
-        height: '100vh',
+        // height: '100vh',
         background: '#292827',
+        marginBottom: '2em',
       }}
     >
-      <Container maxWidth="xl" style={{ height: '85vh', marginTop: 25 }}>
+      <Container
+        maxWidth="xl"
+        style={{ height: '85vh', marginTop: 25, height: '100%' }}
+      >
         <Box sx={{ bgcolor: '#292827', height: '50vh' }}>
           <img
             src={
@@ -93,20 +101,23 @@ export default function SimpleContainer() {
               alignItems: 'center',
             }}
           >
-            <h3 style={{ width: '100%' }}>Track Games You've Played</h3>
-            <h3 style={{ width: '100%' }}>Save Those You Want To Play</h3>
+            <div
+            style={{border: '2px dashed white', padding: '2em', margin: '1em'}}
+            >
+            <h2 style={{ width: '100%' }}>Track Games You've Played</h2>
+            <h2 style={{ width: '100%' }}>Save Those You Want To Play</h2>
+            </div>
             {/* display login button for modal if not logged in */}
             {Auth.loggedIn() ? (
               <h3 style={{ width: '100%' }}>
-                {' '}
-                Click the search icon to find games
               </h3>
-              // if not logged in, allow button to launch modal
+              
             ) : (
+              // if not logged in, allow button to launch modal
               <Button
                 variant="contained"
                 size="large"
-                sx={{ width: '200px', height: '60px' }}
+                sx={{ width: '200px', height: '60px', margin: '1em' }}
                 onClick={handleOpen}
                 style={{
                   padding: '4px',
@@ -139,16 +150,21 @@ export default function SimpleContainer() {
             </Modal>
           </div>
         </div>
-        <div
-        style={{backgroundColor: '#292827', marginTop: '100px'}}
-        >
+        <div style={{ backgroundColor: '#292827', marginTop: '100px' }}>
           {/* adds jimmy's ultra cool image collage */}
           <QuiltedImageList />
         </div>
         <div>
           <h2
-          style={{textAlign: 'center', backgroundColor: '#292827', color: 'white', fontSize: '2em'}}
-          >What have users been saying?</h2>
+            style={{
+              textAlign: 'center',
+              backgroundColor: '#292827',
+              color: 'white',
+              fontSize: '2em',
+            }}
+          >
+            What have users been saying?
+          </h2>
           {/* map through all the entries returned from the query and display each one in an Entries component */}
           {entryData.map((entry, index) => (
             <Entries
@@ -158,14 +174,18 @@ export default function SimpleContainer() {
               review={entry.review}
               username={entry.user.username}
               createdAt={entry.createdAt}
-              genre={entry.genres}
-              platform={entry.platforms}
+              genre={entry.gameData.genres}
+              platform={entry.platform}
             />
           ))}
         </div>
+        <div
+          style={{
+            marginBottom: '2em',
+          }}
+        ></div>
       </Container>
+      
     </div>
   );
 }
-// if the user is not signed in, the signin button is displayed
-// signin button triggers modal popup which contains signin form.

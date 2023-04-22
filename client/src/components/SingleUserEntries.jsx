@@ -1,14 +1,13 @@
 import React from 'react';
-import { Box, Typography, Avatar, Paper } from '@mui/material';
+import { Box, Paper } from '@mui/material';
 
 // pass all props that will be used in Home.jsx (from entry query)
 export default function Entries({
   image,
   platform,
   game,
+  description,
   createdAt,
-  genre,
-  username,
   review,
 }) {
   return (
@@ -20,9 +19,10 @@ export default function Entries({
           backgroundColor: '#292827',
           color: 'white',
           display: 'flex',
+          alignItems: 'center',
         }}
         style={{
-          border: '2px solid #D6D7D8',
+          border: '2px solid silver',
         }}
       >
         {/* left column */}
@@ -36,27 +36,18 @@ export default function Entries({
           sx={{ flex: '1 1 33%', textAlign: 'center' }}
           className="shimmer"
         >
-          <h3> {game}</h3>
+          <h2> {game}</h2>
+          <p>{description}</p>
+        </Box>
+        {/* right column */}
+        <Box sx={{ flex: '1 1 33%', textAlign: 'center' }} className="shimmer">
+          <p>played on {platform} </p>
+          <p>Review created on {createdAt}:</p>
           <p>
-            Review:{' '}
             <span style={{ fontStyle: 'italic', fontFamily: 'cursive' }}>
               {review}
             </span>{' '}
           </p>
-        </Box>
-        {/* right column */}
-        <Box sx={{ flex: '1 1 33%', textAlign: 'center' }} className="shimmer">
-          <p>
-            Reviewed by {username} on {createdAt}
-          </p>
-          <p>genres: {genre.map((genre, index) => {
-            return (
-              <span key={index}>
-                {genre.name} { ', ' } {' '}
-              </span>
-            )
-          })}</p>
-          <p>played on {platform} </p>
         </Box>
       </Paper>
       {/* defines a shimmer effect for the reviews */}

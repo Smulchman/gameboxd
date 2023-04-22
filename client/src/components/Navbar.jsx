@@ -146,8 +146,11 @@ export default function Navbar(currentPage, handlePageChange) {
           {/* make sure the user is logged in to display user menu  */}
           {Auth.loggedIn() && (
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="User Options">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <Tooltip title="User Options"
+            style={{}}
+            >
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}
+              >
                 <Avatar alt="bemy Sharp" src="" />
               </IconButton>
             </Tooltip> 

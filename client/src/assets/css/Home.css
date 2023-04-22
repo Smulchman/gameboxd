@@ -1,3 +1,11 @@
 .home {
   width: 100%;
 }
+
+body {
+  background-color: #282827;
+}
+
+.last-entry {
+  margin-bottom: 50px;
+}
