@@ -12,17 +12,10 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
-import { borders } from '@mui/system';
 import Auth from '../utils/auth.js';
-// import '../assets/css'
-
-const pages = [<GamepadIcon />, <SearchIcon />];
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-// don't need an array for a couple dropdown options. easier to add onclick functions by putting them in the markup. -jr
 
 export default function Navbar(currentPage, handlePageChange) {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -43,6 +36,7 @@ export default function Navbar(currentPage, handlePageChange) {
     setAnchorElUser(null);
   };
 
+  const me = Auth.getProfile();
 
   return (
     <AppBar position="static" sx={{ bgcolor: '#292827', borderBottom: 3 }}>
