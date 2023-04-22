@@ -10,6 +10,8 @@ import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 // jimmy's cool images
 import QuiltedImageList from '../components/gamebox';
+// sam's cool image
+import Hero from '../components/hero.jsx';
 // auth for conditional rendering
 import Auth from '../utils/auth.js';
 // stuff for making queries
@@ -71,17 +73,9 @@ export default function SimpleContainer() {
     >
       <Container
         maxWidth="xl"
-        style={{ height: '85vh', marginTop: 25, height: '100%' }}
+        style={{ marginTop: 25, height: '100%' }}
       >
-        <Box sx={{ bgcolor: '#292827', height: '50vh' }}>
-          <img
-            src={
-              'https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg?w=121&h=121&fit=crop&auto=format'
-            }
-            width="100%"
-            height="100%"
-          />
-        </Box>
+        <Hero />
         {/* modal stuff starts */}
         <div
           style={{

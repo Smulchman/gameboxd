@@ -19,6 +19,7 @@ export default function Entries({
           backgroundColor: '#292827',
           color: 'white',
           display: 'flex',
+          alignItems: 'center',
         }}
         style={{
           border: '2px solid silver',
@@ -35,18 +36,13 @@ export default function Entries({
           sx={{ flex: '1 1 33%', textAlign: 'center' }}
           className="shimmer"
         >
-          <h3> {game}</h3>
-          <p>
-            {description}
-          </p>
-          
+          <h2> {game}</h2>
+          <p>{description}</p>
         </Box>
         {/* right column */}
         <Box sx={{ flex: '1 1 33%', textAlign: 'center' }} className="shimmer">
           <p>played on {platform} </p>
-          <p>
-            Review created on{' '} {createdAt}:
-          </p>
+          <p>Review created on {createdAt}:</p>
           <p>
             <span style={{ fontStyle: 'italic', fontFamily: 'cursive' }}>
               {review}
