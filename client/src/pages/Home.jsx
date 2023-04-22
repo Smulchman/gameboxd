@@ -65,7 +65,7 @@ export default function SimpleContainer() {
         // justifyContent: 'center',
         // height: '100vh',
         background: '#292827',
-        marginBottom: '1em',
+        marginBottom: '2em',
       }}
     >
       <Container
@@ -181,10 +181,11 @@ export default function SimpleContainer() {
         </div>
         <div
           style={{
-            marginBottom: '1em',
+            marginBottom: '2em',
           }}
         ></div>
       </Container>
+      
     </div>
   );
 }
