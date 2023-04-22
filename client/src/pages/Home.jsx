@@ -65,7 +65,7 @@ export default function SimpleContainer() {
         // justifyContent: 'center',
         // height: '100vh',
         background: '#292827',
-        marginBottom: '1em',
+        marginBottom: '2em',
       }}
     >
       <Container
@@ -100,20 +100,23 @@ export default function SimpleContainer() {
               alignItems: 'center',
             }}
           >
-            <h3 style={{ width: '100%' }}>Track Games You've Played</h3>
-            <h3 style={{ width: '100%' }}>Save Those You Want To Play</h3>
+            <div
+            style={{border: '2px dashed white', padding: '2em', margin: '1em'}}
+            >
+            <h2 style={{ width: '100%' }}>Track Games You've Played</h2>
+            <h2 style={{ width: '100%' }}>Save Those You Want To Play</h2>
+            </div>
             {/* display login button for modal if not logged in */}
             {Auth.loggedIn() ? (
               <h3 style={{ width: '100%' }}>
-                {' '}
-                Click the search icon to find games
               </h3>
+              
             ) : (
               // if not logged in, allow button to launch modal
               <Button
                 variant="contained"
                 size="large"
-                sx={{ width: '200px', height: '60px' }}
+                sx={{ width: '200px', height: '60px', margin: '1em' }}
                 onClick={handleOpen}
                 style={{
                   padding: '4px',
@@ -178,10 +181,11 @@ export default function SimpleContainer() {
         </div>
         <div
           style={{
-            marginBottom: '1em',
+            marginBottom: '2em',
           }}
         ></div>
       </Container>
+      
     </div>
   );
 }
