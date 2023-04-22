@@ -147,10 +147,9 @@ export default function Navbar(currentPage, handlePageChange) {
           {Auth.loggedIn() && (
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="User Options"
-            style={{zIndex: 9999}}
+            style={{}}
             >
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}
-              style={{zIndex: 9999}}
               >
                 <Avatar alt="bemy Sharp" src="" />
               </IconButton>
