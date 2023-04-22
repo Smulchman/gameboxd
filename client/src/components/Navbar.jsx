@@ -49,15 +49,15 @@ export default function Navbar(currentPage, handlePageChange) {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           {Auth.loggedIn() ? ( 
-          <VideogameAssetIcon
-            sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
+          <VideogameAssetIcon 
+            sx={{  display: { xs: 'none', md: 'flex' }, mr: 1 }}
           />) : (
           <VideogameAssetOffIcon
             sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}
           />
           )}
           <Typography
-            variant="h6"
+            variant="h4"
             noWrap
             component="a"
             href="/"

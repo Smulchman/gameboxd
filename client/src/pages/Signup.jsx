@@ -8,13 +8,14 @@ import Checkbox from '@mui/material/Checkbox';
 // import Link from '@mui/material/Link';
 // import Grid from '@mui/material/Grid';
 // import Box from '@mui/material/Box';
-import { Link, Grid, Box } from '@mui/material';
+import { Grid, Box } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Auth from '../utils/auth';
+import { Link } from 'react-router-dom'
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import { ADD_USER } from '../utils/mutations.js';
 
 export default function SignUp(props) {
  

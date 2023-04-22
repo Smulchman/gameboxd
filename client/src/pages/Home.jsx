@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import Container from '@mui/material/Container';
 // import reactLogo from '../assets/react.svg';
@@ -8,10 +8,15 @@ import Backdrop from '@mui/material/Backdrop';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
-
+// jimmy's cool images
 import QuiltedImageList from '../components/gamebox';
-
+// auth for conditional rendering
 import Auth from '../utils/auth.js';
+// stuff for making queries
+import { useQuery } from '@apollo/client';
+import { GET_ENTRIES } from '../utils/queries.js';
+import Entries from '../components/Entries.jsx';
+
 // modal stuff
 const style = {
   position: 'absolute',
@@ -29,9 +34,25 @@ const style = {
 
 export default function SimpleContainer() {
   // modal stuff
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [entryData, setEntryData] = useState([]);
+//  query to get game review entries
+  const { loading, data, error } = useQuery(GET_ENTRIES);
+// checks to see if there is data from query --> sets entryData state with the array of entries
+  useEffect(() => {
+    const getEntries = () => {
+      if (data && !loading ) {
+        setEntryData(data.entries)
+      }
+    }
+    if (data && !loading ) {
+      getEntries();
+    }
+  }, [data, loading]);
+
+  
   return (
     <div
       style={{
@@ -74,11 +95,13 @@ export default function SimpleContainer() {
           >
             <h3 style={{ width: '100%' }}>Track Games You've Played</h3>
             <h3 style={{ width: '100%' }}>Save Those You Want To Play</h3>
+            {/* display login button for modal if not logged in */}
             {Auth.loggedIn() ? (
               <h3 style={{ width: '100%' }}>
                 {' '}
                 Click the search icon to find games
               </h3>
+              // if not logged in, allow button to launch modal
             ) : (
               <Button
                 variant="contained"
@@ -109,6 +132,7 @@ export default function SimpleContainer() {
             >
               <Fade in={open}>
                 <Box sx={style}>
+                  {/* add signin form component to modal */}
                   <Signin />
                 </Box>
               </Fade>
@@ -116,9 +140,28 @@ export default function SimpleContainer() {
           </div>
         </div>
         <div
-        style={{backgroundColor: '#292827'}}
+        style={{backgroundColor: '#292827', marginTop: '100px'}}
         >
+          {/* adds jimmy's ultra cool image collage */}
           <QuiltedImageList />
+        </div>
+        <div>
+          <h2
+          style={{textAlign: 'center', backgroundColor: '#292827', color: 'white', fontSize: '2em'}}
+          >What have users been saying?</h2>
+          {/* map through all the entries returned from the query and display each one in an Entries component */}
+          {entryData.map((entry, index) => (
+            <Entries
+              key={index}
+              image={entry.gameData.background_image}
+              game={entry.gameData.name}
+              review={entry.review}
+              username={entry.user.username}
+              createdAt={entry.createdAt}
+              genre={entry.genres}
+              platform={entry.platforms}
+            />
+          ))}
         </div>
       </Container>
     </div>

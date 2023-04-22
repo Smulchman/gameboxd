@@ -10,37 +10,20 @@ import Typography from '@mui/material/Typography';
 export default function Profile() {
   return (
     <>
-      <div
-        style={{
-          bgcolor: '#292827',
-          color: 'white',
-          vh: 100,
-        }}
-      >
-        <Card
-          sx={{
-            minWidth: 275,
-            display: 'flex',
-            justifyContent: 'center',
-            bgcolor: '#292827',
-          }}
-        >
-          <CardContent>
-            <Typography sx={{ fontSize: 14 }} color="white" gutterBottom>
-              Welcome:
-            </Typography>
-            <Typography variant="h5" component="div" color="white">
-              UserName
-            </Typography>
-            <Typography sx={{ mb: 1.5 }} color="white">
-              email
-            </Typography>
-            <Typography variant="body2" color="white">
-              Maybe Avatar
-            </Typography>
-          </CardContent>
-        </Card>
-      </div>
+      <Card sx={{ minWidth: 275, display: 'flex', justifyContent: 'center' }}>
+        <CardContent>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+            Welcome:
+          </Typography>
+          <Typography variant="h5" component="div">
+            UserName
+          </Typography>
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            email
+          </Typography>
+          {/* <Typography variant="body2">Maybe Avatar</Typography> */}
+        </CardContent>
+      </Card>
     </>
   );
 }
