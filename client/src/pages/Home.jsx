@@ -16,6 +16,7 @@ import Auth from '../utils/auth.js';
 import { useQuery } from '@apollo/client';
 import { GET_ENTRIES } from '../utils/queries.js';
 import Entries from '../components/Entries.jsx';
+import '../assets/css/Home.css'
 
 // modal stuff
 const style = {
@@ -39,12 +40,15 @@ export default function SimpleContainer() {
   const handleClose = () => setOpen(false);
   const [entryData, setEntryData] = useState([]);
 //  query to get game review entries
-  const { loading, data, error } = useQuery(GET_ENTRIES);
+  const { loading, data, error } = useQuery(GET_ENTRIES, {
+    variables: { limit: 10 },
+  });
 // checks to see if there is data from query --> sets entryData state with the array of entries
   useEffect(() => {
     const getEntries = () => {
       if (data && !loading ) {
-        setEntryData(data.entries)
+        const entries = data.entries.slice(0,10);
+        setEntryData(entries)
       }
     }
     if (data && !loading ) {
@@ -60,7 +64,7 @@ export default function SimpleContainer() {
         flexDirection: 'column',
         alignItems: 'center',
         // justifyContent: 'center',
-        height: '100vh',
+        // height: '100vh',
         background: '#292827',
       }}
     >
