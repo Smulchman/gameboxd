@@ -49,8 +49,14 @@ export default function Entries({
           <p>
             Reviewed by {username} on {createdAt}
           </p>
-          <p>genre: {genre}</p>
-          <p>played on {platform}</p>
+          <p>genres: {genre.map((genre, index) => {
+            return (
+              <span key={index}>
+                {genre.name} { ', ' } {' '}
+              </span>
+            )
+          })}</p>
+          <p>played on {platform} </p>
         </Box>
       </Paper>
       {/* defines a shimmer effect for the reviews */}

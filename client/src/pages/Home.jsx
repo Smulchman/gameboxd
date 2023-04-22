@@ -56,6 +56,8 @@ export default function SimpleContainer() {
     }
   }, [data, loading]);
 
+  console.log(entryData);
+
   return (
     <div
       style={{
@@ -174,8 +176,8 @@ export default function SimpleContainer() {
               review={entry.review}
               username={entry.user.username}
               createdAt={entry.createdAt}
-              genre={entry.genres}
-              platform={entry.platforms}
+              genre={entry.gameData.genres}
+              platform={entry.platform}
             />
           ))}
         </div>
