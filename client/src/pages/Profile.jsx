@@ -21,7 +21,7 @@ export default function Profile() {
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
             email
           </Typography>
-          <Typography variant="body2">Maybe Avatar</Typography>
+          {/* <Typography variant="body2">Maybe Avatar</Typography> */}
         </CardContent>
       </Card>
     </>
