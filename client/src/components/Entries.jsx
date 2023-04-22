@@ -15,12 +15,12 @@ export default function Entries({ image, platform, game, createdAt, genre, usern
           </Box>
           {/* middle column */}
           <Box mr={2} sx={{ flex: '1 1 33%', textAlign: 'center' }}>
-            <h3>{game}</h3>
-            <p>{review}</p>
+            <h3> {game}</h3>
+            <p>Review: {review}</p>
           </Box>
           {/* right column */}
           <Box sx={{ flex: '1 1 33%', textAlign: 'center' }}>
-            <p>reviewed by {username} on {createdAt}</p>
+            <p>Reviewed by {username} on {createdAt}</p>
             <p>genre: {genre}</p>
             <p>played on {platform}</p>
           </Box>

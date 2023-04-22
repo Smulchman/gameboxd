@@ -58,6 +58,7 @@ query Query {
         name
       }
       id
+      name
     }
     review
     user {

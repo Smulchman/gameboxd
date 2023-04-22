@@ -155,7 +155,7 @@ export default function SimpleContainer() {
             <Entries
               key={index}
               image={entry.gameData.background_image}
-              game={entry.game}
+              game={entry.gameData.name}
               review={entry.review}
               username={entry.user.username}
               createdAt={entry.createdAt}
