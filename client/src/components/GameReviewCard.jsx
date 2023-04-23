@@ -22,7 +22,7 @@ import { Hidden, Menu, MenuItem } from '@mui/material';
 // import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import '../assets/css/rcard.css';
-
+import Auth from '../utils/auth.js'
 import { useMutation } from '@apollo/client';
 import { ADD_ENTRY_BY_USER } from '../utils/mutations';
 
@@ -49,20 +49,22 @@ export default function GameReviewCard({
   const [expanded, setExpanded] = React.useState(false);
 
   const [isFavorite, setIsFavorite] = React.useState(false);
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
+  // get JWT decoded so can pull id from it
+  const me = Auth.getProfile();
 
-
-  // info for modal submit
+  // formState info for modal submit
   const [formState, setFormState] = useState(
     {
       review: '',
       platform: '',
       game: gameId,
-      user: ''
+      user: me.data._id
     }
   )
-  const addEntry = useMutation(ADD_ENTRY_BY_USER);
+  
+  // the query for adding an entry
+  const [addEntry] = useMutation(ADD_ENTRY_BY_USER);
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -76,17 +78,13 @@ export default function GameReviewCard({
     event.preventDefault();
     console.log(formState);
   }
-
-  const handleFormSubmit = async (event) => {
+  // when the modal form is actually submitted
+  const handleFormSubmit = (event) => {
     event.preventDefault();
-    try {
-      const { data } = await addEntry({
+      addEntry({
         variables: { ...formState },
       });
-      console.log(data);
-    } catch (e) {
-      console.error(e);
-    }
+      console.log('you did it!')
   };
 
 
@@ -139,13 +137,13 @@ export default function GameReviewCard({
     <Container>
       <Card id="r-card">
         <CardHeader
-          avatar={
-            <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-              {title && title.hasOwnProperty('length') && title.length > 0
-                ? title[0]
-                : 'No game found'}
-            </Avatar>
-          }
+          // avatar={
+            // <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+            //   {title && title.hasOwnProperty('length') && title.length > 0
+            //     ? title[0]
+            //     : 'No game found'}
+            // </Avatar>
+          // }
           action={
             <React.Fragment>
               <IconButton aria-label="settings" onClick={handleSettingsClick}>
@@ -158,8 +156,8 @@ export default function GameReviewCard({
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
               >
-                <MenuItem onClick={handleOpen}>add it to library</MenuItem>
-                <MenuItem onClick={handleMenuClose}>add a review</MenuItem>
+                <MenuItem onClick={handleMenuClose}>add it to library</MenuItem>
+                <MenuItem onClick={handleOpen}>add a review</MenuItem>
               </Menu>
             </React.Fragment>
           }
@@ -274,8 +272,8 @@ export default function GameReviewCard({
             style={{width: '100%', border:'2px solid white', backgroundColor: '#282827', color: 'white' }}
             />
             <button
-            onClick={handleTest}
-            
+            onClick={handleFormSubmit}
+
             >
               Add Entry!
             </button>
