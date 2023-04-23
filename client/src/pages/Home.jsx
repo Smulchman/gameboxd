@@ -18,6 +18,7 @@ import Auth from '../utils/auth.js';
 import { useQuery } from '@apollo/client';
 import { GET_ENTRIES } from '../utils/queries.js';
 import Entries from '../components/Entries.jsx';
+import { Link } from 'react-router-dom';
 import '../assets/css/Home.css';
 // modal stuff
 const style = {
@@ -101,9 +102,21 @@ export default function SimpleContainer() {
             </div>
             {/* display login button for modal if not logged in */}
             {Auth.loggedIn() ? (
-              <h3 style={{ width: '100%' }}>
-              </h3>
-              
+              <Link to='/SearchResults'>
+                <Button
+                variant="contained"
+                size="large"
+                sx={{ width: '200px', height: '60px', margin: '1em' }}
+                onClick={handleOpen}
+                style={{
+                  padding: '4px',
+                  margin: '5px',
+                  backgroundColor: '#133955',
+                }}
+              >
+                Find Games!
+              </Button>
+            </Link> 
             ) : (
               // if not logged in, allow button to launch modal
               <Button

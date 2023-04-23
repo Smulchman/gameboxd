@@ -96,12 +96,17 @@ export default function Navbar(currentPage, handlePageChange) {
               sx={{
                 display: { xs: 'block', md: 'none' },
               }}
-            >
+            > {Auth.loggedIn() ? (
               <MenuItem onClick={handleCloseNavMenu}>
                 <Link to="/SearchResults">
                   <SearchIcon />
                 </Link>
               </MenuItem>
+            ) : (
+              <MenuItem>
+              Log in below to search for games
+              </MenuItem>
+            )}
             </Menu>
           </Box>
           {Auth.loggedIn() ? (
@@ -130,6 +135,7 @@ export default function Navbar(currentPage, handlePageChange) {
           >
             GameBoxed
           </Typography>
+          {Auth.loggedIn() && (
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <Tooltip title="Search Games">
               <Link to="/SearchResults">
@@ -137,6 +143,7 @@ export default function Navbar(currentPage, handlePageChange) {
               </Link>
             </Tooltip>
           </Box>
+          )}
           {/* make sure the user is logged in to display user menu  */}
           {Auth.loggedIn() && (
           <Box sx={{ flexGrow: 0 }}>
