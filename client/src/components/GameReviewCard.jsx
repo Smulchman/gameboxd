@@ -80,6 +80,7 @@ export default function GameReviewCard({
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
   const style = {
     width: 600,
     maxHeight: '80%',
@@ -208,34 +209,39 @@ export default function GameReviewCard({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box 
+        sx={style}
+        >
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Add your review for {title}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Write entry here
           </Typography>
-          <TextField
-            id="platform"
-            label="Outlined"
-            variant="outlined"
-            multiline
-            rows={8}
-            fullWidth
-            sx={{ mt: 2 }}
-          />
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            What platform did you play on
-          </Typography>
-          <TextField
-            id="entry"
-            label="Outlined"
-            variant="outlined"
-            multiline
-            rows={1}
-            fullWidth
-            sx={{ mt: 2 }}
-          />
+          <div>
+            <TextField
+              style={{backgroundColor: '#282827', color: 'white'}}
+              id="platform"
+              label="Outlined"
+              // variant="outlined"
+              multiline
+              rows={8}
+              fullWidth
+              sx={{ mt: 2 }}
+            />
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              What platform did you play on
+            </Typography>
+            <TextField
+              id="entry"
+              label="Outlined"
+              variant="outlined"
+              multiline
+              rows={1}
+              fullWidth
+              sx={{ mt: 2 }}
+            />
+          </div>
         </Box>
       </Modal>
     </Container>

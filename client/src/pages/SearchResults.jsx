@@ -51,8 +51,10 @@ export default function SearchResults() {
         flexDirection: 'column',
         alignItems: 'center',
         // justifyContent: 'center',
-        height: '100vh',
+        height: '100%',
+        minHeight: '100vh',
         background: '#292827',
+        marginBottom: '1em'
       }}
     >
       <div
@@ -61,6 +63,7 @@ export default function SearchResults() {
           width: '100%',
           justifyContent: 'center',
           margin: '1em',
+          height: '100%'
         }}
       >
         <FormControl
@@ -94,10 +97,12 @@ export default function SearchResults() {
           gridTemplateRows: 'repeat(2, 1fr)',
           gap: '1em',
           marginTop: '2em',
+          marginBottom: '2em',
           backgroundColor: '#292827',
+          height: '100%'
         }}
       >
-        {gameData.slice(0, 6).map((game) => (
+        {gameData.slice(0, 20).map((game) => (
           <GameReviewCard
             key={game.id}
             title={game.name}
@@ -111,6 +116,10 @@ export default function SearchResults() {
           // </div>
         ))}
       </div>
+      <div
+      style={{marginBottom:'2em'}}
+      ></div>
     </div>
+    
   );
 }
