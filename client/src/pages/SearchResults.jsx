@@ -7,12 +7,10 @@ import FormControl from '@mui/material/FormControl';
 import { useQuery } from '@apollo/client';
 import { GET_GAME_BY_NAME } from '../utils/queries';
 import TextField from '@mui/material/TextField';
-import Auth from '../utils/auth.js'
-
+import Auth from '../utils/auth.js';
 export default function SearchResults() {
   const [formState, setFormState] = useState({ game: '' });
   const [gameData, setGameData] = useState([]);
-
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -22,20 +20,23 @@ export default function SearchResults() {
     });
   };
   const handleClick = () => {
-      getGameData();
+    getGameData();
   };
 
-  const handleKeyPress = (event) => { 
+  const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       getGameData();
     }
   };
 
-  const [getGameData, { loading, error, data }] = useLazyQuery(GET_GAME_BY_NAME, {
-    variables: {
-      game: formState.game,
-    },
-  });
+  const [getGameData, { loading, error, data }] = useLazyQuery(
+    GET_GAME_BY_NAME,
+    {
+      variables: {
+        game: formState.game,
+      },
+    }
+  );
 
   // Update gameData when the data is fetched
   useEffect(() => {
@@ -54,7 +55,7 @@ export default function SearchResults() {
         height: '100%',
         minHeight: '100vh',
         background: '#292827',
-        marginBottom: '1em'
+        marginBottom: '1em',
       }}
     >
       <div
@@ -63,7 +64,7 @@ export default function SearchResults() {
           width: '100%',
           justifyContent: 'center',
           margin: '1em',
-          height: '100%'
+          height: '100%',
         }}
       >
         <FormControl
@@ -82,10 +83,15 @@ export default function SearchResults() {
             onKeyPress={handleKeyPress}
             name="game"
             style={{
-              background: 'white',
+              background: '#282827',
               height: '2em',
               // borderRadius: '1em',
               fontSize: '1.5em',
+              color: 'white',
+              border: '2px solid white',
+            }}
+            InputProps={{
+              style: { color: 'white' },
             }}
           />
         </FormControl>
@@ -99,7 +105,7 @@ export default function SearchResults() {
           marginTop: '2em',
           marginBottom: '2em',
           backgroundColor: '#292827',
-          height: '100%'
+          height: '100%',
         }}
       >
         {gameData.slice(0, 20).map((game) => (
@@ -116,10 +122,7 @@ export default function SearchResults() {
           // </div>
         ))}
       </div>
-      <div
-      style={{marginBottom:'2em'}}
-      ></div>
+      <div style={{ marginBottom: '2em' }}></div>
     </div>
-    
   );
 }

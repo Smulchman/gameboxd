@@ -90,7 +90,17 @@ export default function SignIn(props) {
             autoFocus
             onChange={handleChange}
             value={formState.email}
-            sx={{ bgcolor: 'white' }}
+            // sx={{ bgcolor: 'white' }}
+            style={{
+              width: '100%',
+              border: '2px solid white',
+              backgroundColor: '#282827',
+              color: 'white',
+            }}
+            InputLabelProps={{ style: { color: 'white' } }}
+            InputProps={{
+              style: { color: 'white' },
+            }}
           />
           <TextField
             className="input"
@@ -103,7 +113,17 @@ export default function SignIn(props) {
             id="password"
             value={formState.password}
             onChange={handleChange}
-            sx={{ bgcolor: 'white' }}
+            // sx={{ bgcolor: 'white' }}
+            style={{
+              width: '100%',
+              border: '2px solid white',
+              backgroundColor: '#282827',
+              color: 'white',
+            }}
+            InputLabelProps={{ style: { color: 'white' } }}
+            InputProps={{
+              style: { color: 'white' },
+            }}
           />
           <Button
             type="submit"
@@ -116,7 +136,8 @@ export default function SignIn(props) {
           </Button>
           <Grid container justifyContent="center">
             <Grid item>
-              <Link to='/Signup'
+              <Link
+                to="/Signup"
                 variant="body2"
                 style={{ color: 'white', textDecoration: 'underline' }}
               >
