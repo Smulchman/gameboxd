@@ -83,10 +83,15 @@ export default function SearchResults() {
             onKeyPress={handleKeyPress}
             name="game"
             style={{
-              background: 'white',
+              background: '#282827',
               height: '2em',
               // borderRadius: '1em',
               fontSize: '1.5em',
+              color: 'white',
+              border: '2px solid white',
+            }}
+            InputProps={{
+              style: { color: 'white' },
             }}
           />
         </FormControl>
