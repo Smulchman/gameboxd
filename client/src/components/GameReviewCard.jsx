@@ -6,10 +6,8 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Collapse from '@mui/material/Collapse';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -84,7 +82,7 @@ export default function GameReviewCard({
       addEntry({
         variables: { ...formState },
       });
-      console.log('you did it!')
+      handleClose();
   };
 
 
@@ -131,6 +129,7 @@ export default function GameReviewCard({
     transform: 'translate(-50%, -50%)',
     background: '#292827',
     color: 'white',
+    padding: '1em'
   };
 
   return (
@@ -271,14 +270,15 @@ export default function GameReviewCard({
             rows={2}
             style={{width: '100%', border:'2px solid white', backgroundColor: '#282827', color: 'white' }}
             />
-            <button
-            onClick={handleFormSubmit}
-
-            >
-              Add Entry!
-            </button>
-            
-          {/* </div> */}
+            <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
+              <button
+              type="submit"
+              onClick={handleFormSubmit}
+              style={{ backgroundColor: '#133955', color: 'white', padding: '1.5em', textAlign: 'center', cursor: 'crosshair', margin: '1em', fontSize: '1.25em' }}
+              name='submit'>
+                Add Entry!
+              </button>
+            </div>
         </Box>
       </Modal>
     </Container>

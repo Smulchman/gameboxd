@@ -140,7 +140,7 @@ export default function Navbar(currentPage, handlePageChange) {
           {/* make sure the user is logged in to display user menu  */}
           {Auth.loggedIn() && (
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title={`${myName} options`}
+            <Tooltip title='user options'
             style={{}}
             >
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}
