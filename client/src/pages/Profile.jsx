@@ -31,14 +31,13 @@ export default function Profile() {
     myName = userQuery.data.user.username;
   }
 
+  const getEntries = () => {
+      const entries = entryQuery.data.user;
+      setUserEntries(entries.entries);
+  };
+
   useEffect(() => {
-    const getEntries = () => {
-      if (entryQuery.data && !entryQuery.loading) {
-        const entries = entryQuery.data.user;
-        setUserEntries(entries.entries);
-      }
-    };
-    if (entryQuery.data) {
+    if (entryQuery.data && !entryQuery.loading) {
       getEntries();
     }
   }, [entryQuery.data, entryQuery.loading]);

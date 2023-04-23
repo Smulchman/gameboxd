@@ -10,6 +10,8 @@ import Fade from '@mui/material/Fade';
 import Button from '@mui/material/Button';
 // jimmy's cool images
 import QuiltedImageList from '../components/gamebox';
+// sam's cool image
+import Hero from '../components/Hero.jsx';
 // auth for conditional rendering
 import Auth from '../utils/auth.js';
 // stuff for making queries
@@ -24,13 +26,13 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
-  // bgcolor: 'background.paper',
   bgcolor: '#292827',
   color: 'white',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
+
 
 export default function SimpleContainer() {
   // modal stuff
@@ -43,19 +45,17 @@ export default function SimpleContainer() {
     variables: { limit: 10 },
   });
   // checks to see if there is data from query --> sets entryData state with the array of entries
+  
+  const getEntries = () => {
+      const entries = data.entries.slice(0, 10);
+      setEntryData(entries);
+  };
+
   useEffect(() => {
-    const getEntries = () => {
-      if (data && !loading) {
-        const entries = data.entries.slice(0, 10);
-        setEntryData(entries);
-      }
-    };
     if (data && !loading) {
       getEntries();
     }
   }, [data, loading]);
-
-  console.log(entryData);
 
   return (
     <div
@@ -71,17 +71,9 @@ export default function SimpleContainer() {
     >
       <Container
         maxWidth="xl"
-        style={{ height: '85vh', marginTop: 25 }}
+        style={{ marginTop: 25, height: '100%' }}
       >
-        <Box sx={{ bgcolor: '#292827', height: '50vh' }}>
-          <img
-            src={
-              'https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg?w=121&h=121&fit=crop&auto=format'
-            }
-            width="100%"
-            height="100%"
-          />
-        </Box>
+        <Hero />
         {/* modal stuff starts */}
         <div
           style={{
