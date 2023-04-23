@@ -21,11 +21,9 @@ import { TWITTER_SHARE } from '../utils/constants';
 import { Hidden, Menu, MenuItem } from '@mui/material';
 // import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-
 import '../assets/css/rcard.css';
 
-//for review modal
-import TextField from '@mui/material/TextField';
+
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -218,8 +216,7 @@ export default function GameReviewCard({
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Write entry here
           </Typography>
-          <div>
-            <TextField
+            {/* <TextField
               style={{backgroundColor: '#282827', color: 'white'}}
               id="platform"
               label="Outlined"
@@ -228,20 +225,24 @@ export default function GameReviewCard({
               rows={8}
               fullWidth
               sx={{ mt: 2 }}
+            /> */}
+            <textarea
+            type='text'
+            name='review'
+            rows={6}
+            style={{width: '100%', border:'2px solid white', backgroundColor: '#282827', color: 'white' }}
             />
             <Typography id="modal-modal-description" sx={{ mt: 2 }}>
               What platform did you play on
             </Typography>
-            <TextField
-              id="entry"
-              label="Outlined"
-              variant="outlined"
-              multiline
-              rows={1}
-              fullWidth
-              sx={{ mt: 2 }}
+            <textarea
+            type='text'
+            name='platform'
+            rows={2}
+            style={{width: '100%', border:'2px solid white', backgroundColor: '#282827', color: 'white' }}
             />
-          </div>
+            
+          {/* </div> */}
         </Box>
       </Modal>
     </Container>
