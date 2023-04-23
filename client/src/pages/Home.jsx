@@ -26,13 +26,13 @@ const style = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 400,
+  // bgcolor: 'background.paper',
   bgcolor: '#292827',
   color: 'white',
   border: '2px solid #000',
   boxShadow: 24,
   p: 4,
 };
-
 
 export default function SimpleContainer() {
   // modal stuff
@@ -45,17 +45,19 @@ export default function SimpleContainer() {
     variables: { limit: 10 },
   });
   // checks to see if there is data from query --> sets entryData state with the array of entries
-  
-  const getEntries = () => {
-      const entries = data.entries.slice(0, 10);
-      setEntryData(entries);
-  };
-
   useEffect(() => {
+    const getEntries = () => {
+      if (data && !loading) {
+        const entries = data.entries.slice(0, 10);
+        setEntryData(entries);
+      }
+    };
     if (data && !loading) {
       getEntries();
     }
   }, [data, loading]);
+
+  console.log(entryData);
 
   return (
     <div
