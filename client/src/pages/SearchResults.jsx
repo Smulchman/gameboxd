@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 // material stuff
 import GameReviewCard from '../components/GameReviewCard';
-import Input from '@mui/material/Input';
-
+import { useLazyQuery } from '@apollo/client';
 import FormControl from '@mui/material/FormControl';
 import { useQuery } from '@apollo/client';
 import { GET_GAME_BY_NAME } from '../utils/queries';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-
+import Auth from '../utils/auth.js';
 export default function SearchResults() {
   const [formState, setFormState] = useState({ game: '' });
   const [gameData, setGameData] = useState([]);
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -20,28 +19,31 @@ export default function SearchResults() {
       [name]: value,
     });
   };
+  const handleClick = () => {
+    getGameData();
+  };
+
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       getGameData();
     }
   };
-  const { loading, error, data } = useQuery(GET_GAME_BY_NAME, {
-    variables: {
-      game: formState.game,
-    },
-  });
 
-  const getGameData = () => {
-    const results = data;
-    // if (data) {
-    //   console.log(data.games);
-    // }
-    if (data) {
-      setGameData(data.games);
-      console.log(gameData);
+  const [getGameData, { loading, error, data }] = useLazyQuery(
+    GET_GAME_BY_NAME,
+    {
+      variables: {
+        game: formState.game,
+      },
     }
-  };
-  console.log(gameData);
+  );
+
+  // Update gameData when the data is fetched
+  useEffect(() => {
+    if (data && data.games) {
+      setGameData(data.games);
+    }
+  }, [data]);
 
   return (
     <div
@@ -50,8 +52,10 @@ export default function SearchResults() {
         flexDirection: 'column',
         alignItems: 'center',
         // justifyContent: 'center',
-        height: '100vh',
+        height: '100%',
+        minHeight: '100vh',
         background: '#292827',
+        marginBottom: '1em',
       }}
     >
       <div
@@ -60,6 +64,7 @@ export default function SearchResults() {
           width: '100%',
           justifyContent: 'center',
           margin: '1em',
+          height: '100%',
         }}
       >
         <FormControl
@@ -78,27 +83,17 @@ export default function SearchResults() {
             onKeyPress={handleKeyPress}
             name="game"
             style={{
-              background: 'white',
+              background: '#282827',
               height: '2em',
               // borderRadius: '1em',
               fontSize: '1.5em',
+              color: 'white',
+              border: '2px solid white',
+            }}
+            InputProps={{
+              style: { color: 'white' },
             }}
           />
-          {/* id="gameSearch"
-            
-            startAdornment={
-              <InputAdornment position="start">
-                <SearchIcon
-                  onClick={getGameData}
-                  style={{
-                    margin: '.5em',
-                    fontSize: '1em',
-                    cursor: 'crosshair',
-                  }}
-                />
-              </InputAdornment>
-            }
-          /> */}
         </FormControl>
       </div>
       <div
@@ -108,11 +103,12 @@ export default function SearchResults() {
           gridTemplateRows: 'repeat(2, 1fr)',
           gap: '1em',
           marginTop: '2em',
+          marginBottom: '2em',
           backgroundColor: '#292827',
-          
+          height: '100%',
         }}
       >
-        {gameData.slice(0, 6).map((game) => (
+        {gameData.slice(0, 20).map((game) => (
           <GameReviewCard
             key={game.id}
             title={game.name}
@@ -126,6 +122,7 @@ export default function SearchResults() {
           // </div>
         ))}
       </div>
+      <div style={{ marginBottom: '2em' }}></div>
     </div>
   );
 }

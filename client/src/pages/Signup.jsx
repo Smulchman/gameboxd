@@ -13,12 +13,11 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Auth from '../utils/auth';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations.js';
 
 export default function SignUp(props) {
- 
   const [formState, setFormState] = useState({
     username: '',
     email: '',
@@ -34,20 +33,16 @@ export default function SignUp(props) {
       ...formState,
       [name]: value,
     });
-    console.log(formState);
   };
-
 
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    console.log(formState);
 
     try {
       const { data } = await addUser({
         variables: { ...formState },
       });
-      console.log(data);
       Auth.login(data.addUser.token);
     } catch (e) {
       console.error(e);
@@ -65,11 +60,10 @@ export default function SignUp(props) {
         background: '#292827',
       }}
     >
-       {data ? (
-            <h1>Success! log in on the homepage</h1>
-             ) : (
-      <Container component="main" maxWidth="xl">
-
+      {data ? (
+        <h1>Success! log in on the homepage</h1>
+      ) : (
+        <Container component="main" maxWidth="xl">
           <CssBaseline />
           <Box
             sx={{
@@ -83,7 +77,6 @@ export default function SignUp(props) {
               color: 'white',
             }}
           >
-            
             <Avatar sx={{ m: 1, bgcolor: '#133955' }}>
               <LockOutlinedIcon />
             </Avatar>
@@ -107,7 +100,17 @@ export default function SignUp(props) {
                     autoComplete="username"
                     onChange={handleChange}
                     value={formState.username}
-                    sx={{ bgcolor: 'white' }}
+                    // sx={{ bgcolor: 'white' }}
+                    style={{
+                      width: '100%',
+                      border: '2px solid white',
+                      backgroundColor: '#282827',
+                      color: 'white',
+                    }}
+                    InputLabelProps={{ style: { color: 'white' } }}
+                    InputProps={{
+                      style: { color: 'white' },
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -122,7 +125,17 @@ export default function SignUp(props) {
                     // add RegEx function to validate email
                     onChange={handleChange}
                     // onBlur={yeller}
-                    sx={{ bgcolor: 'white' }}
+                    // sx={{ bgcolor: 'white' }}
+                    style={{
+                      width: '100%',
+                      border: '2px solid white',
+                      backgroundColor: '#282827',
+                      color: 'white',
+                    }}
+                    InputLabelProps={{ style: { color: 'white' } }}
+                    InputProps={{
+                      style: { color: 'white' },
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -136,7 +149,17 @@ export default function SignUp(props) {
                     value={formState.password}
                     autoComplete="new-password"
                     onChange={handleChange}
-                    sx={{ bgcolor: 'white' }}
+                    // sx={{ color: 'white' }}
+                    style={{
+                      width: '100%',
+                      border: '2px solid white',
+                      backgroundColor: '#282827',
+                      color: 'white',
+                    }}
+                    InputLabelProps={{ style: { color: 'white' } }}
+                    InputProps={{
+                      style: { color: 'white' },
+                    }}
                   />
                 </Grid>
                 {/* removes checkbox */}
@@ -154,27 +177,22 @@ export default function SignUp(props) {
               <Grid container justifyContent="center">
                 <Grid item>
                   <Link
-                    to='/'
+                    to="/"
                     onClick={() => setSignUp(false)}
                     variant="body2"
                     style={{ color: 'white', textDecoration: 'underline' }}
                   >
                     {'Already have an account? Sign in on the homepage'}
                   </Link>
-                
                 </Grid>
               </Grid>
             </Box>
-            
           </Box>
-          
         </Container>
-        )}
-        {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
+      )}
+      {error && (
+        <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
+      )}
     </div>
   );
 }

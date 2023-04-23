@@ -42,8 +42,6 @@ export default function Profile() {
     }
   }, [entryQuery.data, entryQuery.loading]);
 
-  console.log(userEntries);
-
   // the JSX
   return (
     <div
