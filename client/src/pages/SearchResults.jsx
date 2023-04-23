@@ -20,20 +20,23 @@ export default function SearchResults() {
     });
   };
   const handleClick = () => {
-      getGameData();
+    getGameData();
   };
 
-  const handleKeyPress = (event) => { 
+  const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       getGameData();
     }
   };
 
-  const [getGameData, { loading, error, data }] = useLazyQuery(GET_GAME_BY_NAME, {
-    variables: {
-      game: formState.game,
-    },
-  });
+  const [getGameData, { loading, error, data }] = useLazyQuery(
+    GET_GAME_BY_NAME,
+    {
+      variables: {
+        game: formState.game,
+      },
+    }
+  );
 
   // Update gameData when the data is fetched
   useEffect(() => {
@@ -93,9 +96,10 @@ export default function SearchResults() {
           gap: '1em',
           marginTop: '2em',
           backgroundColor: '#292827',
+          marginBottom: '5em',
         }}
       >
-        {gameData.slice(0, 6).map((game) => (
+        {gameData.slice(0, 20).map((game) => (
           <GameReviewCard
             key={game.id}
             title={game.name}
