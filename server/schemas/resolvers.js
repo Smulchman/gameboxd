@@ -34,14 +34,12 @@ const resolvers = {
 
     // Returns all games
     games: async (_, { game }) => {
-      console.log("instance");
       const data = await getGames(game);
       return data.results;
     },
 
     // Returns a game
     game: async (_, { gameId }) => {
-      console.log("instance");
       const data = await getGame(gameId);
       return data;
     },
