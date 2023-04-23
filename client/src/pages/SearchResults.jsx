@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 // material stuff
 import GameReviewCard from '../components/GameReviewCard';
 import Input from '@mui/material/Input';
-
+import { useLazyQuery } from '@apollo/client';
 import FormControl from '@mui/material/FormControl';
 import { useQuery } from '@apollo/client';
 import { GET_GAME_BY_NAME } from '../utils/queries';
@@ -19,24 +19,28 @@ export default function SearchResults() {
       [name]: value,
     });
   };
-  const handleKeyPress = (event) => {
+  const handleClick = () => {
+      getGameData();
+  };
+
+  const handleKeyPress = (event) => { 
     if (event.key === 'Enter') {
       getGameData();
     }
   };
-  const { loading, error, data } = useQuery(GET_GAME_BY_NAME, {
+
+  const [getGameData, { loading, error, data }] = useLazyQuery(GET_GAME_BY_NAME, {
     variables: {
       game: formState.game,
     },
   });
 
-  const getGameData = () => {
-    const results = data;
-
-    if (data) {
+  // Update gameData when the data is fetched
+  useEffect(() => {
+    if (data && data.games) {
       setGameData(data.games);
     }
-  };
+  }, [data]);
 
   return (
     <div
