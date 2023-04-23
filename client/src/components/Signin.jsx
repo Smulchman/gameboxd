@@ -116,7 +116,8 @@ export default function SignIn(props) {
           </Button>
           <Grid container justifyContent="center">
             <Grid item>
-              <Link to='/Signup'
+              <Link
+                to="/Signup"
                 variant="body2"
                 style={{ color: 'white', textDecoration: 'underline' }}
               >

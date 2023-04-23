@@ -20,9 +20,11 @@ import { Hidden, Menu, MenuItem } from '@mui/material';
 // import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import '../assets/css/rcard.css';
-import Auth from '../utils/auth.js'
+import Auth from '../utils/auth.js';
 import { useMutation } from '@apollo/client';
 import { ADD_ENTRY_BY_USER } from '../utils/mutations';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import Avatar from '@mui/material/Avatar';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -52,15 +54,13 @@ export default function GameReviewCard({
   const me = Auth.getProfile();
 
   // formState info for modal submit
-  const [formState, setFormState] = useState(
-    {
-      review: '',
-      platform: '',
-      game: gameId,
-      user: me.data._id
-    }
-  )
-  
+  const [formState, setFormState] = useState({
+    review: '',
+    platform: '',
+    game: gameId,
+    user: me.data._id,
+  });
+
   // the query for adding an entry
   const [addEntry] = useMutation(ADD_ENTRY_BY_USER);
   const handleChange = (event) => {
@@ -75,16 +75,15 @@ export default function GameReviewCard({
   const handleTest = (event) => {
     event.preventDefault();
     console.log(formState);
-  }
+  };
   // when the modal form is actually submitted
   const handleFormSubmit = (event) => {
     event.preventDefault();
-      addEntry({
-        variables: { ...formState },
-      });
-      handleClose();
+    addEntry({
+      variables: { ...formState },
+    });
+    handleClose();
   };
-
 
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
@@ -130,7 +129,10 @@ export default function GameReviewCard({
     transform: 'translate(-50%, -50%)',
     background: '#292827',
     color: 'white',
-    padding: '1em'
+    padding: '1em',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   };
 
   return (
@@ -138,11 +140,11 @@ export default function GameReviewCard({
       <Card id="r-card">
         <CardHeader
           // avatar={
-            // <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            //   {title && title.hasOwnProperty('length') && title.length > 0
-            //     ? title[0]
-            //     : 'No game found'}
-            // </Avatar>
+          // <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+          //   {title && title.hasOwnProperty('length') && title.length > 0
+          //     ? title[0]
+          //     : 'No game found'}
+          // </Avatar>
           // }
           action={
             <React.Fragment>
@@ -243,43 +245,65 @@ export default function GameReviewCard({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box 
-        sx={style}
-        >
+        <Box sx={style}>
+          <Avatar style={{ backgroundColor: '#133955' }}>
+            <SportsEsportsIcon />
+          </Avatar>
           <Typography id="modal-modal-title" variant="h6" component="h2">
             Add your review for {title}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Write entry here
           </Typography>
-            <textarea
-            type='text'
-            name='review'
+          <textarea
+            type="text"
+            name="review"
             value={formState.review}
             onChange={handleChange}
             rows={6}
-            style={{width: '100%', border:'2px solid white', backgroundColor: '#282827', color: 'white' }}
-            />
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              What platform did you play on
-            </Typography>
-            <textarea
-            type='text'
-            name='platform'
+            style={{
+              width: '100%',
+              border: '2px solid white',
+              backgroundColor: '#282827',
+              color: 'white',
+            }}
+          />
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            What platform did you play on
+          </Typography>
+          <textarea
+            type="text"
+            name="platform"
             value={formState.platform}
             onChange={handleChange}
             rows={2}
-            style={{width: '100%', border:'2px solid white', backgroundColor: '#282827', color: 'white' }}
-            />
-            <div style={{display: 'flex', justifyContent: 'center', width: '100%'}}>
-              <button
+            style={{
+              width: '100%',
+              border: '2px solid white',
+              backgroundColor: '#282827',
+              color: 'white',
+            }}
+          />
+          <div
+            style={{ display: 'flex', justifyContent: 'center', width: '100%' }}
+          >
+            <button
               type="submit"
               onClick={handleFormSubmit}
-              style={{ backgroundColor: '#133955', color: 'white', padding: '1.5em', textAlign: 'center', cursor: 'crosshair', margin: '1em', fontSize: '1.25em' }}
-              name='submit'>
-                Add Entry!
-              </button>
-            </div>
+              style={{
+                backgroundColor: '#133955',
+                color: 'white',
+                padding: '1.5em',
+                textAlign: 'center',
+                cursor: 'crosshair',
+                margin: '1em',
+                fontSize: '1.25em',
+              }}
+              name="submit"
+            >
+              Add Entry!
+            </button>
+          </div>
         </Box>
       </Modal>
     </Container>
