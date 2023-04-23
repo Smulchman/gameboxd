@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -23,7 +23,8 @@ import { Hidden, Menu, MenuItem } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import '../assets/css/rcard.css';
 
-
+import { useMutation } from '@apollo/client';
+import { ADD_ENTRY_BY_USER } from '../utils/mutations';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -49,6 +50,45 @@ export default function GameReviewCard({
 
   const [isFavorite, setIsFavorite] = React.useState(false);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+
+
+
+  // info for modal submit
+  const [formState, setFormState] = useState(
+    {
+      review: '',
+      platform: '',
+      game: gameId,
+      user: ''
+    }
+  )
+  const addEntry = useMutation(ADD_ENTRY_BY_USER);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleTest = (event) => {
+    event.preventDefault();
+    console.log(formState);
+  }
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await addEntry({
+        variables: { ...formState },
+      });
+      console.log(data);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
 
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
@@ -119,8 +159,6 @@ export default function GameReviewCard({
                 onClose={handleMenuClose}
               >
                 <MenuItem onClick={handleOpen}>add it to library</MenuItem>
-                <MenuItem onClick={handleMenuClose}>add it to played</MenuItem>
-
                 <MenuItem onClick={handleMenuClose}>add a review</MenuItem>
               </Menu>
             </React.Fragment>
@@ -216,19 +254,11 @@ export default function GameReviewCard({
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             Write entry here
           </Typography>
-            {/* <TextField
-              style={{backgroundColor: '#282827', color: 'white'}}
-              id="platform"
-              label="Outlined"
-              // variant="outlined"
-              multiline
-              rows={8}
-              fullWidth
-              sx={{ mt: 2 }}
-            /> */}
             <textarea
             type='text'
             name='review'
+            value={formState.review}
+            onChange={handleChange}
             rows={6}
             style={{width: '100%', border:'2px solid white', backgroundColor: '#282827', color: 'white' }}
             />
@@ -238,9 +268,17 @@ export default function GameReviewCard({
             <textarea
             type='text'
             name='platform'
+            value={formState.platform}
+            onChange={handleChange}
             rows={2}
             style={{width: '100%', border:'2px solid white', backgroundColor: '#282827', color: 'white' }}
             />
+            <button
+            onClick={handleTest}
+            
+            >
+              Add Entry!
+            </button>
             
           {/* </div> */}
         </Box>
