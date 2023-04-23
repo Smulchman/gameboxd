@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 // jimmy's cool images
 import QuiltedImageList from '../components/gamebox';
 // sam's cool image
-import Hero from '../components/hero.jsx';
+import Hero from '../components/Hero.jsx';
 // auth for conditional rendering
 import Auth from '../utils/auth.js';
 // stuff for making queries
