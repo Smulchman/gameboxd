@@ -71,7 +71,7 @@ export default function SimpleContainer() {
     >
       <Container
         maxWidth="xl"
-        style={{ height: '85vh', marginTop: 25, height: '100%' }}
+        style={{ height: '85vh', marginTop: 25 }}
       >
         <Box sx={{ bgcolor: '#292827', height: '50vh' }}>
           <img

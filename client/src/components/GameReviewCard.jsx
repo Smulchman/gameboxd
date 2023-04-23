@@ -117,6 +117,7 @@ export default function GameReviewCard({
           }
         />
         <a href={`https://rawg.io/games/${gameId}`}>
+          {/* use Navigate */}
           <CardMedia
             component="img"
             height="194"
