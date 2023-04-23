@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import VideogameAssetOffIcon from '@mui/icons-material/VideogameAssetOff';
-import GamepadIcon from '@mui/icons-material/Gamepad';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,18 +11,12 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { Link } from 'react-router-dom';
-import { borders } from '@mui/system';
 import Auth from '../utils/auth.js';
-// import '../assets/css'
-
-const pages = [<GamepadIcon />, <SearchIcon />];
-// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-// don't need an array for a couple dropdown options. easier to add onclick functions by putting them in the markup. -jr
-
+import { useQuery } from '@apollo/client';
+import { GET_USER } from '../utils/queries.js';
 export default function Navbar(currentPage, handlePageChange) {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -43,6 +36,19 @@ export default function Navbar(currentPage, handlePageChange) {
     setAnchorElUser(null);
   };
 
+  const me = Auth.getProfile();
+  let myName;
+  // nested two layers in is email
+  const myEmail = me.data.email;
+  // get user by email query
+  const userQuery = useQuery(GET_USER, {
+    variables: { email: myEmail },
+  });
+  if (userQuery.data && !userQuery.loading) {
+    myName = userQuery.data.user.username;
+  }
+
+  console.log(myName);
 
   return (
     <AppBar position="static" sx={{ bgcolor: '#292827', borderBottom: 3 }}>
@@ -146,12 +152,17 @@ export default function Navbar(currentPage, handlePageChange) {
           {/* make sure the user is logged in to display user menu  */}
           {Auth.loggedIn() && (
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="User Options"
+            <Tooltip title={`${myName} options`}
             style={{}}
             >
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}
               >
-                <Avatar alt="bemy Sharp" src="" />
+                {userQuery.data ? (
+                  <Avatar alt={myName} src="" />
+                ) : (
+                  <Avatar alt="" src="" />
+                )
+              }
               </IconButton>
             </Tooltip> 
             <Menu
@@ -171,7 +182,9 @@ export default function Navbar(currentPage, handlePageChange) {
               onClose={handleCloseUserMenu}
             >
               <MenuItem>
-              <Link to='/Profile'>
+              <Link to='/Profile'
+              onClick={handleCloseUserMenu}
+              >
                 Profile
               </Link>
               </MenuItem>
