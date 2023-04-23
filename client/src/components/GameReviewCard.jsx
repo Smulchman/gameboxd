@@ -19,6 +19,9 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import { TWITTER_SHARE } from '../utils/constants';
 import { Hidden, Menu, MenuItem } from '@mui/material';
+// import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+
 import '../assets/css/rcard.css'
 
 
@@ -74,6 +77,22 @@ export default function GameReviewCard({
     setExpanded(!expanded);
   };
 
+  // modal code
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+
 
   return (
     <Container >
@@ -98,7 +117,7 @@ export default function GameReviewCard({
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
               >
-                <MenuItem onClick={handleMenuClose}>add it to library</MenuItem>
+                <MenuItem onClick={handleOpen}>add it to library</MenuItem>
                 <MenuItem onClick={handleMenuClose}>add it to played</MenuItem>
 
                 <MenuItem onClick={handleMenuClose}>add a review</MenuItem>
@@ -184,6 +203,23 @@ export default function GameReviewCard({
           </CardContent>
         </Collapse>
       </Card>
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Text in a modal
+          </Typography>
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+          </Typography>
+        </Box>
+      </Modal>
+ 
     </Container>
   );
 }
