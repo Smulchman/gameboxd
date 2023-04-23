@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
 // material stuff
 import GameReviewCard from '../components/GameReviewCard';
-import Input from '@mui/material/Input';
-
 import FormControl from '@mui/material/FormControl';
 import { useQuery } from '@apollo/client';
 import { GET_GAME_BY_NAME } from '../utils/queries';
 import TextField from '@mui/material/TextField';
+import Auth from '../utils/auth.js'
 
 export default function SearchResults() {
   const [formState, setFormState] = useState({ game: '' });
   const [gameData, setGameData] = useState([]);
+
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -35,11 +36,8 @@ export default function SearchResults() {
 
     if (data) {
       setGameData(data.games);
-      console.log(gameData);
     }
   };
-  console.log(gameData);
-
   return (
     <div
       style={{
