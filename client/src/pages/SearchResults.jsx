@@ -7,7 +7,6 @@ import Input from '@mui/material/Input';
 import FormControl from '@mui/material/FormControl';
 import { useQuery } from '@apollo/client';
 import { GET_GAME_BY_NAME } from '../utils/queries';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 export default function SearchResults() {
@@ -33,15 +32,11 @@ export default function SearchResults() {
 
   const getGameData = () => {
     const results = data;
-    // if (data) {
-    //   console.log(data.games);
-    // }
+
     if (data) {
       setGameData(data.games);
-      console.log(gameData);
     }
   };
-  console.log(gameData);
 
   return (
     <div
@@ -84,21 +79,6 @@ export default function SearchResults() {
               fontSize: '1.5em',
             }}
           />
-          {/* id="gameSearch"
-            
-            startAdornment={
-              <InputAdornment position="start">
-                <SearchIcon
-                  onClick={getGameData}
-                  style={{
-                    margin: '.5em',
-                    fontSize: '1em',
-                    cursor: 'crosshair',
-                  }}
-                />
-              </InputAdornment>
-            }
-          /> */}
         </FormControl>
       </div>
       <div
