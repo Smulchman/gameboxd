@@ -36,19 +36,7 @@ export default function Navbar(currentPage, handlePageChange) {
     setAnchorElUser(null);
   };
 
-  const me = Auth.getProfile();
   let myName;
-  // nested two layers in is email
-  const myEmail = me.data.email;
-  // get user by email query
-  const userQuery = useQuery(GET_USER, {
-    variables: { email: myEmail },
-  });
-  if (userQuery.data && !userQuery.loading) {
-    myName = userQuery.data.user.username;
-  }
-
-  console.log(myName);
 
   return (
     <AppBar position="static" sx={{ bgcolor: '#292827', borderBottom: 3 }}>
@@ -157,12 +145,9 @@ export default function Navbar(currentPage, handlePageChange) {
             >
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}
               >
-                {userQuery.data ? (
-                  <Avatar alt={myName} src="" />
-                ) : (
+ 
                   <Avatar alt="" src="" />
-                )
-              }
+                
               </IconButton>
             </Tooltip> 
             <Menu
