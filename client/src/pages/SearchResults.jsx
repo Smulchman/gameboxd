@@ -109,7 +109,6 @@ export default function SearchResults() {
           gap: '1em',
           marginTop: '2em',
           backgroundColor: '#292827',
-          
         }}
       >
         {gameData.slice(0, 6).map((game) => (
