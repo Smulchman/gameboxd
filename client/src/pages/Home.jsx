@@ -48,7 +48,7 @@ export default function SimpleContainer() {
   // checks to see if there is data from query --> sets entryData state with the array of entries
   
   const getEntries = () => {
-      const entries = data.entries.slice(0, 10);
+      const entries = data.entries.slice(-10);
       setEntryData(entries);
   };
 
