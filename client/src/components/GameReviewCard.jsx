@@ -21,7 +21,6 @@ import { TWITTER_SHARE } from '../utils/constants';
 import { Hidden, Menu, MenuItem } from '@mui/material';
 // import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-
 import '../assets/css/rcard.css';
 
 //for review modal
@@ -77,6 +76,7 @@ export default function GameReviewCard({
   };
 
   // modal code
+
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
