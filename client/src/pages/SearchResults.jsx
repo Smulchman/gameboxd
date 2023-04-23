@@ -33,15 +33,10 @@ export default function SearchResults() {
 
   const getGameData = () => {
     const results = data;
-    // if (data) {
-    //   console.log(data.games);
-    // }
     if (data) {
       setGameData(data.games);
-      console.log(gameData);
     }
   };
-  console.log(gameData);
 
   return (
     <div
