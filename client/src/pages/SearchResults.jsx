@@ -35,10 +35,8 @@ export default function SearchResults() {
 
     if (data) {
       setGameData(data.games);
-      console.log(gameData);
     }
   };
-  console.log(gameData);
 
   return (
     <div
