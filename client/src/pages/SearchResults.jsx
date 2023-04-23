@@ -7,7 +7,6 @@ import { useLazyQuery } from '@apollo/client';
 import FormControl from '@mui/material/FormControl';
 import { useQuery } from '@apollo/client';
 import { GET_GAME_BY_NAME } from '../utils/queries';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
 export default function SearchResults() {
@@ -84,22 +83,6 @@ export default function SearchResults() {
               fontSize: '1.5em',
             }}
           />
-          <button onClick={handleClick}>Search</button>
-          {/* id="gameSearch"
-            
-            startAdornment={
-              <InputAdornment position="start">
-                <SearchIcon
-                  onClick={getGameData}
-                  style={{
-                    margin: '.5em',
-                    fontSize: '1em',
-                    cursor: 'crosshair',
-                  }}
-                />
-              </InputAdornment>
-            }
-          /> */}
         </FormControl>
       </div>
       <div
