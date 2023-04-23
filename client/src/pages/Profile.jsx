@@ -15,13 +15,11 @@ export default function Profile() {
   const me = Auth.getProfile();
   // initiate variable to store name from query results
   let myName;
-  // nested two layers in is email
   const myEmail = me.data.email;
   // get user by email query
   const userQuery = useQuery(GET_USER, {
     variables: { email: me.data.email },
   });
-
   // take the email from decoded jwt and query user
   const entryQuery = useQuery(GET_ENTRIES_BY_USER, {
     variables: { email: myEmail },
@@ -35,7 +33,6 @@ export default function Profile() {
       const entries = entryQuery.data.user;
       setUserEntries(entries.entries);
   };
-
   useEffect(() => {
     if (entryQuery.data && !entryQuery.loading) {
       getEntries();
