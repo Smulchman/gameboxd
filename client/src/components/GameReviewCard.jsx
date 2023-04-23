@@ -22,8 +22,7 @@ import { Hidden, Menu, MenuItem } from '@mui/material';
 // import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 
-import '../assets/css/rcard.css'
-
+import '../assets/css/rcard.css';
 
 //for review modal
 import TextField from '@mui/material/TextField';
@@ -82,20 +81,23 @@ export default function GameReviewCard({
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 600,
+    maxHeight: '80%',
+    overflowY: 'auto',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    background: '#292827',
+    color: 'white',
   };
 
-
   return (
-    <Container >
+    <Container>
       <Card id="r-card">
         <CardHeader
           avatar={
@@ -173,11 +175,7 @@ export default function GameReviewCard({
         </CardActions>
         <Collapse in={expanded} timeout="auto" unmountOnExit>
           <CardContent>
-            <Typography
-              paragraph
-            >
-              Name:{title}
-            </Typography>
+            <Typography paragraph>Name:{title}</Typography>
             <Typography paragraph>
               Genre :{' '}
               {genres.map((genre, index) => {
@@ -199,7 +197,7 @@ export default function GameReviewCard({
                   </span>
                 );
               })}
-            </Typography>          
+            </Typography>
           </CardContent>
         </Collapse>
       </Card>
@@ -212,14 +210,34 @@ export default function GameReviewCard({
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
+            Add your review for {title}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            Write entry here
           </Typography>
+          <TextField
+            id="platform"
+            label="Outlined"
+            variant="outlined"
+            multiline
+            rows={8}
+            fullWidth
+            sx={{ mt: 2 }}
+          />
+          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+            What platform did you play on
+          </Typography>
+          <TextField
+            id="entry"
+            label="Outlined"
+            variant="outlined"
+            multiline
+            rows={1}
+            fullWidth
+            sx={{ mt: 2 }}
+          />
         </Box>
       </Modal>
- 
     </Container>
   );
 }
