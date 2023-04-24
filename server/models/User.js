@@ -29,11 +29,15 @@ const userSchema = new Schema({
       ref: 'Entry',
     },
   ],
-  wishlist: [
-    {
-      type: Number
-    },
-  ]
+  wishlist: [wishlistItemSchema]
+});
+
+const wishlistItemSchema = new Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  // Add any other properties you want to save
 });
 
 // pre-save middleware to create encrypted password
