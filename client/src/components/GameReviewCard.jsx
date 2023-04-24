@@ -52,7 +52,6 @@ export default function GameReviewCard({
 
   // get JWT decoded so can pull id from it
   const me = Auth.getProfile();
-
   // formState info for modal submit
   const [formState, setFormState] = useState({
     review: '',
@@ -72,10 +71,6 @@ export default function GameReviewCard({
     });
   };
 
-  const handleTest = (event) => {
-    event.preventDefault();
-    console.log(formState);
-  };
   // when the modal form is actually submitted
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -83,7 +78,9 @@ export default function GameReviewCard({
       variables: { ...formState },
     });
     handleClose();
+    handleMenuClose();
   };
+
 
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
