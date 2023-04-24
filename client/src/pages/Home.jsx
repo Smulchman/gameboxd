@@ -49,7 +49,8 @@ export default function SimpleContainer() {
   
   const getEntries = () => {
       const entries = data.entries.slice(-10);
-      setEntryData(entries);
+      const reverseEntries = entries.reverse();
+      setEntryData(reverseEntries);
   };
 
   useEffect(() => {
