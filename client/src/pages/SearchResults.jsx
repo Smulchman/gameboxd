@@ -19,9 +19,6 @@ export default function SearchResults() {
       [name]: value,
     });
   };
-  const handleClick = () => {
-    getGameData();
-  };
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
