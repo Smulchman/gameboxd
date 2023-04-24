@@ -34,7 +34,6 @@ const style = {
   p: 4,
 };
 
-
 export default function SimpleContainer() {
   // modal stuff
   const [open, setOpen] = useState(false);
@@ -46,11 +45,11 @@ export default function SimpleContainer() {
     variables: { limit: 10 },
   });
   // checks to see if there is data from query --> sets entryData state with the array of entries
-  
+
   const getEntries = () => {
-      const entries = data.entries.slice(-10);
-      const reverseEntries = entries.reverse();
-      setEntryData(reverseEntries);
+    const entries = data.entries.slice(-10);
+    const reverseEntries = entries.reverse();
+    setEntryData(reverseEntries);
   };
 
   useEffect(() => {
@@ -71,10 +70,7 @@ export default function SimpleContainer() {
         marginBottom: '2em',
       }}
     >
-      <Container
-        maxWidth="xl"
-        style={{ marginTop: 25, height: '100%' }}
-      >
+      <Container maxWidth="xl" style={{ marginTop: 25, height: '100%' }}>
         <Hero />
         {/* modal stuff starts */}
         <div
@@ -96,28 +92,32 @@ export default function SimpleContainer() {
             }}
           >
             <div
-            style={{border: '2px dashed white', padding: '2em', margin: '1em'}}
+              style={{
+                border: '2px dashed white',
+                padding: '2em',
+                margin: '1em',
+              }}
             >
-            <h2 style={{ width: '100%' }}>Track Games You've Played</h2>
-            <h2 style={{ width: '100%' }}>Save Those You Want To Play</h2>
+              <h2 style={{ width: '100%' }}>Track Games You've Played</h2>
+              <h2 style={{ width: '100%' }}>Save Those You Want To Play</h2>
             </div>
             {/* display login button for modal if not logged in */}
             {Auth.loggedIn() ? (
-              <Link to='/SearchResults'>
+              <Link to="/SearchResults">
                 <Button
-                variant="contained"
-                size="large"
-                sx={{ width: '200px', height: '60px', margin: '1em' }}
-                onClick={handleOpen}
-                style={{
-                  padding: '4px',
-                  margin: '5px',
-                  backgroundColor: '#133955',
-                }}
-              >
-                Find Games!
-              </Button>
-            </Link> 
+                  variant="contained"
+                  size="large"
+                  sx={{ width: '200px', height: '60px', margin: '1em' }}
+                  onClick={handleOpen}
+                  style={{
+                    padding: '4px',
+                    margin: '5px',
+                    backgroundColor: '#133955',
+                  }}
+                >
+                  Find Games!
+                </Button>
+              </Link>
             ) : (
               // if not logged in, allow button to launch modal
               <Button
@@ -191,7 +191,6 @@ export default function SimpleContainer() {
           }}
         ></div>
       </Container>
-      
     </div>
   );
 }

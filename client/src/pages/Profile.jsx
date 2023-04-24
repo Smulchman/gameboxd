@@ -31,8 +31,8 @@ export default function Profile() {
   }
 
   const getEntries = () => {
-      const entries = entryQuery.data.user;
-      setUserEntries(entries.entries);
+    const entries = entryQuery.data.user;
+    setUserEntries(entries.entries);
   };
   useEffect(() => {
     if (entryQuery.data && !entryQuery.loading) {
@@ -44,57 +44,65 @@ export default function Profile() {
   return (
     <div
       style={{
-        backgroundColor: '#282827',
+        background: '#282827',
         height: '100%',
-        padding: '1em',
-        marginBottom: '1em',
+        minHeight: '100vh',
       }}
     >
-      <Card
-        sx={{ minWidth: 275, display: 'flex', justifyContent: 'center' }}
-        style={{
-          backgroundColor: '#282827',
-          color: 'white',
-          border: '2px solid white',
-        }}
-      >
-        <CardContent>
-          <h2>Welcome to your profile:</h2>
-          <h2>{myName}</h2>
-          <h3>{myEmail}</h3>
-        </CardContent>
-      </Card>
-      {entryQuery.data && (
-        <div>
-          <h2
-            style={{
-              textAlign: 'center',
-              backgroundColor: '#292827',
-              color: 'white',
-              fontSize: '2em',
-            }}
-          >
-            Your saved games and reviews:
-          </h2>
-
-          {userEntries.map((entry, index) => (
-            <SingleUserEntries
-              key={index}
-              image={entry.gameData.background_image}
-              game={entry.gameData.name}
-              description={entry.gameData.description_raw}
-              platform={entry.platform}
-              review={entry.review}
-              createdAt={entry.createdAt}
-            />
-          ))}
-        </div>
-      )}
       <div
         style={{
-          marginBottom: '2em',
+          backgroundColor: '#282827',
+          height: '100%',
+          padding: '1em',
+          marginBottom: '1em',
         }}
-      ></div>
+      >
+        <Card
+          sx={{ minWidth: 275, display: 'flex', justifyContent: 'center' }}
+          style={{
+            backgroundColor: '#282827',
+            color: 'white',
+            border: '2px solid white',
+          }}
+        >
+          <CardContent>
+            <h2>Welcome to your profile:</h2>
+            <h2>{myName}</h2>
+            <h3>{myEmail}</h3>
+          </CardContent>
+        </Card>
+        {entryQuery.data && (
+          <div>
+            <h2
+              style={{
+                textAlign: 'center',
+                backgroundColor: '#292827',
+                color: 'white',
+                fontSize: '2em',
+              }}
+            >
+              Your saved games and reviews:
+            </h2>
+
+            {userEntries.map((entry, index) => (
+              <SingleUserEntries
+                key={index}
+                image={entry.gameData.background_image}
+                game={entry.gameData.name}
+                description={entry.gameData.description_raw}
+                platform={entry.platform}
+                review={entry.review}
+                createdAt={entry.createdAt}
+              />
+            ))}
+          </div>
+        )}
+        <div
+          style={{
+            marginBottom: '2em',
+          }}
+        ></div>
+      </div>
     </div>
   );
 }
