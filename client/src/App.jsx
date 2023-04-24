@@ -8,7 +8,6 @@ import {
 import { setContext } from '@apollo/client/link/context';
 // router for changing pages and connecting to server
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
 // our 4 pages (including homepage)
 import Home from './pages/Home';
 import Signup from './pages/Signup';

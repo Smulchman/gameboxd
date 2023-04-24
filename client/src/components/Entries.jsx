@@ -39,7 +39,7 @@ export default function Entries({
           <h3> {game}</h3>
           <p>
             Review:{' '}
-            <span style={{ fontStyle: 'italic', fontFamily: 'cursive' }}>
+            <span style={{ fontStyle: 'italic' }}>
               {review}
             </span>{' '}
           </p>
