@@ -25,6 +25,7 @@ import { useMutation } from '@apollo/client';
 import { ADD_ENTRY_BY_USER } from '../utils/mutations';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import Avatar from '@mui/material/Avatar';
+import { ADD_TO_WISHLIST } from '../utils/mutations';
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -37,6 +38,8 @@ const ExpandMore = styled((props) => {
   }),
 }));
 
+
+
 export default function GameReviewCard({
   title,
   imageUrl,
@@ -47,8 +50,17 @@ export default function GameReviewCard({
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [expanded, setExpanded] = React.useState(false);
-
   const [isFavorite, setIsFavorite] = React.useState(false);
+  const [addToWishlist, { loading }] = useMutation(ADD_TO_WISHLIST);
+  const handleAddToWishlist = () => {
+    setIsFavorite(!isFavorite);
+    addToWishlist({
+      variables: {
+        userId: Auth.getProfile().data._id,
+        gameId: gameId,
+      },
+    });
+  };
 
   // get JWT decoded so can pull id from it
   const me = Auth.getProfile();
@@ -85,9 +97,9 @@ export default function GameReviewCard({
     handleClose();
   };
 
-  const handleFavoriteClick = () => {
-    setIsFavorite(!isFavorite);
-  };
+  // const handleFavoriteClick = () => {
+  //   setIsFavorite(!isFavorite);
+  // };
   const handleShareClick = () => {
     // Build the tweet text
     const tweetText = encodeURIComponent('Check out this game!');
@@ -175,6 +187,7 @@ export default function GameReviewCard({
           }
         />
         <a href={`https://rawg.io/games/${gameId}`}>
+          {/* use Navigate */}
           <CardMedia
             component="img"
             height="194"
@@ -183,13 +196,17 @@ export default function GameReviewCard({
           />
         </a>
         <CardContent>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            style={{ whiteSpace: 'nowrap' }}
+          >
             {title}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
           <IconButton
-            onClick={handleFavoriteClick}
+            onClick={handleAddToWishlist}
             aria-label="add to favorites"
           >
             {isFavorite ? (
