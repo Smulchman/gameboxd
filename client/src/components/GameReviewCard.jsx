@@ -51,19 +51,19 @@ export default function GameReviewCard({
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [expanded, setExpanded] = React.useState(false);
   const [isFavorite, setIsFavorite] = React.useState(false);
+  // get JWT decoded so can pull id from it
+  const me = Auth.getProfile();
   const [addToWishlist, { loading }] = useMutation(ADD_TO_WISHLIST);
   const handleAddToWishlist = () => {
     setIsFavorite(!isFavorite);
     addToWishlist({
       variables: {
-        userId: Auth.getProfile().data._id,
+        userId: me.data._id,
         gameId: gameId,
       },
     });
   };
 
-  // get JWT decoded so can pull id from it
-  const me = Auth.getProfile();
   // formState info for modal submit
   const [formState, setFormState] = useState({
     review: '',

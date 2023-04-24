@@ -2,8 +2,9 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
+
 const wishlistItemSchema = new Schema({
-  name: {
+  gameId: {
     type: Number,
     required: true,
   },
@@ -39,6 +40,9 @@ const userSchema = new Schema({
   ],
   wishlist: [wishlistItemSchema]
 });
+
+
+
 
 // pre-save middleware to create encrypted password
 userSchema.pre('save', async function (next) {

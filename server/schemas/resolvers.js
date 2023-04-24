@@ -90,12 +90,14 @@ const resolvers = {
     // Add a game to a user's wishlist
     addToWishlist: async (_, { userId, gameId }) => {
       return await User.findOneAndUpdate(
+        
         // Find User
         { _id: userId },
         // Push the game into the wishlist via their ID
-        { $push: { wishlist: gameId } }
+        { $push: { wishlist: {gameId} } }
       );
     },
+
 
     // Remove the game from the user's wishlist
     removeFromWishlist: async (_, { userId, gameId }) => {

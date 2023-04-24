@@ -23,7 +23,7 @@ const typeDefs = gql`
     """
     Wishlist is an array of all the games that the user added in their wishlist
     """
-    wishlist: [Int]
+    wishlist: [GameID]
   }
 
   """
@@ -39,6 +39,10 @@ const typeDefs = gql`
     review: String
     score: Int
     createdAt: String
+  }
+
+  type GameID {
+    gameId: Int
   }
 
   type Game {
@@ -127,4 +131,3 @@ const typeDefs = gql`
 `;
 
 module.exports = typeDefs;
-
