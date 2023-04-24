@@ -54,9 +54,11 @@ export const ADD_ENTRY_BY_USER = gql`
 
 export const ADD_TO_WISHLIST = gql`
   mutation Mutation($userId: ID!, $gameId: Int!) {
-  addToWishlist(userId: $userId, gameId: $gameId) {
-    wishlist
+    addToWishlist(userId: $userId, gameId: $gameId) {
+      _id
+    }
   }
-}
 `;
+
+
 
