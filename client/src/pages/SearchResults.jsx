@@ -8,6 +8,7 @@ import { useQuery } from '@apollo/client';
 import { GET_GAME_BY_NAME } from '../utils/queries';
 import TextField from '@mui/material/TextField';
 import Auth from '../utils/auth.js';
+
 export default function SearchResults() {
   const [formState, setFormState] = useState({ game: '' });
   const [gameData, setGameData] = useState([]);
@@ -18,9 +19,6 @@ export default function SearchResults() {
       ...formState,
       [name]: value,
     });
-  };
-  const handleClick = () => {
-    getGameData();
   };
 
   const handleKeyPress = (event) => {
@@ -84,8 +82,8 @@ export default function SearchResults() {
             name="game"
             style={{
               background: '#282827',
-              height: '2em',
-              // borderRadius: '1em',
+              // height: '2em', - commented out, blue outline was bigger than the white box
+              // borderRadius: '1em', - commented out, don't know how to change shape of blue outline
               fontSize: '1.5em',
               color: 'white',
               border: '2px solid white',

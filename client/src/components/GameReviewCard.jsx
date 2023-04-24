@@ -83,10 +83,6 @@ export default function GameReviewCard({
     });
   };
 
-  const handleTest = (event) => {
-    event.preventDefault();
-    console.log(formState);
-  };
   // when the modal form is actually submitted
   const handleFormSubmit = (event) => {
     event.preventDefault();
@@ -94,11 +90,10 @@ export default function GameReviewCard({
       variables: { ...formState },
     });
     handleClose();
+    handleMenuClose();
   };
 
-  // const handleFavoriteClick = () => {
-  //   setIsFavorite(!isFavorite);
-  // };
+  
   const handleShareClick = () => {
     // Build the tweet text
     const tweetText = encodeURIComponent('Check out this game!');
