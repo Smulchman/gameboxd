@@ -41,12 +41,9 @@ const userSchema = new Schema({
   wishlist: [wishlistItemSchema]
 });
 
-<<<<<<< HEAD
 
 
 
-=======
->>>>>>> 9cca421a9d798c8c652afce72a92ba503b4aaf10
 // pre-save middleware to create encrypted password
 userSchema.pre('save', async function (next) {
   if (this.isNew || this.isModified('password')) {
