@@ -19,9 +19,6 @@ export default function SearchResults() {
       [name]: value,
     });
   };
-  const handleClick = () => {
-    getGameData();
-  };
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
@@ -84,8 +81,8 @@ export default function SearchResults() {
             name="game"
             style={{
               background: '#282827',
-              height: '2em',
-              // borderRadius: '1em',
+              // height: '2em', - commented out, blue outline was bigger than the white box
+              // borderRadius: '1em', - commented out, don't know how to change shape of blue outline
               fontSize: '1.5em',
               color: 'white',
               border: '2px solid white',
