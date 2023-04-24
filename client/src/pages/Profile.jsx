@@ -16,6 +16,7 @@ export default function Profile() {
   // initiate variable to store name from query results
   let myName;
   const myEmail = me.data.email;
+ 
   // get user by email query
   const userQuery = useQuery(GET_USER, {
     variables: { email: me.data.email },

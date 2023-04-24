@@ -93,6 +93,7 @@ export default function GameReviewCard({
     handleMenuClose();
   };
 
+  
   const handleShareClick = () => {
     // Build the tweet text
     const tweetText = encodeURIComponent('Check out this game!');
